@@ -299,3 +299,6 @@ html { interpolate-size: allow-keywords; }
 .q-submit .btn:hover::after { border-color: #fff; }
 .q-done { padding: clamp(30px, calc(21.26px + 2.3301vw), 66px) 30px; text-align: center; }
 @media (max-width: 800px) { .q-last input:not([type=checkbox]):not([type=radio]), .q-last select, .q-last textarea { width: 100%; } }
+.q-field { padding-top: 20px; }
+.q-grid .q-item { margin-bottom: 4px; }
+.quiz-wrapper { padding-bottom: calc(clamp(60px, calc(55.15px + 1.2945vw), 80px) + 45px); }
