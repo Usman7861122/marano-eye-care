@@ -4,8 +4,8 @@ export const home = {
     'Marano Eye Care offers comprehensive eye care, LASIK, cataract surgery, dry eye treatment and corneal surgery at three convenient locations in Denville, Livingston, and Newark, New Jersey.',
   hero: {
     eyebrow: 'Ophthalmology in Denville, Livingston & Newark, NJ',
-    line1: 'Your eyes are in',
-    line2: 'experienced hands.',
+    line1: 'Clearer sight,',
+    line2: 'brighter days.',
     sub: 'Marano Eye Care | Focused on Your Vision',
     procedures: ['LASIK', 'Cataract Surgery', 'LENSAR ALLY®', 'Premium Lenses', 'Dry Eye Care', 'Corneal Surgery'],
   },
