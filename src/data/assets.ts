@@ -68,11 +68,10 @@ export const img = {
 };
 
 export const vid = {
-  // New AI-generated hero clip (Higgsfield). TODO: download and host as /videos/hero.mp4.
-  hero: { high: 'https://d8j0ntlcm91z4.cloudfront.net/user_3JUx2c1cTImwNENAicIA63OxE5i/hf_20261022_155905_32bed358-6d11-4215-8407-613ce210d4fa.mp4', medium: 'https://d8j0ntlcm91z4.cloudfront.net/user_3JUx2c1cTImwNENAicIA63OxE5i/hf_20261022_155905_32bed358-6d11-4215-8407-613ce210d4fa.mp4' },
+  hero: { high: '/videos/hero.mp4', medium: '/videos/hero.mp4' },
   power: V('1GDErUAjUhFjxMFeN9I02BguhONQE68DP'),
   findOut: V('FYwa4ejCtP01CyNiSFTh7rH0201oXiRPJSF'),
   cataracts: V('74GuSbBg56tn02yPClJrjIZH2MOi027bk9'),
   ageVideo: V('S3009VLubi4JGhVfzb9oEgPWtnshPftb1'),
-  heroPoster: undefined as string | undefined,
+  heroPoster: '/videos/hero-poster.jpg',
 };
