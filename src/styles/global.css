@@ -134,3 +134,16 @@ body {
 .quiz-nav.back { left: clamp(30px, calc(15.44px + 3.8835vw), 90px); }
 .quiz-nav.next { right: clamp(30px, calc(15.44px + 3.8835vw), 90px); flex-direction: row-reverse; }
 .quiz-nav.next::before { rotate: 180deg; }
+
+/* Reviews quote pill + mark */
+.quote-pill {
+  position: absolute; top: 0; left: 50%; translate: -50% 0; height: 226px;
+  width: clamp(300px, calc(125.24px + 46.6019vw), 1020px); border-radius: 100vmax; opacity: .9;
+  background: radial-gradient(circle at 10% 150%, #91b2cd -20%, #91b2cd -10%, transparent 40%), radial-gradient(circle at 120% 80%, #91b2cd 0%, transparent 50%), #031a34;
+}
+@media (max-width: 640px) { .quote-pill { width: calc(100vw - 70px); } }
+.quote-mark {
+  position: absolute; left: 50%; translate: -50%; top: clamp(95px, calc(69.5px + 6.7961vw), 200px);
+  width: clamp(65px, calc(60.15px + 1.2945vw), 85px); height: clamp(48px, calc(43.15px + 1.2945vw), 68px);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='86' height='68' viewBox='0 0 86 68' fill='none'%3E%3Cpath d='M33.9548 0L34.4504 1.48365C23.7945 5.68727 10.1647 17.0618 10.1647 28.6836C10.1647 36.8436 18.0948 37.8327 24.7857 38.8218C34.9461 40.3055 38.9111 47.4764 38.9111 53.6582C38.9111 61.3236 32.9636 68 23.5466 68C12.1472 68 0.5 58.6036 0.5 40.8C0.5 17.5564 18.8382 4.45091 33.9548 0ZM80.5437 0L81.0394 1.48365C70.3834 5.68727 56.7536 17.0618 56.7536 28.6836C56.7536 36.8436 64.6837 37.8327 71.3746 38.8218C81.535 40.3055 85.5 47.4764 85.5 53.6582C85.5 61.3236 79.5525 68 70.1356 68C58.7362 68 47.0889 58.6036 47.0889 40.8C47.0889 17.5564 65.4271 4.45091 80.5437 0Z' fill='white'/%3E%3C/svg%3E") center / contain no-repeat;
+}

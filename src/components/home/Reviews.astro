@@ -18,7 +18,8 @@ import { img } from '../../data/assets';
 
   <div class="relative col-start-1 row-start-1">
     <!-- Rolling quotes -->
-    <div class="pb-[clamp(80px,13.1vw,192px)] pt-[clamp(120px,21.6vw,311px)]">
+    <div class="relative pb-[clamp(100px,calc(68.45px+8.4142vw),230px)] pt-[clamp(170px,calc(129.47px+10.8091vw),337px)]">
+      <div class="quote-mark" aria-hidden="true"></div>
       <QuoteCarousel client:visible quotes={home.quotes} />
     </div>
 
