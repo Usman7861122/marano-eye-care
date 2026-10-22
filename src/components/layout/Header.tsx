@@ -35,7 +35,7 @@ export default function Header() {
             <a href={site.phoneHref} className="text-[16px] text-navy">
               {site.phone}
             </a>
-            <a href={site.bookingUrl} className="btn !px-[15px]">
+            <a href={site.bookingUrl} className="btn" style={{ paddingInline: 'clamp(14px, calc(-23.69px + 2.6923vw), 28px)' }}>
               Book Now
             </a>
           </div>

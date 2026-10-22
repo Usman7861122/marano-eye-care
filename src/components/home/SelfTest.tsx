@@ -54,7 +54,7 @@ export default function SelfTest() {
         style={{ backgroundImage: 'linear-gradient(36deg, #273e55, #041a34 30%)' }}
       >
         {!isForm && (
-          <p className="absolute right-[clamp(20px,5.4vw,78px)] top-[clamp(20px,3vw,44px)] text-[16px]" aria-live="polite">
+          <p className="absolute right-[clamp(30px,calc(25.15px+1.2945vw),50px)] top-[clamp(30px,calc(25.15px+1.2945vw),50px)] text-[16px]" aria-live="polite">
             <span className="text-[24px]">{step + 1}</span> out of <span className="text-[24px]">{total}</span>
           </p>
         )}
@@ -164,21 +164,12 @@ export default function SelfTest() {
         </AnimatePresence>
 
         {!isForm && (
-          <button
-            type="button"
-            onClick={next}
-            className="absolute bottom-[45px] right-[clamp(20px,5vw,72px)] flex flex-row-reverse items-center gap-[14px] rounded-full border border-white/20 px-6 py-[14px] text-[18px] tracking-normal text-white transition hover:bg-white/10"
-          >
+          <button type="button" onClick={next} className="quiz-nav next">
             Next
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M1 6h14M10 1l5 5-5 5" /></svg>
           </button>
         )}
         {step > 0 && !sent && (
-          <button
-            type="button"
-            onClick={() => setStep((s) => s - 1)}
-            className="absolute bottom-[45px] left-[clamp(20px,5vw,72px)] rounded-full border border-white/20 px-6 py-[14px] text-[18px] tracking-normal text-white transition hover:bg-white/10"
-          >
+          <button type="button" onClick={() => setStep((s) => s - 1)} className="quiz-nav back">
             Back
           </button>
         )}

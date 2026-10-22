@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { site } from '../../data/site';
 
-const SLIDE = 708;
+const SLIDE = 'min(49.3vw, 948px)';
 const GAP = 24;
-const STEP = SLIDE + GAP;
+const step = (d: number) => `calc(min(${SLIDE}, 90vw) * ${d} + ${GAP * d}px)`;
 
 export default function QuoteCarousel({ quotes }: { quotes: string[] }) {
   const [i, setI] = useState(0);
@@ -25,39 +24,28 @@ export default function QuoteCarousel({ quotes }: { quotes: string[] }) {
           const n = i + d;
           const text = quotes[((n % quotes.length) + quotes.length) % quotes.length];
           return (
-            <motion.div
+            <div
               key={n}
               className="absolute left-1/2 top-0 flex h-full items-center justify-center px-6 text-center"
-              style={{ width: `min(${SLIDE}px, 90vw)`, marginLeft: `calc(min(${SLIDE}px, 90vw) / -2)` }}
-              initial={false}
-              animate={{ x: d * STEP, opacity: d === 0 ? 1 : 0.25 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                width: `min(${SLIDE}, 90vw)`,
+                marginLeft: `calc(min(${SLIDE}, 90vw) / -2)`,
+                transform: `translateX(${step(d)})`,
+                opacity: d === 0 ? 1 : 0.25,
+                transition: 'transform .8s cubic-bezier(.22,1,.36,1), opacity .8s ease',
+              }}
               aria-hidden={d !== 0}
             >
               <h2 className="serif text-[length:var(--fs-h2)] leading-[1.2] text-white">{text}</h2>
-            </motion.div>
+            </div>
           );
         })}
       </div>
 
       <div className="mt-[67px] flex items-center justify-center gap-[34px]">
-        <button
-          type="button"
-          aria-label="Previous review"
-          onClick={() => setI((v) => v - 1)}
-          className="grid h-[57px] w-[46px] place-items-center rounded-full border border-white/20 text-white transition-colors hover:bg-white/10"
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M9 1L3 7l6 6" /></svg>
-        </button>
+        <button type="button" aria-label="Previous review" onClick={() => setI((v) => v - 1)} className="nav-btn" />
         <a href="/about-us/reviews/" className="btn white">View All Reviews</a>
-        <button
-          type="button"
-          aria-label="Next review"
-          onClick={() => setI((v) => v + 1)}
-          className="grid h-[57px] w-[46px] place-items-center rounded-full border border-white/20 text-white transition-colors hover:bg-white/10"
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M5 1l6 6-6 6" /></svg>
-        </button>
+        <button type="button" aria-label="Next review" onClick={() => setI((v) => v + 1)} className="nav-btn next" />
       </div>
     </div>
   );

@@ -41,19 +41,15 @@ export default function ServiceSlider({ services, images }: { services: Service[
               aria-label="Previous"
               disabled={index === 0}
               onClick={() => setIndex((v) => Math.max(0, v - 1))}
-              className="grid h-[60px] w-[49px] place-items-center rounded-full border border-white/20 transition hover:bg-white/10 disabled:opacity-35"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M9 1L3 7l6 6" /></svg>
-            </button>
+              className="nav-btn disabled:opacity-35"
+            />
             <button
               type="button"
               aria-label="Next"
               disabled={index >= maxIndex}
               onClick={() => setIndex((v) => Math.min(maxIndex, v + 1))}
-              className="grid h-[60px] w-[49px] place-items-center rounded-full border border-white/20 transition hover:bg-white/10 disabled:opacity-35"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M5 1l6 6-6 6" /></svg>
-            </button>
+              className="nav-btn next disabled:opacity-35"
+            />
           </div>
         </div>
 
