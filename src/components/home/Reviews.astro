@@ -24,24 +24,23 @@ import { img } from '../../data/assets';
     </div>
 
     <!-- Patient video tiles -->
-    <div class="row-wrap pb-[clamp(40px,5.2vw,75px)]">
-      <div class="mb-[73px]">
+    <div class="mx-auto w-screen max-w-[calc(60px+clamp(1200px,83.3333vw,1600px))] px-[30px] pb-[clamp(60px,calc(32.9px+7.4434vw),175px)]">
+      <div class="mb-[clamp(30px,calc(25.15px+1.2945vw),50px)]">
         <h2 class="serif text-[length:var(--fs-h1)] leading-[1.2]">
           <span class="eyebrow">Behind The Scenes</span>
           Words From <i>Our Patients</i>
         </h2>
       </div>
 
-      <div class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
+      <div class="grid grid-cols-1 gap-3 min-[801px]:grid-cols-2 min-[1025px]:grid-cols-5">
         {home.patients.map((p, i) => (
-          <div class="relative flex min-h-[340px] flex-col justify-end overflow-hidden rounded-[16px] lg:h-[434px]">
-            <img src={img.patients[i]} alt={`${p.name}, patient video`} loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/10 to-transparent"></div>
-            <div class="relative p-[clamp(20px,2.35vw,34px)]">
-              <h3 class="serif mb-[13.5px] text-[clamp(24px,2.1vw,30.14px)] leading-[1.2]">{p.name}</h3>
-              <p class="text-[18.4px] leading-[1.6]">{p.topic}</p>
+          <div class="patient-tile">
+            <img src={img.patients[i]} alt={`${p.name}, patient video`} loading="lazy" />
+            <div class="content">
+              <h3 class="serif">{p.name}</h3>
+              <p>{p.topic}</p>
             </div>
-            <a href={p.url} class="popup-video absolute inset-0" aria-label={`Watch ${p.name}'s story`}></a>
+            <a href={p.url} class="popup-video" aria-label={`Watch ${p.name}'s story`}></a>
           </div>
         ))}
       </div>
