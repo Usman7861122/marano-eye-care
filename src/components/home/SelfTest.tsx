@@ -125,7 +125,7 @@ export default function SelfTest() {
 
             {isForm && sent && (
               <div className="q-done">
-                <h2 className="serif mx-auto max-w-[660px] text-[length:var(--fs-h1)] leading-[1.2]">Find out if vision correction is right <i>for you</i>?</h2>
+                <h2 className="serif mx-auto max-w-[660px] text-[length:var(--fs-h1)] leading-[1.2]">Is vision correction <i>right for you</i>?</h2>
                 <p className="mx-auto mt-6 max-w-[660px] text-[18px]">In less than 60 seconds, tell us about your eyes, what bothers you, and how you want to see so we can guide you.</p>
               </div>
             )}

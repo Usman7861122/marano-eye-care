@@ -36,7 +36,7 @@ export default function LaserTabs({ tabs, images }: { tabs: Tab[]; images: Recor
         {/* Left: heading, button, tab links */}
         <div className="w-full lg:max-w-[904px]">
           <h2 className="serif text-[length:var(--fs-tab)] leading-[0.9]">
-            <span className="eyebrow !mb-[35px] !leading-[0.9]">More Options Means The Right Fit For You</span>
+            <span className="eyebrow !mb-[35px] !leading-[0.9]">Many Choices, One Right Fit</span>
             Advanced Laser
             <span className="block">Vision Correction</span>
           </h2>
