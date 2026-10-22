@@ -1,0 +1,18 @@
+---
+import { home } from '../../data/home';
+import { img } from '../../data/assets';
+const q = home.quote;
+---
+<section class="round-top relative -mt-px overflow-hidden bg-navy px-5 text-white">
+  <img src={img.quoteBg} alt="" loading="lazy" class="round-top absolute inset-0 h-full w-full object-cover" />
+  <div class="absolute inset-0 bg-navy/10"></div>
+  <div class="row-wrap relative flex justify-end py-[clamp(80px,9.9vw,142.7px)] lg:pl-[40%]">
+    <div class="w-full max-w-[600px]">
+      <h2 class="serif mb-[33.8px] text-[length:var(--fs-quote)] leading-[1.1]">
+        {q.a} <i class="block">{q.b}</i>
+      </h2>
+      <p class="mb-[33.8px] leading-[1.6]">{q.p}</p>
+      <p class="text-[19.38px] font-semibold leading-[1.6]">{q.author}</p>
+    </div>
+  </div>
+</section>

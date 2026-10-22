@@ -1,0 +1,11 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { conditions } from "../../data/conditions.ts";
+export function getStaticPaths() {
+  return conditions.map((item: any) => ({ params: { slug: item.slug }, props: { item } }));
+}
+const { item } = Astro.props;
+---
+<PageLayout title={item.title}>
+  <!-- TODO: sections -->
+</PageLayout>

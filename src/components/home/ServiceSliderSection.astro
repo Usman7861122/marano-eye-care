@@ -1,0 +1,6 @@
+---
+import ServiceSlider from './ServiceSlider.tsx';
+import { home } from '../../data/home';
+import { img } from '../../data/assets';
+---
+<ServiceSlider client:visible services={home.services} images={img.procedures} />

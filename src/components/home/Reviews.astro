@@ -1,0 +1,49 @@
+---
+import QuoteCarousel from './QuoteCarousel.tsx';
+import { home } from '../../data/home';
+import { img } from '../../data/assets';
+---
+<section
+  id="testimonials"
+  class="relative grid bg-navy text-white"
+  style="background-image: none;"
+>
+  <!-- Pinned gradient background -->
+  <div
+    class="pointer-events-none sticky top-0 col-start-1 row-start-1 h-screen self-start"
+    style="background-image: radial-gradient(circle at 10% 100%, #91b2cd 0%, rgba(0,0,0,0) 30%), radial-gradient(circle at 100% 80%, #91b2cd 0%, rgba(0,0,0,0) 50%);"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative col-start-1 row-start-1">
+    <!-- Rolling quotes -->
+    <div class="pb-[clamp(80px,13vw,190px)] pt-[clamp(120px,19.8vw,285px)]">
+      <QuoteCarousel client:visible quotes={home.quotes} />
+    </div>
+
+    <!-- Patient video tiles -->
+    <div class="row-wrap pb-[clamp(60px,9.7vw,139px)]">
+      <div class="mb-[44px]">
+        <h2 class="serif text-[length:var(--fs-h1)] leading-[1.2]">
+          <span class="eyebrow">Behind The Scenes</span>
+          Words From <i>Our Patients</i>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
+        {home.patients.map((p, i) => (
+          <div class="relative flex min-h-[340px] flex-col justify-end overflow-hidden rounded-[16px] lg:h-[434px]">
+            <img src={img.patients[i]} alt={`${p.name}, patient video`} loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/10 to-transparent"></div>
+            <div class="relative p-[clamp(20px,2.35vw,34px)]">
+              <h3 class="serif mb-[13.5px] text-[clamp(24px,2.1vw,30.14px)] leading-[1.2]">{p.name}</h3>
+              <p class="text-[18.4px] leading-[1.6]">{p.topic}</p>
+            </div>
+            <a href={p.url} class="popup-video absolute inset-0" aria-label={`Watch ${p.name}'s story`}></a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

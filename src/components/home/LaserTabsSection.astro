@@ -1,0 +1,6 @@
+---
+import LaserTabs from './LaserTabs.tsx';
+import { home } from '../../data/home';
+import { img } from '../../data/assets';
+---
+<LaserTabs client:visible tabs={home.tabs} images={{ smile: img.smile, lasik: img.lasik, prk: img.prk }} />

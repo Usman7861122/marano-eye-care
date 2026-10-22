@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #041a34;
+  --color-steel: #273e55;
+  --color-slate: #5b6d7d;
+  --color-sky: #91b2cd;
+  --color-mist: #efefef;
+  --color-card: #f1f1f1;
+  --font-sans: "proxima-nova", "Mulish", Arial, sans-serif;
+  --font-serif: "ivypresto-display", "Cormorant Garamond", Georgia, serif;
+  --radius-pill: 1440px;
+  --radius-section: 45.341px;
+}
+
+/* Fluid type: size at 390px wide -> size at 1440px wide (same values as the old site) */
+:root {
+  --fs-hero: clamp(28.43px, calc(28.43px + 29.9 * (100vw - 390px) / 1050), 58.33px);
+  --fs-hero-sub: clamp(19.13px, calc(19.13px + 8.83 * (100vw - 390px) / 1050), 27.96px);
+  --fs-xl: clamp(24.47px, calc(24.47px + 32.62 * (100vw - 390px) / 1050), 57.09px);
+  --fs-quote: clamp(30px, calc(30px + 29.57 * (100vw - 390px) / 1050), 59.57px);
+  --fs-tab: clamp(36px, calc(36px + 26.06 * (100vw - 390px) / 1050), 62.06px);
+  --fs-h1: clamp(30px, calc(30px + 20.4 * (100vw - 390px) / 1050), 50.41px);
+  --fs-h2: clamp(28px, calc(28px + 15.03 * (100vw - 390px) / 1050), 43.03px);
+  --fs-h2b: clamp(24px, calc(24px + 6.14 * (100vw - 390px) / 1050), 30.14px);
+  --fs-h3: clamp(24px, calc(24px + 2.67 * (100vw - 390px) / 1050), 26.67px);
+  --fs-eyebrow: clamp(16px, calc(16px + 3.38 * (100vw - 390px) / 1050), 19.38px);
+  --fs-btn: clamp(14px, calc(14px + 1.66 * (100vw - 390px) / 1050), 15.66px);
+  --gutter: clamp(20px, 2.1vw, 30px);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-navy);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Type roles */
+.serif { font-family: var(--font-serif); font-weight: 400; }
+.serif em, .serif i, .italic-serif { font-style: italic; }
+.eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--fs-eyebrow);
+  line-height: 1.2;
+  margin: 15px 0;
+}
+
+/* Layout */
+.row-wrap { width: 100%; max-width: 1260px; margin-inline: auto; padding-inline: var(--gutter); }
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-btn);
+  line-height: 27px;
+  text-align: center;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-navy);
+  background: var(--color-navy);
+  color: #fff;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.btn:hover { background: #fff; color: var(--color-navy); }
+.btn.white { background: #fff; color: var(--color-navy); border-color: #fff; }
+.btn.white:hover { background: transparent; color: #fff; }
+
+/* Marquee for the logo strip */
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+
+.round-top { border-radius: var(--radius-section) var(--radius-section) 0 0; }

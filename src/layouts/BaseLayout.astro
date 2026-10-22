@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import Header from '../components/layout/Header.tsx';
+import Footer from '../components/layout/Footer.astro';
+import VideoModal from '../components/ui/VideoModal.tsx';
+import { site } from '../data/site';
+import { img } from '../data/assets';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+const { title = site.name, description = '', noindex = false } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="icon" href={img.favicon} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={img.og} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <!--
+      Fonts: the old site uses Adobe Fonts "proxima-nova" and "ivypresto-display".
+      1) Add your own Adobe Fonts web project kit here:
+         <link rel="stylesheet" href="https://use.typekit.net/YOUR_KIT_ID.css" />
+      2) Until then, the Google fonts below are used as stand-ins.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Mulish:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header client:load />
+    <main><slot /></main>
+    <Footer />
+
+    <!-- Floating buttons -->
+    <a
+      href="/contact-us/"
+      class="btn fixed bottom-5 right-5 z-40 !border-white/25 !px-7 shadow-lg"
+    >
+      Contact Us
+    </a>
+    <button
+      type="button"
+      aria-label="Accessibility options"
+      class="fixed bottom-5 left-5 z-40 grid h-[56px] w-[56px] place-items-center rounded-full bg-navy text-white shadow-lg"
+    >
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="4.5" r="1.6" /><path d="M5 8.5l7 1.5 7-1.5M12 10v5m0 0l-3 5m3-5l3 5" />
+      </svg>
+    </button>
+
+    <VideoModal client:idle />
+  </body>
+</html>

@@ -1,0 +1,25 @@
+---
+import { img } from '../../data/assets';
+---
+<section class="bg-navy py-[64px] text-white">
+  <div class="row-wrap my-10 flex flex-col-reverse items-center md:min-h-[600px] md:flex-row-reverse">
+    <div class="relative h-[360px] w-full overflow-hidden md:h-[600px] md:w-1/2">
+      <img
+        src={img.team}
+        alt="The Chu Vision Institute team"
+        loading="lazy"
+        class="absolute left-1/2 top-1/2 h-[120%] w-[120%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover"
+      />
+    </div>
+    <div class="w-full py-[60px] md:w-1/2 md:pl-[118px] md:pr-[124px]">
+      <h2 class="serif mb-[22.7px] text-[length:var(--fs-h1)] leading-[1.2]">
+        <span class="eyebrow">Humans Serving Humans</span>
+        Meet Our <i class="block">Dedicated Team</i>
+      </h2>
+      <p class="mb-5 leading-[1.6]">We're obsessed with you and your vision.</p>
+      <p class="mt-[33.8px] flex gap-[25px]">
+        <a href="/about-us/our-team/" class="btn white">Get To Know Us</a>
+      </p>
+    </div>
+  </div>
+</section>

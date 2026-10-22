@@ -1,0 +1,31 @@
+export const site = {
+  name: 'Chu Vision Institute',
+  doctor: 'Dr. Ralph Chu',
+  phone: '(952) 592-4424',
+  phoneHref: 'tel:+19525924424',
+  fax: '(952) 835-0534',
+  faxHref: 'tel:+19528350534',
+  address: ['9117 Lyndale Ave S', 'Bloomington, MN 55420'],
+  mapUrl: 'https://maps.app.goo.gl/tt4fTQq4KD8sRyMP9',
+  bookingUrl: '/schedule-appointment/',
+  rating: { stars: '4.9', count: '1408' },
+  reviewsUrl: 'https://www.google.com/search?q=chu+vision+institute+bloomington+mn',
+  social: {
+    instagram: 'https://www.instagram.com/chuvisioninstitute/',
+    facebook: 'https://www.facebook.com/ChuVision/',
+    youtube: 'https://www.youtube.com/c/Chuvision',
+  },
+  nav: [
+    { label: 'About', href: '/about-us/' },
+    { label: 'Vision Correction', href: '/vision-correction-minneapolis/' },
+    { label: 'Cataracts', href: '/cataracts/' },
+    { label: 'Eye Conditions', href: '/eye-conditions-minneapolis/' },
+    { label: 'Resources', href: '/resources/' },
+    { label: 'Areas We Serve', href: '/areas-we-serve/' },
+  ],
+  legal: [
+    { label: 'Terms & Conditions', href: '/terms-and-conditions/' },
+    { label: 'Privacy Policy', href: '/privacy-policy/' },
+    { label: 'Sitemap', href: '/sitemap/' },
+  ],
+};

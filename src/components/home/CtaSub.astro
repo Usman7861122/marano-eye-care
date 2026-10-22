@@ -1,0 +1,50 @@
+---
+import { procedureOptions } from '../../data/home';
+const field =
+  'w-full rounded-[16px] border border-white/60 bg-transparent px-6 py-[17px] text-[18px] text-white placeholder:text-white focus:border-white focus:outline-none';
+---
+<section class="px-[clamp(16px,6.18vw,89px)] py-[clamp(24px,6.18vw,89px)]">
+  <div
+    class="relative overflow-hidden rounded-[16px] bg-navy text-white"
+    style="background-image: radial-gradient(circle at -10% 120%, #91b2cd -10%, rgba(0,0,0,0) 40%), radial-gradient(circle at 50% 150%, #91b2cd 0%, rgba(0,0,0,0) 50%);"
+  >
+    <div class="mx-auto grid max-w-[1262px] gap-10 px-[clamp(24px,7.6vw,109px)] py-[clamp(48px,7.5vw,108px)] md:grid-cols-2">
+      <div>
+        <h2 class="serif text-[length:var(--fs-h1)] leading-[1.2]">
+          <a href="/contact/" class="block">
+            <span class="eyebrow !mb-[33px]">Get in Touch</span>
+            Schedule your <i class="block"><span class="md:block">Chu Vision </span>Appointment</i>
+          </a>
+        </h2>
+      </div>
+
+      <form action="/contact/thank-you/" method="post" class="flex flex-col gap-[15px]">
+        <!-- TODO: point this at the real form endpoint / CRM -->
+        <div class="grid gap-[15px] md:grid-cols-2">
+          <input class={field} type="text" name="first_name" placeholder="First Name*" required autocomplete="given-name" />
+          <input class={field} type="text" name="last_name" placeholder="Last Name*" required autocomplete="family-name" />
+          <input class={field} type="tel" name="phone" placeholder="Phone*" required autocomplete="tel" />
+          <input class={field} type="email" name="email" placeholder="Email" autocomplete="email" />
+        </div>
+        <select class={`${field} appearance-none`} name="procedure_of_interest" required>
+          <option value="" class="text-[#333]">Procedure of Interest</option>
+          {procedureOptions.map((p) => <option value={p} class="text-[#333]">{p}</option>)}
+        </select>
+        <textarea class={field} name="comments" rows="3" placeholder="Comments"></textarea>
+
+        <label class="mt-5 flex items-start gap-[10px] text-[12px] leading-[1.5]">
+          <input type="checkbox" name="follow_up" required class="mt-[5px]" />
+          By completing this form, you are giving us permission to follow-up by phone, email or text.
+        </label>
+        <fieldset class="mt-5 text-[12px]">
+          <legend class="mb-2">May we text you?</legend>
+          <label class="mb-3 flex items-center gap-2"><input type="radio" name="may_text" value="Yes" checked /> Yes</label>
+          <label class="flex items-center gap-2"><input type="radio" name="may_text" value="No" /> No</label>
+        </fieldset>
+        <div class="mt-5 flex justify-center">
+          <button type="submit" class="btn !border-transparent !bg-navy/70 hover:!bg-white hover:!text-navy">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

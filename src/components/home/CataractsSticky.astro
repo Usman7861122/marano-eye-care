@@ -1,0 +1,27 @@
+---
+import PlayLink from '../ui/PlayLink.astro';
+import { home } from '../../data/home';
+import { vid } from '../../data/assets';
+const c = home.cataracts;
+---
+<section id="cataracts" class="relative bg-navy">
+  <!-- Video stays pinned while the white card scrolls over it -->
+  <div class="sticky top-0 h-screen overflow-hidden">
+    <video class="absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src={vid.cataracts.medium} type="video/mp4" media="(max-width: 1023px)" />
+      <source src={vid.cataracts.high} type="video/mp4" />
+    </video>
+  </div>
+
+  <div class="relative z-10 mb-[114px] ml-[clamp(16px,7.3vw,105px)] mr-4 mt-[180px] max-w-[570px] rounded-[16px] bg-white p-[clamp(24px,3.5vw,50.7px)] max-lg:mt-[60vh]">
+    <h2 class="serif text-[length:var(--fs-h2)] leading-[1.2]">
+      <span class="eyebrow">{c.eyebrow}</span>
+      {c.a} <i class="block">{c.b}</i>
+    </h2>
+    <p class="mt-[19px] mb-5 leading-[1.6]">{c.p}</p>
+    <div class="mt-[33px]">
+      <a href={c.href} class="btn">{c.cta}</a>
+      <PlayLink url={c.watchUrl} label={c.watch} watch dark class="mt-[33px]" />
+    </div>
+  </div>
+</section>

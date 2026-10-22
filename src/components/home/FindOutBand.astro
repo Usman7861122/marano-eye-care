@@ -1,0 +1,14 @@
+---
+import VideoCta from './VideoCta.astro';
+import FindOut from './FindOut.tsx';
+import { home } from '../../data/home';
+import { vid } from '../../data/assets';
+---
+<VideoCta src={vid.findOut} variant="findout">
+  <FindOut
+    client:visible
+    lines={home.findOut}
+    cta="Schedule a FREE Vision Correction Consultation"
+    href="/schedule-appointment/"
+  />
+</VideoCta>

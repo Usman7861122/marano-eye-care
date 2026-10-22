@@ -1,0 +1,48 @@
+---
+import HeroProcedures from './HeroProcedures.tsx';
+import { home } from '../../data/home';
+import { vid } from '../../data/assets';
+const h = home.hero;
+---
+<section id="hero" class="relative h-[200vh] bg-black text-white">
+  <!-- Pinned video + headline (stays while the navy panel slides over it) -->
+  <div class="sticky top-0 h-screen overflow-hidden">
+    <video
+      class="absolute inset-0 h-full w-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster={vid.heroPoster}
+      aria-hidden="true"
+    >
+      <source src={vid.hero.medium} type="video/mp4" media="(max-width: 1023px)" />
+      <source src={vid.hero.high} type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-black/20"></div>
+
+    <div class="relative flex h-full items-center justify-center pt-[8vh] text-center">
+      <div class="row-wrap">
+        <h1 class="mb-[33.8px] pb-[10px] text-[length:var(--fs-eyebrow)] leading-[1.2] font-normal">
+          {h.eyebrow}
+        </h1>
+        <p class="serif text-[length:var(--fs-hero)] leading-[1.3]">
+          {h.line1}
+          <span class="block italic">{h.line2}</span>
+        </p>
+        <p class="serif mt-[33.8px] text-[length:var(--fs-hero-sub)] italic leading-[1.6]">
+          {h.sub}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navy panel with the rolling procedure list -->
+  <div
+    class="round-top absolute inset-x-0 bottom-0 h-screen bg-navy pb-[54px] pt-[20vh] lg:pt-[306px]"
+    style="background-image: radial-gradient(782px at 10% 100%, #5b6d7d 0%, rgba(0,0,0,0) 100%);"
+  >
+    <HeroProcedures client:visible items={h.procedures} />
+  </div>
+</section>

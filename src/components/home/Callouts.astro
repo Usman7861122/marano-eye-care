@@ -1,0 +1,26 @@
+---
+import { home } from '../../data/home';
+import { img } from '../../data/assets';
+const images = [img.foundation, img.financing, img.newPatients];
+const [a, b, c] = home.callouts;
+---
+<section class="bg-white px-[clamp(20px,12.35vw,177.9px)] py-[clamp(60px,9vw,129.6px)]">
+  <div class="mx-auto grid max-w-[1084px] gap-5 md:grid-cols-2 md:[grid-template-rows:282px_282px]">
+    {[a, b, c].map((x, i) => (
+      <a
+        href={x.href}
+        class:list={[
+          'group relative flex flex-col justify-end overflow-hidden rounded-[16px] bg-mist px-[clamp(24px,2.94vw,42px)] py-[clamp(24px,3vw,43.8px)] text-white',
+          i === 0 ? 'min-h-[420px] md:row-span-2' : 'min-h-[282px]',
+        ]}
+      >
+        <img src={images[i]} alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent"></div>
+        <div class="relative">
+          <h2 class="serif mb-[17.5px] text-[clamp(24px,2vw,28.9px)] leading-[1.2]">{x.title}</h2>
+          <p class="leading-[1.6] opacity-0 transition-opacity duration-300 group-hover:opacity-100 max-md:opacity-100">{x.p}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>

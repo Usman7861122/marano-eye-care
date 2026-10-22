@@ -1,0 +1,13 @@
+---
+import VideoCta from './VideoCta.astro';
+import PlayLink from '../ui/PlayLink.astro';
+import { vid } from '../../data/assets';
+---
+<VideoCta src={vid.power} variant="power">
+  <h2 class="serif mb-[50px] text-[length:var(--fs-xl)] leading-[1.2]">
+    The Power of <i>Clear Vision</i>
+  </h2>
+  <div class="flex justify-center">
+    <PlayLink url="https://www.youtube.com/watch?v=kdykWUetn8I" label="Vision Correction" watch />
+  </div>
+</VideoCta>

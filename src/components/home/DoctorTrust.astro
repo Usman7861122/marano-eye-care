@@ -1,0 +1,22 @@
+---
+import HoverAccordion from './HoverAccordion.tsx';
+import { home } from '../../data/home';
+import { img } from '../../data/assets';
+---
+<section class="bg-white">
+  <div class="mx-auto my-20 w-full max-w-[1363px] px-[38px] max-md:px-5">
+    <div class="my-10">
+      <HoverAccordion
+        client:visible
+        variant="cards"
+        slides={home.doctorSlides.map((s, i) => ({
+          image: img.doctorTabs[i],
+          titleA: s.a,
+          titleB: s.b,
+          text: s.p,
+          iconName: s.icon,
+        }))}
+      />
+    </div>
+  </div>
+</section>

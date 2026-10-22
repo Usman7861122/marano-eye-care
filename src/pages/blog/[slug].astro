@@ -1,0 +1,11 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+export function getStaticPaths() {
+  const posts: { slug: string; title: string }[] = []; // TODO: blog posts
+  return posts.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+const { item } = Astro.props;
+---
+<PageLayout title={item.title}>
+  <!-- TODO: ArticleBody -->
+</PageLayout>

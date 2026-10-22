@@ -1,0 +1,19 @@
+---
+// "Watch: ..." link with a round play button. Opens the video in the modal.
+interface Props { url: string; label: string; watch?: boolean; dark?: boolean; class?: string }
+const { url, label, watch = false, dark = false, class: cls = '' } = Astro.props;
+---
+<a
+  href={url}
+  class:list={['popup-video flex flex-row-reverse items-center gap-[34px]', dark ? 'text-navy' : 'text-white', cls]}
+>
+  <span class="text-[18px]">
+    {watch && <span class="font-semibold">Watch: </span>}{label}
+  </span>
+  <span
+    class:list={['grid h-[83px] w-[83px] shrink-0 place-items-center rounded-full border', dark ? 'border-navy/40' : 'border-white/60 bg-white/10 backdrop-blur-sm']}
+    aria-hidden="true"
+  >
+    <svg width="22" height="26" viewBox="0 0 22 26" fill="currentColor"><path d="M2 1.5v23L21 13z" /></svg>
+  </span>
+</a>

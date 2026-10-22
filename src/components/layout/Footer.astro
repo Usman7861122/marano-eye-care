@@ -1,0 +1,70 @@
+---
+import { site } from '../../data/site';
+import { img } from '../../data/assets';
+---
+<footer class="bg-white">
+  <!-- Link bar -->
+  <nav class="row-wrap hidden py-5 lg:block" aria-label="Footer">
+    <ul class="mx-[100px] flex justify-between gap-[10px]">
+      {site.nav.map((n) => (
+        <li><a href={n.href} class="block rounded-[6px] p-[6.63px] text-[14.93px] leading-[14.93px] tracking-[0.5px]">{n.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+
+  <!-- Main navy block -->
+  <div class="round-top bg-navy py-[clamp(56px,8vw,115.8px)] text-white">
+    <div class="row-wrap grid items-center gap-12 lg:grid-cols-[250px_1fr_250px]">
+      <div>
+        <h2 class="serif mb-[10px] text-[22.14px] italic leading-[1.2]">Location</h2>
+        <a href={site.mapUrl} target="_blank" rel="noopener" class="block">
+          <p class="mb-[15px] leading-[1.6]">
+            {site.address[0]}<br />{site.address[1]}
+          </p>
+        </a>
+        <h2 class="serif mb-[10px] mt-8 text-[22.14px] italic leading-[1.2]">Contact</h2>
+        <a href={site.phoneHref} class="block text-[15px] leading-[1.4]">{site.phone}</a>
+        <a href={site.faxHref} class="block text-[15px] leading-[1.4]">{site.fax} <span class="opacity-60">(fax)</span></a>
+      </div>
+
+      <a href="/" class="mx-auto block w-[260px] sm:w-[363px]" aria-label="Chu Vision Institute home">
+        <img src={img.logoFooter} alt="Chu Vision Institute" loading="lazy" class="w-full" />
+      </a>
+
+      <div class="lg:text-right">
+        <a href={site.reviewsUrl} target="_blank" rel="noopener" class="mt-5 block">
+          <h2 class="serif mb-[10px] text-[22.14px] italic leading-[1.2]">{site.rating.stars} Stars {site.rating.count} Reviews</h2>
+          <span class="inline-flex gap-[2px] text-[17px] lg:justify-end" aria-hidden="true">★★★★★</span>
+        </a>
+        <div class="mt-8">
+          <h2 class="serif mb-[10px] text-[22.14px] italic leading-[1.2]">Stay Connected</h2>
+          <ul class="flex gap-[10px] lg:justify-end">
+            <li><a href={site.social.instagram} aria-label="Instagram" class="grid h-[27px] w-[27px] place-items-center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="6" /><circle cx="12" cy="12" r="4.5" /><circle cx="17.5" cy="6.5" r="1" fill="#fff" /></svg></a></li>
+            <li><a href={site.social.facebook} aria-label="Facebook" class="grid h-[27px] w-[27px] place-items-center"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M14 8V6c0-1 .5-1.5 1.500-1.500H17V1h-3c-3 0-4.500 2-4.500 4.500V8H7v3.500h2.500V23H14V11.500h2.800L17.500 8z" /></svg></a></li>
+            <li><a href={site.social.youtube} aria-label="YouTube" class="grid h-[27px] w-[27px] place-items-center"><svg width="23" height="23" viewBox="0 0 24 24" fill="#fff"><path d="M23 7.500a3 3 0 00-2-2C19 5 12 5 12 5s-7 0-9 .5a3 3 0 00-2 2C1 9.500 1 12 1 12s0 2.500.5 4.500a3 3 0 002 2C5 19 12 19 12 19s7 0 9-.5a3 3 0 002-2c.5-2 .5-4.500.5-4.500s0-2.500-.5-4.500zM10 15V9l5.500 3z" /></svg></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legal bar -->
+  <div class="bg-mist">
+    <div class="row-wrap grid items-center gap-4 py-10 text-[12px] leading-[19.2px] tracking-[1px] text-[#222] md:grid-cols-3">
+      <p>© Chu Vision Institute. <span class="block-phone">All Rights Reserved.</span></p>
+      <p class="md:text-center">
+        {site.legal.map((l, i) => (<a href={l.href} class:list={[i > 0 && 'ml-[5px]']}>{l.label}</a>))}
+      </p>
+      <a href="https://www.studio3marketing.com/medical/" target="_blank" rel="noopener" class="md:text-right">
+        Digital Marketing &amp; Design by Studio 3 Marketing<sup class="text-[9px]">®</sup>
+      </a>
+    </div>
+  </div>
+
+  <!-- Accessibility note -->
+  <div class="row-wrap">
+    <p class="mx-auto max-w-[900px] px-5 pb-[60px] pt-10 text-[14px] leading-[1.5]">
+      <strong class="font-semibold">Accessibility:</strong> If you are vision-impaired or have some other impairment covered by the Americans with Disabilities Act or a similar law, and you wish to discuss potential accommodations related to using this website, please contact our Accessibility Manager at <a href="tel:+19528351235" class="underline">952-835-1235</a>.
+    </p>
+  </div>
+</footer>

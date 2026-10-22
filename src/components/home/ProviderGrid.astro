@@ -1,0 +1,76 @@
+---
+import { home } from '../../data/home';
+import { img } from '../../data/assets';
+const t = home.tiles;
+---
+<section
+  id="about"
+  class="bg-navy pb-[142.7px] text-navy"
+  style="background-image: radial-gradient(782px at 10% 0%, #5b6d7d 0%, rgba(0,0,0,0) 100%);"
+>
+  <!-- Heading row -->
+  <div class="row-wrap flex flex-col items-start justify-between gap-6 py-10 sm:flex-row sm:items-end">
+    <h2 class="serif text-[length:var(--fs-h2)] leading-[1.2] text-white">
+      <span class="eyebrow">Dr. Ralph Chu</span>
+      Meet <i>Your Surgeon</i>, Dr. Chu
+    </h2>
+    <a href="/about-us/our-team/dr-ralph-chu/" class="btn white shrink-0">Meet Dr. Chu</a>
+  </div>
+
+  <!-- Bento grid -->
+  <div class="row-wrap">
+    <div class="relative grid auto-rows-auto grid-cols-1 gap-6 md:auto-rows-[322px] md:grid-cols-3">
+      {/* Tile 1 */}
+      <div class="rounded-[16px] bg-white px-8 py-10 lg:py-[65px] lg:pl-[64px] lg:pr-[150px]">
+        <h3 class="serif mb-3 text-[length:var(--fs-h3)] leading-[1.2]">
+          {t[0].a} <i class="block">{t[0].b}</i>
+        </h3>
+        <p class="leading-[1.6]">{t[0].p}</p>
+      </div>
+      {/* Tile 2 */}
+      <div class="rounded-[16px] bg-white px-8 py-10 lg:px-[64px] lg:py-[65px]">
+        <h3 class="serif mb-3 text-[length:var(--fs-h3)] leading-[1.2]">
+          {t[1].a} <i class="block">{t[1].b}</i>
+        </h3>
+        <p class="leading-[1.6]">{t[1].p}</p>
+      </div>
+      {/* Tile 3 */}
+      <div class="rounded-[16px] bg-white px-8 py-10 lg:px-[64px] lg:py-[65px]">
+        <h3 class="serif mb-3 text-[length:var(--fs-h3)] leading-[1.2]">
+          {t[2].a} <i class="block">{t[2].b}</i>
+        </h3>
+        <p class="leading-[1.6]">{t[2].p}</p>
+      </div>
+      {/* Photo tile */}
+      <div class="relative min-h-[320px] overflow-hidden rounded-[16px] md:col-span-2">
+        <img src={img.bentoBg} alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+      {/* Tile 4 */}
+      <div class="rounded-[16px] bg-white px-8 py-10 lg:px-[64px] lg:py-[65px]">
+        <h3 class="serif mb-3 text-[length:var(--fs-h3)] leading-[1.2]">
+          {t[3].a} <i class="block">{t[3].b}</i>
+        </h3>
+        <p class="leading-[1.6]">{t[3].p}</p>
+      </div>
+
+      {/* Doctor cut-out sits on top of tiles 1, 2 and the photo tile */}
+      <img
+        src={img.bentoDoctor}
+        alt="Dr. Ralph Chu smiling with his arms crossed"
+        loading="lazy"
+        class="pointer-events-none absolute bottom-0 left-0 z-10 hidden h-full w-[49.3%] object-contain object-bottom md:block"
+      />
+    </div>
+  </div>
+
+  <!-- Logo strip -->
+  <div class="row-wrap overflow-hidden pt-[81px]" aria-label="Recognition and affiliations">
+    <div class="marquee-track items-center">
+      {[...img.logos, ...img.logos, ...img.logos, ...img.logos].map((src) => (
+        <div class="mr-6 flex w-[221px] shrink-0 items-center justify-center">
+          <img src={src} alt="" loading="lazy" class="h-[26px] w-auto max-w-[200px] object-contain" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

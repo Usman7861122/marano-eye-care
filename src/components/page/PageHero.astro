@@ -1,0 +1,12 @@
+---
+interface Props { title: string; eyebrow?: string; lede?: string; image?: string; imageAlt?: string; position?: string }
+const { title, eyebrow, lede, image, imageAlt, position = 'center' } = Astro.props;
+---
+<header class="relative bg-ink text-white py-28">
+  {image && <img src={image} alt={imageAlt || `${title} at Marano Eye Care`} class="absolute inset-0 h-full w-full object-cover opacity-40" style={`object-position:${position}`} />}
+  <div class="relative mx-auto max-w-6xl px-4">
+    {eyebrow && <p class="text-sm uppercase tracking-widest">{eyebrow}</p>}
+    <h1 class="text-4xl md:text-5xl">{title}</h1>
+    {lede && <p class="mt-4 max-w-2xl">{lede}</p>}
+  </div>
+</header>

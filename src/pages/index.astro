@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import ProviderGrid from '../components/home/ProviderGrid.astro';
+import PowerOfClearVision from '../components/home/PowerOfClearVision.astro';
+import Reviews from '../components/home/Reviews.astro';
+import DoubleBanner from '../components/home/DoubleBanner.astro';
+import DoctorTrust from '../components/home/DoctorTrust.astro';
+import FindOutBand from '../components/home/FindOutBand.astro';
+import SelfTest from '../components/home/SelfTest.tsx';
+import LaserTabsSection from '../components/home/LaserTabsSection.astro';
+import CataractsSticky from '../components/home/CataractsSticky.astro';
+import AgesAccordion from '../components/home/AgesAccordion.astro';
+import ServiceSliderSection from '../components/home/ServiceSliderSection.astro';
+import DoctorQuote from '../components/home/DoctorQuote.astro';
+import Callouts from '../components/home/Callouts.astro';
+import TeamBand from '../components/home/TeamBand.astro';
+import CtaSub from '../components/home/CtaSub.astro';
+import { home } from '../data/home';
+---
+<BaseLayout title={home.title} description={home.description}>
+  <Hero />
+  <ProviderGrid />
+  <PowerOfClearVision />
+  <Reviews />
+  <DoubleBanner />
+  <DoctorTrust />
+  <FindOutBand />
+  <SelfTest client:visible />
+  <LaserTabsSection />
+  <CataractsSticky />
+  <AgesAccordion />
+  <ServiceSliderSection />
+  <DoctorQuote />
+  <Callouts />
+  <TeamBand />
+  <CtaSub />
+</BaseLayout>
