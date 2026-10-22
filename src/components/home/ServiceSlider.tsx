@@ -30,12 +30,12 @@ export default function ServiceSlider({ services, images }: { services: Service[
       <div className="flex flex-col py-[88.6px] lg:flex-row">
         {/* Copy */}
         <div className="flex flex-col justify-center px-[clamp(20px,8.7vw,125px)] py-10 lg:w-[518px] lg:shrink-0 lg:py-[114px] lg:pl-[125px] lg:pr-[79px]">
-          <h2 className="serif pb-[39px] text-[length:var(--fs-h2)] leading-[1.2]">
-            <span className="eyebrow">The Chu Vision Approach</span>
+          <h2 className="serif pb-[22.7px] text-[length:var(--fs-h2)] leading-[1.2]">
+            <span className="eyebrow !mb-[40px]">The Chu Vision Approach</span>
             Every Solution <i className="block">for Every Need</i>
           </h2>
           <p className="leading-[1.6]">Feel confident in your vision plan with guidance from our team of experts.</p>
-          <div className="mt-[39px] flex items-center gap-[21.5px]">
+          <div className="mt-[40px] flex items-center gap-[21.5px]">
             <button
               type="button"
               aria-label="Previous"

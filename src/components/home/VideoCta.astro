@@ -18,7 +18,7 @@ const { src, variant } = Astro.props;
     <source src={src.high} type="video/mp4" />
   </video>
   <div class="absolute inset-0 bg-navy/25"></div>
-  <div class:list={['row-wrap relative py-[clamp(120px,20.4vw,294px)] text-center', variant === 'power' && 'lg:!pt-[330px]']}>
+  <div class:list={['row-wrap relative py-[clamp(120px,20.4vw,294px)] text-center', variant === 'power' && 'lg:!pt-[330px] lg:!pb-0']}>
     <slot />
   </div>
 </section>

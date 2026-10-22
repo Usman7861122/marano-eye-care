@@ -16,7 +16,7 @@ const [a, b, c] = home.callouts;
       >
         <img src={images[i]} alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
         <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent"></div>
-        <div class="relative">
+        <div class="relative md:translate-y-[81px] md:transition-transform md:duration-500 md:group-hover:translate-y-0">
           <h2 class="serif mb-[17.5px] text-[clamp(24px,2vw,28.9px)] leading-[1.2]">{x.title}</h2>
           <p class="leading-[1.6] opacity-0 transition-opacity duration-300 group-hover:opacity-100 max-md:opacity-100">{x.p}</p>
         </div>
