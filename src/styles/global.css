@@ -36,6 +36,22 @@
   --gutter: clamp(20px, 2.1vw, 30px);
 }
 
+/* Wide screens: sizes keep growing from 1440px up to 1920px, like the old site */
+@media (min-width: 1440px) {
+  :root {
+    --fs-hero: clamp(58.33px, calc(58.33px + 13.67 * (100vw - 1440px) / 480), 72px);
+    --fs-hero-sub: clamp(27.96px, calc(27.96px + 4.04 * (100vw - 1440px) / 480), 32px);
+    --fs-xl: clamp(57.09px, calc(57.09px + 14.91 * (100vw - 1440px) / 480), 72px);
+    --fs-quote: clamp(59.57px, calc(59.57px + 12.43 * (100vw - 1440px) / 480), 72px);
+    --fs-tab: clamp(62.06px, calc(62.06px + 9.94 * (100vw - 1440px) / 480), 72px);
+    --fs-h1: clamp(50.41px, calc(50.41px + 5.59 * (100vw - 1440px) / 480), 56px);
+    --fs-h2: clamp(43.03px, calc(43.03px + 4.97 * (100vw - 1440px) / 480), 48px);
+    --fs-h2b: clamp(30.14px, calc(30.14px + 1.86 * (100vw - 1440px) / 480), 32px);
+    --fs-h3: clamp(26.67px, calc(26.67px + 5.33 * (100vw - 1440px) / 480), 32px);
+    --fs-eyebrow: clamp(19.38px, calc(19.38px + 0.62 * (100vw - 1440px) / 480), 20px);
+  }
+}
+
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-sans);

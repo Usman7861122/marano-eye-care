@@ -11,9 +11,9 @@ const { url, label, watch = false, dark = false, class: cls = '' } = Astro.props
     {watch && <span class="font-semibold">Watch: </span>}{label}
   </span>
   <span
-    class:list={['grid h-[83px] w-[83px] shrink-0 place-items-center rounded-full border', dark ? 'border-navy/40' : 'border-white/60 bg-white/10 backdrop-blur-sm']}
+    class:list={['grid h-[83px] w-[83px] shrink-0 place-items-center rounded-full border', dark ? 'border-navy/40' : 'border-white/45']}
     aria-hidden="true"
   >
-    <svg width="22" height="26" viewBox="0 0 22 26" fill="currentColor"><path d="M2 1.5v23L21 13z" /></svg>
+    <svg width="27" height="31" viewBox="0 0 22 26" fill="currentColor"><path d="M2 1.5v23L21 13z" /></svg>
   </span>
 </a>
