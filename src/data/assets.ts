@@ -70,7 +70,7 @@ export const img = {
 export const vid = {
   hero: { high: '/videos/hero.mp4', medium: '/videos/hero.mp4' },
   power: V('1GDErUAjUhFjxMFeN9I02BguhONQE68DP'),
-  findOut: V('FYwa4ejCtP01CyNiSFTh7rH0201oXiRPJSF'),
+  findOut: { high: '/videos/findout.mp4', medium: '/videos/findout.mp4' },
   cataracts: V('74GuSbBg56tn02yPClJrjIZH2MOi027bk9'),
   ageVideo: V('S3009VLubi4JGhVfzb9oEgPWtnshPftb1'),
   heroPoster: '/videos/hero-poster.jpg',
