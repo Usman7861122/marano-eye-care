@@ -14,7 +14,7 @@ import { img } from '../../data/assets';
 
   <!-- Main navy block -->
   <div class="round-top bg-navy py-[clamp(56px,8vw,115.8px)] text-white">
-    <div class="mx-auto grid max-w-[1260px] items-center gap-12 px-5 lg:grid-cols-[250px_1fr_250px] lg:px-0">
+    <div class="mx-auto grid max-w-[var(--row)] items-center gap-12 px-5 lg:grid-cols-[250px_1fr_250px] lg:px-0">
       <div>
         <h2 class="serif mb-[10px] text-[22.14px] italic leading-[1.2]">Location</h2>
         <a href={site.mapUrl} target="_blank" rel="noopener" class="block">
@@ -50,7 +50,7 @@ import { img } from '../../data/assets';
 
   <!-- Legal bar -->
   <div class="bg-mist">
-    <div class="mx-auto grid max-w-[1260px] items-center gap-4 px-5 py-[46px] text-[12px] leading-[19.2px] tracking-[1px] text-[#222] md:grid-cols-3">
+    <div class="mx-auto grid max-w-[var(--row)] items-center gap-4 px-5 py-[46px] text-[12px] leading-[19.2px] tracking-[1px] text-[#222] md:grid-cols-3">
       <p>© Chu Vision Institute. <span class="block-phone">All Rights Reserved.</span></p>
       <p class="md:text-center">
         {site.legal.map((l, i) => (<a href={l.href} class:list={[i > 0 && 'ml-[5px]']}>{l.label}</a>))}

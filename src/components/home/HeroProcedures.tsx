@@ -18,7 +18,7 @@ export default function HeroProcedures({ items }: { items: string[] }) {
   const offsets = [-3, -2, -1, 0, 1, 2, 3];
 
   return (
-    <div className="mx-auto w-full max-w-[1260px] px-5">
+    <div className="mx-auto w-full max-w-[var(--row)] px-5">
       <div className="relative mx-auto overflow-hidden" style={{ height: BOX }}>
         {/* Highlight pill behind the active slide */}
         <div
