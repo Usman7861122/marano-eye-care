@@ -31,11 +31,12 @@ export default function LaserTabs({ tabs, images }: { tabs: Tab[]; images: Recor
       </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-to-r from-navy/60 via-navy/10 to-transparent" />
 
-      <div className="relative mx-auto flex min-h-[929px] max-w-[1440px] flex-col justify-end gap-8 px-[clamp(20px,4.6vw,66px)] py-[67px] lg:flex-row lg:items-end lg:justify-between">
+      <div className="relative mx-auto flex min-h-[929px] max-w-[1440px] items-center px-[clamp(20px,4.6vw,66px)] py-[67px]">
+       <div className="flex w-full flex-col justify-end gap-8 lg:flex-row lg:items-end lg:justify-between">
         {/* Left: heading, button, tab links */}
         <div className="w-full lg:max-w-[904px]">
           <h2 className="serif text-[length:var(--fs-tab)] leading-[0.9]">
-            <span className="eyebrow !mb-[35px] !leading-[1]">More Options Means The Right Fit For You</span>
+            <span className="eyebrow !mb-[35px] !leading-[0.9]">More Options Means The Right Fit For You</span>
             Advanced Laser
             <span className="block">Vision Correction</span>
           </h2>
@@ -44,7 +45,7 @@ export default function LaserTabs({ tabs, images }: { tabs: Tab[]; images: Recor
             <a href={t.href} className="btn white">{t.cta}</a>
           </div>
 
-          <div className="mt-6 flex flex-row justify-between gap-6 pt-[74px] max-lg:pt-10 lg:gap-[60px]" role="tablist">
+          <div className="flex flex-row justify-between gap-6 pt-[74.5px] max-lg:pt-10 lg:gap-[60px]" role="tablist">
             {tabs.map((x, i) => (
               <button
                 key={x.key}
@@ -60,8 +61,8 @@ export default function LaserTabs({ tabs, images }: { tabs: Tab[]; images: Recor
                 <span
                   className={`absolute -top-px left-0 h-[3px] bg-white transition-all duration-500 ${i === active ? 'w-full' : 'w-0'}`}
                 />
-                <span className="mt-3 block text-[clamp(18px,1.77vw,25.5px)] font-semibold leading-none">{x.name}</span>
-                <span className="mt-3 block text-[16px] leading-[1.6] max-md:hidden">{x.short}</span>
+                <span className="mt-3 block pt-[34.8px] text-[clamp(18px,1.77vw,25.5px)] font-semibold leading-none max-lg:pt-0">{x.name}</span>
+                <span className="mt-[9px] block text-[16px] leading-[19.5px] max-md:hidden">{x.short}</span>
               </button>
             ))}
           </div>
@@ -91,6 +92,7 @@ export default function LaserTabs({ tabs, images }: { tabs: Tab[]; images: Recor
             </motion.div>
           </AnimatePresence>
         </div>
+       </div>
       </div>
     </section>
   );
