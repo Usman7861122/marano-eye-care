@@ -4,13 +4,17 @@ import { quiz, procedureOptions } from '../../data/home';
 
 type Answers = Record<number, string[]>;
 
-const inputBase =
-  'w-full rounded-[10px] border border-white/30 bg-transparent px-4 py-3 text-[16px] text-white placeholder:text-white/60 focus:border-white focus:outline-none';
 
 export default function SelfTest() {
   const total = quiz.length; // 7 questions, then the contact form
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Answers>({});
+  const [answers, setAnswers] = useState<Answers>(() => {
+    const d: Answers = {};
+    quiz.forEach((s, i) => {
+      if (s.def !== undefined) d[i] = [s.options[s.def].replace(/<[^>]+>/g, '').trim()];
+    });
+    return d;
+  });
   const [error, setError] = useState(false);
   const [sent, setSent] = useState(false);
 
@@ -39,23 +43,12 @@ export default function SelfTest() {
     setSent(true);
   };
 
-  const optionRows = q
-    ? (q.options as (string | string[])[]).map((o) => (Array.isArray(o) ? { title: o[0], text: o[1] } : { title: '', text: o }))
-    : [];
-
   return (
-    <section
-      id="self-test"
-      className="px-[clamp(16px,4.26vw,61px)] py-[clamp(48px,6.4vw,92px)]"
-      style={{ backgroundImage: 'linear-gradient(45deg, #91b2cd 0%, #041a34 30%)' }}
-    >
-      <div
-        className="relative rounded-[45px] border border-white pb-[73.8px] text-white"
-        style={{ backgroundImage: 'linear-gradient(36deg, #273e55, #041a34 30%)' }}
-      >
+    <section id="self-test" className="quiz-section">
+      <div className="quiz-wrapper">
         {!isForm && (
-          <p className="absolute right-[clamp(30px,calc(25.15px+1.2945vw),50px)] top-[clamp(30px,calc(25.15px+1.2945vw),50px)] text-[16px]" aria-live="polite">
-            <span className="text-[24px]">{step + 1}</span> out of <span className="text-[24px]">{total}</span>
+          <p className="quiz-count" aria-live="polite">
+            {step + 1} out of {total}
           </p>
         )}
 
@@ -66,96 +59,72 @@ export default function SelfTest() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.35 }}
-            className="min-h-[634px] px-[clamp(20px,8.9vw,127px)] pt-[clamp(56px,5.2vw,75px)]"
           >
             {q && (
-              <fieldset className="relative mx-auto max-w-[1060px]">
-                <legend className="serif mx-auto max-w-[760px] text-center text-[clamp(28px,3.2vw,46px)] leading-[1.1]">
-                  {q.q} {q.italic && <i>{q.italic}</i>}
-                  {q.sub && (
-                    <span className="mt-10 block font-sans text-[18px] font-semibold leading-[1.1]">{q.sub}</span>
-                  )}
-                </legend>
-
-                {error && (
-                  <small className="absolute right-0 top-0 rounded-[3px] bg-[#dc7474] px-1 py-[2px] text-[10px] uppercase tracking-[0.7px]">
-                    This field is required.
-                  </small>
-                )}
-
-                <div
-                  className={`mt-[78px] grid gap-x-20 gap-y-10 ${
-                    optionRows.length > 6 ? 'md:grid-cols-2' : 'md:grid-cols-3'
-                  }`}
-                >
-                  {optionRows.map((o, idx) => {
-                    const value = (o.title ? o.title + ' ' : '') + o.text;
-                    const checked = (answers[step] ?? []).includes(value);
-                    return (
-                      <label key={idx} className="flex cursor-pointer items-center gap-5">
-                        <input
-                          type={q.type}
-                          name={`q${step}`}
-                          checked={checked}
-                          onChange={() => toggle(value)}
-                          className="peer sr-only"
-                        />
-                        <span
-                          className={`grid h-[48px] w-[48px] shrink-0 place-items-center border transition ${
-                            q.type === 'radio' ? 'rounded-full' : 'rounded-[10px]'
-                          } ${checked ? 'border-white shadow-[0_0_8px_0_#91b2cd]' : 'border-white/20 hover:border-white/60'}`}
-                          aria-hidden="true"
-                        >
-                          {checked && <span className={`h-[20px] w-[20px] bg-white ${q.type === 'radio' ? 'rounded-full' : 'rounded-[4px]'}`} />}
-                        </span>
-                        <span className="text-[16.76px] leading-[1.5]">
-                          {o.title && <strong className="block font-semibold">{o.title}</strong>}
-                          {o.text}
-                        </span>
-                      </label>
-                    );
-                  })}
+              <fieldset className="q-row">
+                <legend className="sr-only">Question {step + 1}</legend>
+                <div className={`q-field ${q.cls ?? ''}`}>
+                  <div className="q-label" dangerouslySetInnerHTML={{ __html: q.label }} />
+                  {error && <small className="q-error">This field is required.</small>}
+                  <div className={q.type === 'radio' ? `q-grid ${q.cls ?? ''}` : `q-checks ${q.cls ?? ''}`}>
+                    {q.options.map((html, idx) => {
+                      const value = html.replace(/<[^>]+>/g, '').trim();
+                      const checked = (answers[step] ?? []).includes(value);
+                      return (
+                        <div className="q-item" key={idx}>
+                          <input
+                            type={q.type}
+                            id={`q${step}-${idx}`}
+                            name={`q${step}`}
+                            checked={checked}
+                            onChange={() => toggle(value)}
+                            className={q.type === 'radio' ? 'q-radio' : 'q-check'}
+                          />
+                          <label htmlFor={`q${step}-${idx}`} dangerouslySetInnerHTML={{ __html: html }} />
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </fieldset>
             )}
 
             {isForm && !sent && (
-              <form onSubmit={submit} className="mx-auto max-w-[760px]">
-                <h2 className="serif text-center text-[clamp(28px,3.2vw,46px)] leading-[1.1]">Get Your Recommendations</h2>
-                <p className="mb-8 mt-4 text-center text-[18px]">
-                  One of our patient counselors will review your information and reach out to you ASAP with your results.
-                </p>
-                <div className="grid gap-4 md:grid-cols-2">
-                  <input required className={inputBase} placeholder="First Name*" name="first_name" autoComplete="given-name" />
-                  <input required className={inputBase} placeholder="Last Name*" name="last_name" autoComplete="family-name" />
-                  <input required className={inputBase} placeholder="Phone*" name="phone" type="tel" autoComplete="tel" />
-                  <input className={inputBase} placeholder="Email" name="email" type="email" autoComplete="email" />
-                  <select required className={`${inputBase} md:col-span-2`} name="procedure_of_interest" defaultValue="">
-                    <option value="" disabled className="text-navy">Procedure of Interest*</option>
+              <form onSubmit={submit} className="q-form">
+                <div className="q-row q-last">
+                  <h2 className="q-section-label">
+                    Get Your Recommendations
+                    <span className="small">One of our patient counselors will review your information and reach out to you ASAP with your results.</span>
+                  </h2>
+                  <input required placeholder="First Name*" name="first_name" autoComplete="given-name" />
+                  <input required placeholder="Last Name*" name="last_name" autoComplete="family-name" />
+                  <input required placeholder="Phone*" name="phone" type="tel" autoComplete="tel" />
+                  <input placeholder="Email" name="email" type="email" autoComplete="email" />
+                  <select required name="procedure_of_interest" defaultValue="">
+                    <option value="" disabled>Procedure of Interest*</option>
                     {procedureOptions.map((p) => (
-                      <option key={p} value={p} className="text-navy">{p}</option>
+                      <option key={p} value={p}>{p}</option>
                     ))}
                   </select>
-                  <textarea className={`${inputBase} md:col-span-2`} rows={3} placeholder="Comments" name="comments" />
+                  <textarea rows={1} placeholder="Comments" name="comments" />
+                  <div className="q-item q-follow">
+                    <input type="checkbox" required id="q-follow" className="q-check" />
+                    <label htmlFor="q-follow">By completing this form, you are giving us permission to follow-up by phone, email or text.</label>
+                  </div>
+                  <div className="q-text-ok">
+                    <span>May we text you?</span>
+                    <label><input type="radio" name="text_ok" value="Yes" /> Yes</label>
+                    <label><input type="radio" name="text_ok" value="No" defaultChecked /> No</label>
+                  </div>
                 </div>
-                <label className="mt-5 flex items-start gap-3 text-[14px]">
-                  <input type="checkbox" required className="mt-1" />
-                  By completing this form, you are giving us permission to follow-up by phone, email or text.
-                </label>
-                <fieldset className="mt-4 flex items-center gap-6 text-[16px]">
-                  <legend className="sr-only">May we text you?</legend>
-                  <span>May we text you?</span>
-                  <label className="flex items-center gap-2"><input type="radio" name="text_ok" value="Yes" /> Yes</label>
-                  <label className="flex items-center gap-2"><input type="radio" name="text_ok" value="No" /> No</label>
-                </fieldset>
-                <div className="mt-8 flex justify-center">
-                  <button type="submit" className="btn white">Submit</button>
+                <div className="q-submit">
+                  <button type="submit" className="btn">Submit</button>
                 </div>
               </form>
             )}
 
             {isForm && sent && (
-              <div className="py-16 text-center">
+              <div className="q-done">
                 <h2 className="serif mx-auto max-w-[660px] text-[length:var(--fs-h1)] leading-[1.2]">Find out if vision correction is right <i>for you</i>?</h2>
                 <p className="mx-auto mt-6 max-w-[660px] text-[18px]">In less than 60 seconds, tell us about your eyes, what bothers you, and how you want to see so we can guide you.</p>
               </div>

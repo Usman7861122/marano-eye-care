@@ -241,3 +241,61 @@ html { interpolate-size: allow-keywords; }
 .dt-icon.eye { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='23' viewBox='0 0 32 23' fill='none'%3E%3Cpath d='M16.0004 17.7375C17.7934 17.7375 19.3175 17.11 20.5726 15.8548C21.8277 14.5997 22.4553 13.0756 22.4553 11.2826C22.4553 9.48958 21.8277 7.9655 20.5726 6.71038C19.3175 5.45525 17.7934 4.82769 16.0004 4.82769C14.2073 4.82769 12.6833 5.45525 11.4281 6.71038C10.173 7.9655 9.54545 9.48958 9.54545 11.2826C9.54545 13.0756 10.173 14.5997 11.4281 15.8548C12.6833 17.11 14.2073 17.7375 16.0004 17.7375ZM16.0004 15.1556C14.9245 15.1556 14.0101 14.779 13.257 14.026C12.504 13.2729 12.1274 12.3584 12.1274 11.2826C12.1274 10.2068 12.504 9.29234 13.257 8.53927C14.0101 7.7862 14.9245 7.40966 16.0004 7.40966C17.0762 7.40966 17.9906 7.7862 18.7437 8.53927C19.4968 9.29234 19.8733 10.2068 19.8733 11.2826C19.8733 12.3584 19.4968 13.2729 18.7437 14.026C17.9906 14.779 17.0762 15.1556 16.0004 15.1556ZM16.0004 22.0408C12.5099 22.0408 9.33029 21.0666 6.46143 19.1182C3.59258 17.1697 1.51266 14.5579 0.22168 11.2826C1.51266 8.00734 3.59258 5.39549 6.46143 3.44706C9.33029 1.49863 12.5099 0.524414 16.0004 0.524414C19.4908 0.524414 22.6704 1.49863 25.5393 3.44706C28.4082 5.39549 30.4881 8.00734 31.7791 11.2826C30.4881 14.5579 28.4082 17.1697 25.5393 19.1182C22.6704 21.0666 19.4908 22.0408 16.0004 22.0408ZM16.0004 19.172C18.7019 19.172 21.1822 18.4607 23.4415 17.0382C25.7007 15.6158 27.428 13.6972 28.6233 11.2826C27.428 8.86799 25.7007 6.94945 23.4415 5.52698C21.1822 4.1045 18.7019 3.39327 16.0004 3.39327C13.2989 3.39327 10.8185 4.1045 8.55928 5.52698C6.30006 6.94945 4.57277 8.86799 3.37742 11.2826C4.57277 13.6972 6.30006 15.6158 8.55928 17.0382C10.8185 18.4607 13.2989 19.172 16.0004 19.172Z' fill='white'/%3E%3C/svg%3E"); }
 .dt-icon.award { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30' fill='none'%3E%3Cpath d='M14.9995 26.4749C16.7926 26.4749 18.3166 25.8474 19.5718 24.5923C20.8269 23.3371 21.4545 21.8131 21.4545 20.02C21.4545 18.227 20.8269 16.7029 19.5718 15.4478C18.3166 14.1927 16.7926 13.5651 14.9995 13.5651C13.2065 13.5651 11.6824 14.1927 10.4273 15.4478C9.17218 16.7029 8.54462 18.227 8.54462 20.02C8.54462 21.8131 9.17218 23.3371 10.4273 24.5923C11.6824 25.8474 13.2065 26.4749 14.9995 26.4749ZM10.8038 11.7004C11.282 11.4374 11.79 11.2282 12.3279 11.0728C12.8658 10.9174 13.4097 10.8158 13.9596 10.768L10.3377 3.52413H6.75158L10.8038 11.7004ZM19.1952 11.7004L23.2833 3.52413H19.6614L16.6133 9.62044L17.2946 10.9831C17.6293 11.0788 17.9521 11.1804 18.2629 11.288C18.5736 11.3955 18.8844 11.533 19.1952 11.7004ZM6.96675 24.7536C6.56033 24.0603 6.24356 23.3132 6.01644 22.5123C5.78932 21.7115 5.67577 20.8807 5.67577 20.02C5.67577 19.1594 5.78932 18.3286 6.01644 17.5277C6.24356 16.7268 6.56033 15.9797 6.96675 15.2864C5.96265 15.6211 5.13786 16.2128 4.49236 17.0615C3.84687 17.9102 3.52413 18.8964 3.52413 20.02C3.52413 21.1437 3.84687 22.1298 4.49236 22.9785C5.13786 23.8272 5.96265 24.4189 6.96675 24.7536ZM23.0323 24.7536C24.0364 24.4189 24.8612 23.8272 25.5067 22.9785C26.1522 22.1298 26.4749 21.1437 26.4749 20.02C26.4749 18.8964 26.1522 17.9102 25.5067 17.0615C24.8612 16.2128 24.0364 15.6211 23.0323 15.2864C23.4387 15.9797 23.7555 16.7268 23.9826 17.5277C24.2097 18.3286 24.3233 19.1594 24.3233 20.02C24.3233 20.8807 24.2097 21.7115 23.9826 22.5123C23.7555 23.3132 23.4387 24.0603 23.0323 24.7536ZM14.9995 29.3438C14.0433 29.3438 13.1288 29.2063 12.2562 28.9314C11.3836 28.6565 10.5767 28.2799 9.8356 27.8018C9.62044 27.8496 9.40527 27.8795 9.19011 27.8914C8.97495 27.9034 8.74783 27.9094 8.50876 27.9094C6.33321 27.9094 4.48041 27.1443 2.95036 25.6143C1.4203 24.0842 0.655273 22.2314 0.655273 20.0559C0.655273 17.976 1.34858 16.1949 2.73519 14.7127C4.1218 13.2304 5.83116 12.4056 7.86327 12.2383L2.0897 0.655273H12.1307L14.9995 6.39298L17.8684 0.655273H27.9094L22.1717 12.1665C24.2038 12.3578 25.9072 13.1945 27.2818 14.6768C28.6565 16.159 29.3438 17.9401 29.3438 20.02C29.3438 22.2195 28.5788 24.0842 27.0487 25.6143C25.5187 27.1443 23.6539 27.9094 21.4545 27.9094C21.2393 27.9094 21.0181 27.9034 20.791 27.8914C20.5639 27.8795 20.3428 27.8496 20.1276 27.8018C19.3865 28.2799 18.5856 28.6565 17.7249 28.9314C16.8643 29.2063 15.9558 29.3438 14.9995 29.3438ZM12.3458 23.9647L13.3499 20.7014L10.6963 18.8008H13.9596L14.9995 15.3581L16.0395 18.8008H19.3028L16.6491 20.7014L17.6532 23.9647L14.9995 21.9565L12.3458 23.9647Z' fill='white'/%3E%3C/svg%3E"); }
 .dt-icon.computer { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='26' viewBox='0 0 30 26' fill='none'%3E%3Cpath d='M9.26183 25.9095V23.0407H12.1307V20.1718H3.52413C2.73519 20.1718 2.05982 19.8909 1.498 19.3291C0.936182 18.7673 0.655273 18.0919 0.655273 17.303V2.9587C0.655273 2.16976 0.936182 1.49439 1.498 0.932569C2.05982 0.370752 2.73519 0.0898438 3.52413 0.0898438H26.4749C27.2639 0.0898438 27.9393 0.370752 28.5011 0.932569C29.0629 1.49439 29.3438 2.16976 29.3438 2.9587V17.303C29.3438 18.0919 29.0629 18.7673 28.5011 19.3291C27.9393 19.8909 27.2639 20.1718 26.4749 20.1718H17.8684V23.0407H20.7372V25.9095H9.26183ZM3.52413 17.303H26.4749V2.9587H3.52413V17.303Z' fill='white'/%3E%3C/svg%3E"); }
+
+/* Self test quiz (matches old .mod_self_test) */
+.quiz-section { background: linear-gradient(45deg, #91b2cd 0%, #041a34 30%); padding: clamp(30px, calc(8.15px + 5.8252vw), 120px) clamp(20px, calc(5.44px + 3.8835vw), 80px); overflow: clip; scroll-margin-top: 30px; }
+.quiz-wrapper { position: relative; color: #fff; border: 1px solid #fff; border-radius: clamp(35px, calc(31.36px + .9709vw), 50px); background: linear-gradient(36deg, #273e55, #041a34 30%); padding-bottom: clamp(60px, calc(55.15px + 1.2945vw), 80px); }
+.quiz-count { position: absolute; z-index: 2; right: clamp(30px, calc(25.15px + 1.2945vw), 50px); top: clamp(30px, calc(25.15px + 1.2945vw), 50px); font-size: 18px; }
+.q-row { display: block; border: 0; margin: 0; min-width: 0; padding: clamp(30px, calc(21.26px + 2.3301vw), 66px) clamp(30px, calc(23.4375vw - 210px), 240px); }
+.q-label { color: #fff; font-family: var(--font-serif); line-height: 1.1; font-size: clamp(24px, calc(16.23px + 2.0712vw), 56px); max-width: 760px; margin: 0 auto clamp(30px, calc(13.01px + 4.5307vw), 100px); text-wrap: balance; text-align: center; }
+.q-label i { font-style: italic; }
+.q-label .small, .q-section-label .small { display: block; font-family: var(--font-sans); font-style: normal; font-weight: 600; font-size: calc(12.54px + .3883vw); line-height: 1.1; margin-top: clamp(30px, calc(12.72px + 1.942vw), 50px); }
+.q-error { display: block; margin: -20px auto 16px; width: fit-content; background: #dc7474; padding: 2px 4px; font-size: 10px; text-transform: uppercase; border-radius: 3px; }
+.q-grid { display: grid; grid-template-columns: repeat(3, auto); gap: 40px 80px; }
+.q-grid.age { grid-template-columns: repeat(2, 200px); justify-content: center; }
+.q-item { display: flex; align-items: center; gap: 20px; }
+.q-item > label { font-size: clamp(14px, calc(13.03px + .2589vw), 18px); color: #fff; line-height: 1.5; cursor: pointer; }
+.q-item > label strong { font-weight: 600; }
+.q-grid .q-item > label strong { display: block; }
+.q-radio { appearance: none; -webkit-appearance: none; flex: none; margin: 0; width: clamp(40px, calc(37.09px + .7767vw), 52px); height: clamp(46px, calc(41.63px + 1.165vw), 64px); border: 1px solid rgba(255,255,255,.2); border-radius: 100vmax; background: transparent; position: relative; cursor: pointer; transition: box-shadow 400ms; }
+.q-radio::before { content: ""; position: absolute; top: 50%; left: 50%; translate: -50% -50%; rotate: 180deg; scale: .8; transition: scale 400ms; border-radius: 50%;
+  width: clamp(15px, calc(13.79px + .3236vw), 20px); height: clamp(15px, calc(13.79px + .3236vw), 20px);
+  background: url("data:image/svg+xml,%3Csvg width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.582 19.7669L1.16407 10.3835L10.582 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M20 10.3835H1.16409' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+.q-radio ~ label { padding-right: clamp(12px, calc(9.94px + .5178vw), 20px); transition: padding 400ms; }
+.q-radio:checked { border-color: #fff; box-shadow: 0 0 8px #91b2cd; }
+.q-radio:checked::before { scale: 1; }
+.q-radio:checked ~ label { padding-left: clamp(12px, calc(9.94px + .5178vw), 20px); padding-right: 0; }
+.q-checks { column-count: 2; column-gap: clamp(30px, calc(22.71px + 1.9417vw), 60px); }
+.q-checks .q-item { align-items: flex-start; gap: clamp(12px, calc(10.29px + .5178vw), 20px); margin-bottom: clamp(12px, calc(11.03px + .2589vw), 16px); break-inside: avoid; }
+.q-check { appearance: none; -webkit-appearance: none; flex: none; margin: 2px 0 0; width: 22px; height: 22px; border: 1px solid rgba(255,255,255,.42); border-radius: 8px; background: transparent; position: relative; cursor: pointer; }
+.q-check:checked { background: #fff; }
+.q-checks.surgery { column-count: unset; display: grid; grid-template-columns: 290px 420px; justify-content: center; gap: 0; }
+@media (max-width: 1024px) {
+  .q-grid { grid-template-columns: repeat(2, auto); row-gap: 1rem; }
+  .q-grid.age { grid-template-columns: repeat(2, 200px); }
+  .q-checks { column-count: unset; max-width: 420px; margin-inline: auto; }
+  .q-checks.surgery { grid-template-columns: auto; }
+}
+@media (max-width: 800px) {
+  .q-grid { grid-template-columns: auto; }
+  .q-grid.age { grid-template-columns: auto; gap: 12px; }
+  .q-label { padding-top: 20px; }
+}
+/* last step */
+.q-form { display: flex; flex-direction: column; }
+.q-last { display: flex; flex-wrap: wrap; gap: clamp(20px, calc(16.84px + .8414vw), 33px); max-width: 1730px; margin-inline: auto; width: 100%; padding-inline: clamp(30px, calc(23.4375vw - 210px), 240px); }
+.q-section-label { width: 100%; text-align: center; font-family: var(--font-serif); font-weight: 400; color: #fff; line-height: 1.1; font-size: clamp(28px, calc(21.2px + 1.8123vw), 56px); max-width: 640px; margin: 0 auto clamp(30px, calc(17.9px + 3.2362vw), 80px); text-wrap: balance; }
+.q-last input:not([type=checkbox]):not([type=radio]), .q-last select, .q-last textarea { width: calc(50% - 18px); background: #fff; border: 0; border-radius: 1rem; color: #000; padding: 17px 24px; font: inherit; letter-spacing: inherit; }
+.q-last ::placeholder { color: rgba(0,0,0,.72); }
+.q-last textarea { resize: none; }
+.q-follow { width: 100%; align-items: flex-start; }
+.q-text-ok { width: 100%; display: flex; align-items: center; gap: 24px; font-size: clamp(14px, calc(13.03px + .2589vw), 18px); }
+.q-text-ok label { display: flex; align-items: center; gap: 8px; }
+.q-submit { position: absolute; bottom: clamp(30px, calc(25.15px + 1.2945vw), 50px); right: clamp(30px, calc(14.8px + 3.8835vw), 90px); z-index: 5; margin-right: 30px; }
+.q-submit .btn { position: relative; background: transparent; border: 0; color: #fff; padding-right: clamp(50px, calc(44.66px + 1.4239vw), 72px); padding-block: 18px; }
+.q-submit .btn::after { content: ""; position: absolute; top: 0; right: 0; height: 100%; width: clamp(40px, calc(37.09px + .7767vw), 52px); border: 1px solid rgba(255,255,255,.2); border-radius: 100vmax; rotate: 180deg; transition: border 400ms;
+  background: url("data:image/svg+xml,%3Csvg width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.582 19.7669L1.16407 10.3835L10.582 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M20 10.3835H1.16409' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / clamp(15px, calc(13.79px + .3236vw), 20px) auto no-repeat; }
+.q-submit .btn:hover { color: #fff; background: transparent; }
+.q-submit .btn:hover::after { border-color: #fff; }
+.q-done { padding: clamp(30px, calc(21.26px + 2.3301vw), 66px) 30px; text-align: center; }
+@media (max-width: 800px) { .q-last input:not([type=checkbox]):not([type=radio]), .q-last select, .q-last textarea { width: 100%; } }

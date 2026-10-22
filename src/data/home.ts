@@ -115,49 +115,46 @@ export const home = {
   ],
 };
 
-export type QuizStep = {
-  type: 'radio' | 'checkbox';
-  q: string;
-  italic?: string;
-  sub?: string;
-  options: string[][] | string[];
-};
+export type QuizStep = { type: 'radio' | 'checkbox'; label: string; cls?: 'age' | 'surgery'; options: string[]; def?: number };
 
 export const quiz: QuizStep[] = [
-  { type: 'radio', q: 'What would better vision mean', italic: 'for you?', sub: 'In less than 60 seconds, tell us about your eyes, what bothers you, and how you want to see so we can guide you.', options: [
-    ['More freedom', 'I wouldn’t have to worry about glasses or contacts.'],
-    ['More confidence', 'I’d feel better knowing my vision is clear.'],
-    ['', 'Seeing clearly just seems like the way to go.'],
-    ['More possibilities', 'I could do things I avoid now.'],
-    ['More ease', 'daily life would just feel simpler.'],
+  { type: 'radio', def: 0, label: 'What would better vision mean <i>for you?</i>.<br><span class="small">In less than 60 seconds, tell us about your eyes, what bothers you, and how you want to see so we can guide you.</span>', options: [
+    '<strong>More freedom </strong>I wouldn’t have to worry about glasses or contacts.',
+    '<strong>More confidence </strong>I’d feel better knowing my vision is clear.',
+    'Seeing clearly just seems like the way to go.',
+    '<strong>More possibilities </strong>I could do things I avoid now.',
+    '<strong>More ease </strong>daily life would just feel simpler.',
   ] },
-  { type: 'checkbox', q: 'Which best describes your current vision situation?', sub: '(Select all that apply)', options: [
+  { type: 'checkbox', label: 'Which best describes your <i>current vision situation</i>? <span class="small">(Select all that apply)</span>', options: [
     'I wear glasses.', 'I wear contact lenses.', 'I switch between glasses and contacts.',
     'I’ve had vision correction surgery, but I still have vision issues.', 'I use reading glasses but otherwise see fine.',
     'I struggle with my vision but don’t currently wear anything.',
     'I have a diagnosed eye condition (like keratoconus, glaucoma, or cataracts).', 'I’ve noticed my vision getting worse with age.',
   ] },
-  { type: 'checkbox', q: 'Which eye condition(s) have you been diagnosed with?', sub: '(Select all that apply):', options: [
-    'Myopia/Nearsightedness: Means you can see things up close clearly, but have trouble seeing objects that are far away',
-    'Hyperopia/Farsightendess: Objects up close appear blurry while distant objects are seen more clearly - not the same as Presbyopia',
-    'Astigmatism', 'Presbyopia: when you’re 40+ and start to need reading glasses', "Cataracts Clouding of the eye's lens",
-    'Glaucoma: Damage to the optic nerve, which can lead to vision loss',
-    'Age-related macular degeneration (AMD): Damage to the macula, the central part of the retina responsible for sharp vision',
-    'Diabetic retinopathy: Damage to blood vessels in the retina',
-    'Amblyopia (lazy eye): A condition where one eye does not develop normal vision',
-    'Conjunctivitis (pink eye): Inflammation of the conjunctiva',
-    'Blepharitis: Inflammation of the eyelids', 'Stye: A small, painful bump on the eyelid',
+  { type: 'checkbox', label: 'Which eye condition(s) have you been diagnosed with? <span class="small">(Select all that apply):</span>', options: [
+    '<strong>Myopia/Nearsightedness:</strong> Means you can see things up close clearly, but have trouble seeing objects that are far away',
+    '<strong>Hyperopia/Farsightendess:</strong> Objects up close appear blurry while distant objects are seen more clearly - not the same as Presbyopia',
+    '<strong>Astigmatism</strong>',
+    '<strong>Presbyopia:</strong> when you’re 40+ and start to need reading glasses',
+    "<strong>Cataracts </strong>Clouding of the eye's lens",
+    '<strong>Glaucoma: </strong>Damage to the optic nerve, which can lead to vision loss',
+    '<strong>Age-related macular degeneration (AMD): </strong>Damage to the macula, the central part of the retina responsible for sharp vision',
+    '<strong>Diabetic retinopathy: </strong>Damage to blood vessels in the retina caused by diabetes',
+    '<strong>Amblyopia (lazy eye): </strong>A condition where one eye is weaker than the other',
+    '<strong>Conjunctivitis (pink eye): </strong>Inflammation of the conjunctiva, the clear membrane covering the white part of the eye',
+    '<strong>Blepharitis: </strong>Inflammation of the eyelids',
+    '<strong>Stye: </strong>A small, painful bump on the eyelid',
   ] },
-  { type: 'checkbox', q: 'Have you had any type of eye surgery or procedure in the past?', sub: '(Select all that apply):', options: [
+  { type: 'checkbox', cls: 'surgery', label: 'Have you had any type of eye surgery or procedure <i>in the past</i>? <span class="small">(Select all that apply):</span>', options: [
     'LASIK', 'Cataract Surgery', 'PRK', 'Glaucoma Surgery', 'LASEK', 'Corneal Transplant', 'SMILE',
     'Lens Implant Surgery, including intraocular lenses, IOLs, or multifocal IOLs', 'No/None', 'Other',
   ] },
-  { type: 'radio', q: 'How old are you?', sub: '(We won’t tell)', options: ['19-24', '25-40', '41-59', '60+'] },
-  { type: 'checkbox', q: 'Go ahead, vent a little—how is your vision getting in the way?', sub: '', options: [
+  { type: 'radio', cls: 'age', def: 0, label: 'How old are you? <i>(We won’t tell)</i>', options: ['19-24', '25-40', '41-59', '60+'] },
+  { type: 'checkbox', label: 'Go ahead, vent a little—how is your vision <i>getting in the way</i>?', options: [
     'Driving at night feels unsafe.', 'Reading up close is getting harder.', 'Seeing far away is a struggle.',
     'Screens strain my eyes.', 'Glasses and contacts are annoying.', 'Honestly, I just want to see better.', "I'll fill you in later.",
   ] },
-  { type: 'radio', q: 'What is your motivation and timeline?', sub: '', options: [
+  { type: 'radio', def: 0, label: 'What is your motivation <i>and timeline</i>?', options: [
     'Just exploring my options—no rush.', 'I know I want better vision, but I’m not sure what I need.',
     'I’m seriously considering it but need more info.', 'I’m ready to do something soon.',
     'I’ve been thinking about this forever and just need the right doctor.',
