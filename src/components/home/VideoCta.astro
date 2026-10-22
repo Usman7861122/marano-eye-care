@@ -8,7 +8,7 @@ interface Props {
 const { src, variant } = Astro.props;
 ---
 <section
-  class:list={['relative min-h-[560px] overflow-hidden bg-navy text-white', variant === 'power' ? 'round-top lg:min-h-[790px]' : 'lg:min-h-[780px]']}
+  class:list={['relative min-h-[560px] overflow-hidden bg-navy text-white', variant === 'power' ? 'round-top' : 'lg:min-h-[780px]']}
 >
   <video
     class:list={['absolute inset-0 h-full w-full object-cover', variant === 'power' ? 'round-top' : '']}
@@ -18,7 +18,7 @@ const { src, variant } = Astro.props;
     <source src={src.high} type="video/mp4" />
   </video>
   <div class="absolute inset-0 bg-navy/25"></div>
-  <div class:list={['row-wrap relative py-[clamp(120px,20.4vw,294px)] text-center', variant === 'power' && 'lg:!pt-[330px] lg:!pb-0']}>
+  <div class:list={['row-wrap relative py-[clamp(120px,20.4vw,294px)] text-center', variant === 'power' && '!py-[clamp(120px,calc(126px+11.667vw),350px)]']}>
     <slot />
   </div>
 </section>
