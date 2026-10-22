@@ -8,10 +8,10 @@ const V = (id: string) => ({
 });
 
 export const img = {
-  logoNav: D('1743783946-logo_horizontal-nav.png', 353),
-  logoFooter: D('1743783976-logo_horizontal-footer.png', 726),
-  favicon: D('1743784020-favicon.png'),
-  og: D('1743784050-open-graph-card.jpg'),
+  logoNav: '/images/logo.png',
+  logoFooter: '/images/logo-white.png',
+  favicon: '/images/favicon.png',
+  og: '/images/logo.png',
   bentoBg: D('1744133994-3-bento-background-no-doctor.jpg', 1400),
   bentoDoctor: D('1744133407-3-bento-1.png', 1219),
   logos: [

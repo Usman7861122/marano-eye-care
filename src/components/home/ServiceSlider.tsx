@@ -31,7 +31,7 @@ export default function ServiceSlider({ services, images }: { services: Service[
         {/* Copy */}
         <div className="flex flex-col justify-center px-[clamp(20px,8.7vw,125px)] py-10 lg:w-[518px] lg:shrink-0 lg:py-[114px] lg:pl-[125px] lg:pr-[79px]">
           <h2 className="serif pb-[22.7px] text-[length:var(--fs-h2)] leading-[1.2]">
-            <span className="eyebrow !mb-[40px]">The Chu Vision Approach</span>
+            <span className="eyebrow !mb-[40px]">The Marano Eye Care Approach</span>
             Every Solution <i className="block">for Every Need</i>
           </h2>
           <p className="leading-[1.6]">Feel confident in your vision plan with guidance from our team of experts.</p>
@@ -76,7 +76,7 @@ export default function ServiceSlider({ services, images }: { services: Service[
                   <img src={images[i]} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
                   <div
                     className="absolute inset-0"
-                    style={{ background: 'linear-gradient(0deg, rgba(4,26,52,0.95) 5%, rgba(4,26,52,0.55) 55%, rgba(4,26,52,0.1) 100%)' }}
+                    style={{ background: 'linear-gradient(0deg, rgba(26,39,72,0.95) 5%, rgba(26,39,72,0.55) 55%, rgba(26,39,72,0.1) 100%)' }}
                   />
                   <div className="relative flex flex-col text-center">
                     <h3 className="serif mb-[37px] text-[length:var(--fs-h2b)] leading-[1.2]">{s.title}</h3>

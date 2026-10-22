@@ -8,12 +8,13 @@
 @font-face{font-family:"ivypresto-display";src:url("https://use.typekit.net/af/fad29f/00000000000000007735e5b3/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2");font-style:normal;font-weight:400;font-display:swap}
 
 @theme {
-  --color-navy: #041a34;
-  --color-steel: #273e55;
-  --color-slate: #5b6d7d;
-  --color-sky: #91b2cd;
-  --color-mist: #efefef;
-  --color-card: #f1f1f1;
+  --color-navy: #1a2748;
+  --color-steel: #2f4373;
+  --color-slate: #6d7ea6;
+  --color-sky: #7a95cc;
+  --color-mist: #eef1f8;
+  --color-card: #f1f4fa;
+  --color-leaf: #729a78;
   --font-sans: "proxima-nova", "Mulish", Arial, sans-serif;
   --font-serif: "ivypresto-display", "Cormorant Garamond", Georgia, serif;
   --radius-pill: 1440px;
@@ -139,7 +140,7 @@ body {
 .quote-pill {
   position: absolute; top: 0; left: 50%; translate: -50% 0; height: 226px;
   width: clamp(300px, calc(125.24px + 46.6019vw), 1020px); border-radius: 100vmax; opacity: .9;
-  background: radial-gradient(circle at 10% 150%, #91b2cd -20%, #91b2cd -10%, transparent 40%), radial-gradient(circle at 120% 80%, #91b2cd 0%, transparent 50%), #031a34;
+  background: radial-gradient(circle at 10% 150%, #7a95cc -20%, #7a95cc -10%, transparent 40%), radial-gradient(circle at 120% 80%, #7a95cc 0%, transparent 50%), #1a2748;
 }
 @media (max-width: 640px) { .quote-pill { width: calc(100vw - 70px); } }
 .quote-mark {
@@ -158,11 +159,11 @@ body {
 }
 .patient-tile::after {
   content: ""; position: absolute; z-index: 4; top: 50%; left: 50%; translate: -50% -50%;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27.25 30.85'%3E%3Cpath fill='%23041a34' d='M26.25,13.69c1.33.77,1.33,2.69,0,3.46L3,30.58c-1.33.77-3-.19-3-1.73V2C0,.46,1.67-.5,3,.27l23.25,13.42Z'/%3E%3C/svg%3E") 56% 50% / clamp(12px, calc(7.63px + 1.165vw), 30px) auto no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27.25 30.85'%3E%3Cpath fill='%231a2748' d='M26.25,13.69c1.33.77,1.33,2.69,0,3.46L3,30.58c-1.33.77-3-.19-3-1.73V2C0,.46,1.67-.5,3,.27l23.25,13.42Z'/%3E%3C/svg%3E") 56% 50% / clamp(12px, calc(7.63px + 1.165vw), 30px) auto no-repeat;
   width: clamp(40px, calc(31.14px + 2.3301vw), 76px); height: clamp(50px, calc(39.81px + 2.7184vw), 92px);
-  border: 1px solid rgba(4,26,52,.2); border-radius: 100vmax; filter: invert(1) brightness(2); transition: .4s ease-in-out;
+  border: 1px solid rgba(26,39,72,.2); border-radius: 100vmax; filter: invert(1) brightness(2); transition: .4s ease-in-out;
 }
-.patient-tile:hover::after { border-color: #041a34; }
+.patient-tile:hover::after { border-color: #1a2748; }
 .patient-tile img { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; transition: .4s ease-in-out; }
 .patient-tile:hover img { transform: scale(1.1); }
 .patient-tile a { position: absolute; inset: 0; z-index: 6; }
@@ -185,7 +186,7 @@ body {
 }
 .dt-pic { position: absolute; inset: 0; z-index: 1; display: block; }
 .dt-pic img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
-.dt-pic::before { content: ""; position: absolute; inset: 0; background: #041a34; opacity: 1; z-index: 2; transition: opacity .6s ease; }
+.dt-pic::before { content: ""; position: absolute; inset: 0; background: #1a2748; opacity: 1; z-index: 2; transition: opacity .6s ease; }
 .dt-pic::after { content: ""; position: absolute; inset: 0; z-index: 2; opacity: 0; transition: opacity 800ms;
   background: linear-gradient(to top, #000 0%, rgba(0,0,0,0) 40%), linear-gradient(to right, #000 10%, rgba(0,0,0,0) 50%); }
 .dt-content {
@@ -243,8 +244,8 @@ html { interpolate-size: allow-keywords; }
 .dt-icon.computer { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='26' viewBox='0 0 30 26' fill='none'%3E%3Cpath d='M9.26183 25.9095V23.0407H12.1307V20.1718H3.52413C2.73519 20.1718 2.05982 19.8909 1.498 19.3291C0.936182 18.7673 0.655273 18.0919 0.655273 17.303V2.9587C0.655273 2.16976 0.936182 1.49439 1.498 0.932569C2.05982 0.370752 2.73519 0.0898438 3.52413 0.0898438H26.4749C27.2639 0.0898438 27.9393 0.370752 28.5011 0.932569C29.0629 1.49439 29.3438 2.16976 29.3438 2.9587V17.303C29.3438 18.0919 29.0629 18.7673 28.5011 19.3291C27.9393 19.8909 27.2639 20.1718 26.4749 20.1718H17.8684V23.0407H20.7372V25.9095H9.26183ZM3.52413 17.303H26.4749V2.9587H3.52413V17.303Z' fill='white'/%3E%3C/svg%3E"); }
 
 /* Self test quiz (matches old .mod_self_test) */
-.quiz-section { background: linear-gradient(45deg, #91b2cd 0%, #041a34 30%); padding: clamp(30px, calc(8.15px + 5.8252vw), 120px) clamp(20px, calc(5.44px + 3.8835vw), 80px); overflow: clip; scroll-margin-top: 30px; }
-.quiz-wrapper { position: relative; color: #fff; border: 1px solid #fff; border-radius: clamp(35px, calc(31.36px + .9709vw), 50px); background: linear-gradient(36deg, #273e55, #041a34 30%); padding-bottom: clamp(60px, calc(55.15px + 1.2945vw), 80px); }
+.quiz-section { background: linear-gradient(45deg, #7a95cc 0%, #1a2748 30%); padding: clamp(30px, calc(8.15px + 5.8252vw), 120px) clamp(20px, calc(5.44px + 3.8835vw), 80px); overflow: clip; scroll-margin-top: 30px; }
+.quiz-wrapper { position: relative; color: #fff; border: 1px solid #fff; border-radius: clamp(35px, calc(31.36px + .9709vw), 50px); background: linear-gradient(36deg, #2f4373, #1a2748 30%); padding-bottom: clamp(60px, calc(55.15px + 1.2945vw), 80px); }
 .quiz-count { position: absolute; z-index: 2; right: clamp(30px, calc(25.15px + 1.2945vw), 50px); top: clamp(30px, calc(25.15px + 1.2945vw), 50px); font-size: 18px; }
 .q-row { display: block; border: 0; margin: 0; min-width: 0; padding: clamp(30px, calc(21.26px + 2.3301vw), 66px) clamp(30px, calc(23.4375vw - 210px), 240px); }
 .q-label { color: #fff; font-family: var(--font-serif); line-height: 1.1; font-size: clamp(24px, calc(16.23px + 2.0712vw), 56px); max-width: 760px; margin: 0 auto clamp(30px, calc(13.01px + 4.5307vw), 100px); text-wrap: balance; text-align: center; }
@@ -262,7 +263,7 @@ html { interpolate-size: allow-keywords; }
   width: clamp(15px, calc(13.79px + .3236vw), 20px); height: clamp(15px, calc(13.79px + .3236vw), 20px);
   background: url("data:image/svg+xml,%3Csvg width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.582 19.7669L1.16407 10.3835L10.582 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M20 10.3835H1.16409' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
 .q-radio ~ label { padding-right: clamp(12px, calc(9.94px + .5178vw), 20px); transition: padding 400ms; }
-.q-radio:checked { border-color: #fff; box-shadow: 0 0 8px #91b2cd; }
+.q-radio:checked { border-color: #fff; box-shadow: 0 0 8px #7a95cc; }
 .q-radio:checked::before { scale: 1; }
 .q-radio:checked ~ label { padding-left: clamp(12px, calc(9.94px + .5178vw), 20px); padding-right: 0; }
 .q-checks { column-count: 2; column-gap: clamp(30px, calc(22.71px + 1.9417vw), 60px); }

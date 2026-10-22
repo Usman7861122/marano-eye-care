@@ -28,7 +28,7 @@ export default function HeroProcedures({ items }: { items: string[] }) {
             top: ACTIVE_TOP - 4,
             height: 100,
             opacity: 0.9,
-            backgroundImage: 'radial-gradient(circle at 0% 90%, #91b2cd 0%, #0d233b 70%)',
+            backgroundImage: 'radial-gradient(circle at 0% 90%, #7a95cc 0%, #243660 70%)',
           }}
         />
         <ul aria-label="Procedures" className="absolute inset-0">

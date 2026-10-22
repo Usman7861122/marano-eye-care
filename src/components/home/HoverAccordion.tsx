@@ -64,8 +64,8 @@ export default function HoverAccordion({ slides, variant }: { slides: Slide[]; v
               className="absolute inset-0"
               style={{
                 background: ages
-                  ? 'linear-gradient(0deg, rgba(4,26,52,0.75) 0%, rgba(4,26,52,0.1) 60%)'
-                  : 'linear-gradient(0deg, rgba(4,26,52,0.7) 0%, rgba(4,26,52,0.25) 100%)',
+                  ? 'linear-gradient(0deg, rgba(26,39,72,0.75) 0%, rgba(26,39,72,0.1) 60%)'
+                  : 'linear-gradient(0deg, rgba(26,39,72,0.7) 0%, rgba(26,39,72,0.25) 100%)',
               }}
             />
 

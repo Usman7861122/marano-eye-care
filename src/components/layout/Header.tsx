@@ -10,8 +10,8 @@ export default function Header() {
       <div className="mx-0 bg-white px-5 py-[10px] shadow-[0_0_15px_-4px_rgba(20,20,20,0.14)] lg:mx-3 lg:mt-6 lg:rounded-[10px]">
         <div className="mx-auto flex max-w-[1346px] items-center justify-between lg:grid lg:grid-cols-[238px_1fr_357px]">
           {/* Logo */}
-          <a href="/" className="block w-[126px] shrink-0">
-            <img src={img.logoNav} alt="Chu Vision Institute" width={126} height={46} className="h-[46px] w-[126px] object-contain" />
+          <a href="/" className="block shrink-0">
+            <img src={img.logoNav} alt="Marano Eye Care" width={184} height={46} className="h-[46px] w-auto object-contain" />
           </a>
 
           {/* Desktop nav */}

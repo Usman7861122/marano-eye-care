@@ -16,24 +16,24 @@ import { img } from '../../data/assets';
   <div class="round-top bg-navy py-[clamp(56px,8vw,115.8px)] text-white">
     <div class="mx-auto grid max-w-[var(--row)] items-center gap-12 px-5 lg:grid-cols-[250px_1fr_250px] lg:px-0">
       <div>
-        <h2 class="serif mb-[10px] text-[22.14px] italic leading-[1.2]">Location</h2>
-        <a href={site.mapUrl} target="_blank" rel="noopener" class="block">
-          <p class="mb-[15px] leading-[1.6]">
-            {site.address[0]}<br />{site.address[1]}
-          </p>
-        </a>
-        <h2 class="serif mb-[10px] mt-12 text-[22.14px] italic leading-[1.2]">Contact</h2>
-        <a href={site.phoneHref} class="block text-[15px] leading-[1.4]">{site.phone}</a>
-        <a href={site.faxHref} class="block text-[15px] leading-[1.4]">{site.fax} <span class="opacity-60">(fax)</span></a>
+        <h2 class="serif mb-[10px] text-[22.14px] italic leading-[1.2]">Locations</h2>
+        {site.locations.map((l) => (
+          <div class="mb-[15px]">
+            <a href={site.mapUrl} target="_blank" rel="noopener" class="block">
+              <p class="leading-[1.6]"><strong class="font-semibold">{l.city}</strong><br />{l.address[0]}<br />{l.address[1]}</p>
+            </a>
+            <a href={l.phoneHref} class="block text-[15px] leading-[1.4]">{l.phone}</a>
+          </div>
+        ))}
       </div>
 
-      <a href="/" class="mx-auto block w-[260px] sm:w-[363px]" aria-label="Chu Vision Institute home">
-        <img src={img.logoFooter} alt="Chu Vision Institute" loading="lazy" class="w-full" />
+      <a href="/" class="mx-auto block w-[260px] sm:w-[363px]" aria-label="Marano Eye Care home">
+        <img src={img.logoFooter} alt="Marano Eye Care" loading="lazy" class="w-full" />
       </a>
 
       <div class="lg:text-right">
         <a href={site.reviewsUrl} target="_blank" rel="noopener" class="mt-5 block">
-          <h2 class="serif mb-[10px] text-[22.14px] italic leading-[1.2]">{site.rating.stars} Stars {site.rating.count} Reviews</h2>
+          <h2 class="serif mb-[10px] text-[22.14px] italic leading-[1.2]">{site.reviewsLabel}</h2>
           <span class="inline-flex gap-[2px] text-[17px] lg:justify-end" aria-hidden="true">★★★★★</span>
         </a>
         <div class="mt-8">
@@ -51,12 +51,12 @@ import { img } from '../../data/assets';
   <!-- Legal bar -->
   <div class="bg-mist">
     <div class="mx-auto grid max-w-[var(--row)] items-center gap-4 px-5 py-[46px] text-[12px] leading-[19.2px] tracking-[1px] text-[#222] md:grid-cols-3">
-      <p>© Chu Vision Institute. <span class="block-phone">All Rights Reserved.</span></p>
+      <p>© Marano Eye Care. <span class="block-phone">All Rights Reserved.</span></p>
       <p class="md:text-center">
         {site.legal.map((l, i) => (<a href={l.href} class:list={[i > 0 && 'ml-[5px]']}>{l.label}</a>))}
       </p>
-      <a href="https://www.studio3marketing.com/medical/" target="_blank" rel="noopener" class="md:text-right">
-        Digital Marketing &amp; Design by Studio 3 Marketing<sup class="text-[9px]">®</sup>
+      <a href="https://onjeyecare.com" target="_blank" rel="noopener" class="md:text-right">
+        Proudly affiliated with Ophthalmology NJ
       </a>
     </div>
   </div>
@@ -64,7 +64,7 @@ import { img } from '../../data/assets';
   <!-- Accessibility note -->
   <div class="row-wrap">
     <p class="mx-auto max-w-[900px] pb-[60px] pt-10 text-[13px] leading-[20.8px]">
-      <strong class="font-semibold">Accessibility:</strong> If you are vision-impaired or have some other impairment covered by the Americans with Disabilities Act or a similar law, and you wish to discuss potential accommodations related to using this website, please contact our Accessibility Manager at <a href="tel:+19528351235" class="underline">952-835-1235</a>.
+      <strong class="font-semibold">Accessibility:</strong> If you are vision-impaired or have some other impairment covered by the Americans with Disabilities Act or a similar law, and you wish to discuss potential accommodations related to using this website, please contact our Accessibility Manager at <a href="tel:+19733580416" class="underline">973-358-0416</a>.
     </p>
   </div>
 </footer>
