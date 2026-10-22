@@ -49,7 +49,7 @@ export default function HeroProcedures({ items }: { items: string[] }) {
                   transition: 'top .8s ease-in-out, transform .8s ease-in-out, filter .8s ease-in-out, opacity .8s ease-in-out',
                 }}
               >
-                <h2 className="serif m-0 italic leading-[1.1]" style={{ fontSize: 'var(--fs-hero)' }}>
+                <h2 className="serif m-0 italic leading-[1.1]" style={{ fontSize: 'calc(var(--fs-hero) * 0.6)' }}>
                   {label}
                 </h2>
               </li>

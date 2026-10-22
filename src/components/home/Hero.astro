@@ -35,7 +35,7 @@ const h = home.hero;
           {h.line1}
           <span class="block italic">{h.line2}</span>
         </p>
-        <p class="serif mt-[33.8px] text-[length:var(--fs-hero-sub)] italic leading-[1.6]">
+        <p id="hero-sub" class="serif mt-[33.8px] text-[length:var(--fs-hero-sub)] italic leading-[1.6] transition-opacity duration-500">
           {h.sub}
         </p>
       </div>
@@ -54,11 +54,13 @@ const h = home.hero;
 <script>
   const t = document.getElementById('hero-text');
   const e = document.getElementById('hero-eyebrow');
+  const sb = document.getElementById('hero-sub');
   const MAX = 234;
   const update = () => {
     const y = Math.min(window.scrollY, MAX);
     if (t) t.style.transform = `translateY(${-y}px)`;
     if (e) e.style.opacity = window.scrollY > 20 ? '0' : '1';
+    if (sb) sb.style.opacity = window.scrollY > 20 ? '0' : '1';
   };
   window.addEventListener('scroll', update, { passive: true });
   update();
