@@ -40,7 +40,7 @@ export default function QuoteCarousel({ quotes }: { quotes: string[] }) {
         })}
       </div>
 
-      <div className="mt-[57px] flex items-center justify-center gap-[34px]">
+      <div className="mt-[67px] flex items-center justify-center gap-[34px]">
         <button
           type="button"
           aria-label="Previous review"

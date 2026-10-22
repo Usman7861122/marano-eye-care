@@ -41,6 +41,7 @@ body {
   font-family: var(--font-sans);
   font-size: 18px;
   line-height: 1.6;
+  letter-spacing: 0.8px;
   color: var(--color-navy);
   background: #fff;
   -webkit-font-smoothing: antialiased;
@@ -65,7 +66,7 @@ body {
 .btn {
   display: inline-block;
   font-family: var(--font-sans);
-  font-size: var(--fs-btn);
+  font-size: 18px;
   line-height: 27px;
   text-align: center;
   padding: 14px 28px;

@@ -50,7 +50,7 @@ export default function SelfTest() {
       style={{ backgroundImage: 'linear-gradient(45deg, #91b2cd 0%, #041a34 30%)' }}
     >
       <div
-        className="relative rounded-[45px] border border-white pb-[190px] text-white"
+        className="relative rounded-[45px] border border-white pb-[73.8px] text-white"
         style={{ backgroundImage: 'linear-gradient(36deg, #273e55, #041a34 30%)' }}
       >
         {!isForm && (
@@ -66,7 +66,7 @@ export default function SelfTest() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.35 }}
-            className="px-[clamp(20px,8.9vw,127px)] pt-[clamp(56px,6vw,88px)]"
+            className="min-h-[634px] px-[clamp(20px,8.9vw,127px)] pt-[clamp(56px,5.2vw,75px)]"
           >
             {q && (
               <fieldset className="relative mx-auto max-w-[1060px]">
@@ -156,8 +156,8 @@ export default function SelfTest() {
 
             {isForm && sent && (
               <div className="py-16 text-center">
-                <h2 className="serif text-[clamp(28px,3.2vw,46px)] leading-[1.1]">Thank <i>you.</i></h2>
-                <p className="mt-4 text-[18px]">A patient counselor will be in touch with your results.</p>
+                <h2 className="serif mx-auto max-w-[660px] text-[length:var(--fs-h1)] leading-[1.2]">Find out if vision correction is right <i>for you</i>?</h2>
+                <p className="mx-auto mt-6 max-w-[660px] text-[18px]">In less than 60 seconds, tell us about your eyes, what bothers you, and how you want to see so we can guide you.</p>
               </div>
             )}
           </motion.div>
@@ -167,7 +167,7 @@ export default function SelfTest() {
           <button
             type="button"
             onClick={next}
-            className="absolute bottom-[clamp(16px,2.5vw,36px)] right-[clamp(20px,5.4vw,78px)] flex flex-row-reverse items-center gap-[14px] rounded-full border border-white/20 px-6 py-[14px] text-[16px] text-white transition hover:bg-white/10"
+            className="absolute bottom-[45px] right-[clamp(20px,5vw,72px)] flex flex-row-reverse items-center gap-[14px] rounded-full border border-white/20 px-6 py-[14px] text-[18px] tracking-normal text-white transition hover:bg-white/10"
           >
             Next
             <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M1 6h14M10 1l5 5-5 5" /></svg>
@@ -177,7 +177,7 @@ export default function SelfTest() {
           <button
             type="button"
             onClick={() => setStep((s) => s - 1)}
-            className="absolute bottom-[clamp(16px,2.5vw,36px)] left-[clamp(20px,5.4vw,78px)] rounded-full border border-white/20 px-6 py-[14px] text-[16px] text-white transition hover:bg-white/10"
+            className="absolute bottom-[45px] left-[clamp(20px,5vw,72px)] rounded-full border border-white/20 px-6 py-[14px] text-[18px] tracking-normal text-white transition hover:bg-white/10"
           >
             Back
           </button>
