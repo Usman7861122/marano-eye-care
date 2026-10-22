@@ -22,9 +22,13 @@ const h = home.hero;
     </video>
     <div class="absolute inset-0 bg-black/20"></div>
 
-    <div class="relative flex h-full items-center justify-center pt-[8vh] text-center">
+  </div>
+
+  <!-- Headline: sits above the navy panel, slides up a little while scrolling, then stays -->
+  <div class="pointer-events-none sticky top-0 z-30 -mt-[100vh] h-screen">
+    <div id="hero-text" class="relative flex h-full items-center justify-center pt-[8vh] text-center will-change-transform">
       <div class="row-wrap">
-        <h1 class="mb-[33.8px] pb-[10px] text-[length:var(--fs-eyebrow)] leading-[1.2] font-normal">
+        <h1 id="hero-eyebrow" class="mb-[33.8px] pb-[10px] text-[length:var(--fs-eyebrow)] font-normal leading-[1.2] transition-opacity duration-500">
           {h.eyebrow}
         </h1>
         <p class="serif text-[length:var(--fs-hero)] leading-[1.3]">
@@ -40,9 +44,22 @@ const h = home.hero;
 
   <!-- Navy panel with the rolling procedure list -->
   <div
-    class="round-top absolute inset-x-0 bottom-0 h-screen bg-navy pb-[54px] pt-[20vh] lg:pt-[306px]"
+    class="round-top absolute inset-x-0 bottom-0 z-20 h-screen bg-navy pb-[54px] pt-[20vh] lg:pt-[306px]"
     style="background-image: radial-gradient(782px at 10% 100%, #5b6d7d 0%, rgba(0,0,0,0) 100%);"
   >
     <HeroProcedures client:visible items={h.procedures} />
   </div>
 </section>
+
+<script>
+  const t = document.getElementById('hero-text');
+  const e = document.getElementById('hero-eyebrow');
+  const MAX = 234;
+  const update = () => {
+    const y = Math.min(window.scrollY, MAX);
+    if (t) t.style.transform = `translateY(${-y}px)`;
+    if (e) e.style.opacity = window.scrollY > 20 ? '0' : '1';
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+</script>

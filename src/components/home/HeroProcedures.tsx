@@ -1,50 +1,62 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 
-// Vertical, looping list. The active item is big and centred, the others are small and faded.
-const BOX = 540; // height of the list
-const ACTIVE_H = 92;
-const SMALL_H = 55;
+// Vertical looping list: 92px slides, 20px gap. Active slide is sharp and big; others are smaller, blurred and faded.
+const BOX = 540;
+const SLIDE_H = 92;
 const GAP = 20;
+const PITCH = SLIDE_H + GAP;
+const ACTIVE_TOP = 230;
 
 export default function HeroProcedures({ items }: { items: string[] }) {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setActive((a) => a + 1), 2200);
+    const t = setInterval(() => setActive((a) => a + 1), 2500);
     return () => clearInterval(t);
   }, []);
 
-  const offsets = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
-
-  const topFor = (d: number) => {
-    const activeTop = (BOX - ACTIVE_H) / 2;
-    if (d === 0) return activeTop;
-    if (d > 0) return activeTop + ACTIVE_H + GAP + (d - 1) * (SMALL_H + GAP);
-    return activeTop - GAP - SMALL_H - (Math.abs(d) - 1) * (SMALL_H + GAP);
-  };
+  const offsets = [-3, -2, -1, 0, 1, 2, 3];
 
   return (
-    <div className="row-wrap">
-      <ul className="relative mx-auto overflow-hidden" style={{ height: BOX }} aria-label="Procedures">
-        {offsets.map((d) => {
-          const n = active + d;
-          const label = items[((n % items.length) + items.length) % items.length];
-          const isActive = d === 0;
-          return (
-            <motion.li
-              key={n}
-              className="serif absolute inset-x-0 flex items-center justify-center text-center text-white"
-              style={{ fontSize: 'var(--fs-tab)', lineHeight: 1.1, height: isActive ? ACTIVE_H : SMALL_H }}
-              initial={false}
-              animate={{ top: topFor(d), scale: isActive ? 1 : 0.5, opacity: isActive ? 1 : 0.5 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {label}
-            </motion.li>
-          );
-        })}
-      </ul>
+    <div className="mx-auto w-full max-w-[1260px] px-5">
+      <div className="relative mx-auto overflow-hidden" style={{ height: BOX }}>
+        {/* Highlight pill behind the active slide */}
+        <div
+          aria-hidden="true"
+          className="absolute left-1/2 w-[min(810px,100%)] -translate-x-1/2 rounded-full"
+          style={{
+            top: ACTIVE_TOP - 4,
+            height: 100,
+            opacity: 0.9,
+            backgroundImage: 'radial-gradient(circle at 0% 90%, #91b2cd 0%, #0d233b 70%)',
+          }}
+        />
+        <ul aria-label="Procedures" className="absolute inset-0">
+          {offsets.map((d) => {
+            const n = active + d;
+            const label = items[((n % items.length) + items.length) % items.length];
+            const isActive = d === 0;
+            return (
+              <li
+                key={n}
+                className="absolute inset-x-0 flex items-center justify-center text-center text-white"
+                style={{
+                  top: ACTIVE_TOP + d * PITCH,
+                  height: SLIDE_H,
+                  transform: `scale(${isActive ? 1 : 0.6})`,
+                  filter: isActive ? 'none' : 'blur(4px)',
+                  opacity: isActive ? 1 : 0.5,
+                  transition: 'top .8s ease-in-out, transform .8s ease-in-out, filter .8s ease-in-out, opacity .8s ease-in-out',
+                }}
+              >
+                <h2 className="serif m-0 italic leading-[1.1]" style={{ fontSize: 'var(--fs-hero)' }}>
+                  {label}
+                </h2>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

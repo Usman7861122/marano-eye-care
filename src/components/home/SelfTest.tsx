@@ -50,7 +50,7 @@ export default function SelfTest() {
       style={{ backgroundImage: 'linear-gradient(45deg, #91b2cd 0%, #041a34 30%)' }}
     >
       <div
-        className="relative rounded-[45px] border border-white pb-[130px] text-white"
+        className="relative rounded-[45px] border border-white pb-[190px] text-white"
         style={{ backgroundImage: 'linear-gradient(36deg, #273e55, #041a34 30%)' }}
       >
         {!isForm && (
