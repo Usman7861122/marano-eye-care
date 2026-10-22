@@ -1,22 +1,36 @@
 ---
-import HoverAccordion from './HoverAccordion.tsx';
 import { home } from '../../data/home';
 import { img } from '../../data/assets';
 ---
 <section class="bg-white">
-  <div class="mx-auto my-20 w-full max-w-[1363px] px-[38px] max-md:px-5">
-    <div class="my-10">
-      <HoverAccordion
-        client:visible
-        variant="cards"
-        slides={home.doctorSlides.map((s, i) => ({
-          image: img.doctorTabs[i],
-          titleA: s.a,
-          titleB: s.b,
-          text: s.p,
-          iconName: s.icon,
-        }))}
-      />
+  <div class="my-20">
+    <div class="dt">
+      <div class="dt-row">
+        {home.doctorSlides.map((s, i) => (
+          <div class={`dt-slide${i === 0 ? ' active' : ''}`}>
+            <div class="dt-inner">
+              <div class="dt-media">
+                <div class="dt-content">
+                  <span class={`dt-icon ${s.icon}`}></span>
+                  <h2>{s.a} <span class="block">{s.b}</span></h2>
+                  <div class="dt-expander"><p>{s.p}</p></div>
+                </div>
+                <picture class="dt-pic"><img src={img.doctorTabs[i]} alt="" loading="lazy" /></picture>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+<script>
+  document.querySelectorAll<HTMLElement>('.dt-row').forEach((row) => {
+    const slides = [...row.querySelectorAll<HTMLElement>('.dt-slide')];
+    slides.forEach((s) =>
+      s.addEventListener('click', () => {
+        slides.forEach((x) => x.classList.toggle('active', x === s));
+      }),
+    );
+  });
+</script>
