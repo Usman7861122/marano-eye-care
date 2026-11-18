@@ -1,7 +1,7 @@
 ---
 // Dark title band used on inner pages (same idea as the Chu Vision inner pages)
-interface Props { title: string; lede?: string; image: string; imageAlt: string; crumbs?: { label: string; href?: string }[]; portrait?: boolean; position?: string; areas?: string }
-const { title, lede, image, imageAlt, crumbs = [], portrait = false, position = 'object-center', areas } = Astro.props;
+interface Props { title: string; lede?: string; image: string; imageAlt: string; crumbs?: { label: string; href?: string }[]; portrait?: boolean; position?: string; areas?: string; accent?: string }
+const { title, lede, image, imageAlt, crumbs = [], portrait = false, position = 'object-center', areas, accent } = Astro.props;
 ---
 <section
   class="relative overflow-hidden bg-navy pb-[clamp(48px,6vw,96px)] pt-[clamp(130px,12vw,190px)] text-white"
@@ -13,7 +13,7 @@ const { title, lede, image, imageAlt, crumbs = [], portrait = false, position = 
         <a href="/" class="hover:underline">Home</a>
         {crumbs.map((c) => (<><span class="mx-2" aria-hidden="true">/</span>{c.href ? <a href={c.href} class="hover:underline">{c.label}</a> : <span aria-current="page">{c.label}</span>}</>))}
       </nav>
-      <h1 class="serif text-[length:var(--fs-h1)] leading-[1.1]">{title}</h1>
+      <h1 class="serif text-[length:var(--fs-h1)] leading-[1.1]">{title}{accent && <> <span class="whitespace-nowrap text-[#a9bff0]">{accent}</span></>}</h1>
       {lede && <p class="mt-6 max-w-[520px] text-[clamp(17px,1.5vw,20px)] leading-[1.6] text-white/90">{lede}</p>}
       {areas && (
         <div class="mt-8 max-w-[560px] border-t border-white/15 pt-6">
