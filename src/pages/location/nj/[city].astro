@@ -4,6 +4,7 @@ import PageHero from '../../../components/page/PageHero.astro';
 import CtaSub from '../../../components/home/CtaSub.astro';
 import { site } from '../../../data/site';
 import { services } from '../../../data/svc';
+import { doctors } from '../../../data/doctors';
 
 export function getStaticPaths() {
   return ['Denville', 'Livingston', 'Newark'].map((city) => ({ params: { city: city.toLowerCase() }, props: { city } }));
@@ -49,6 +50,32 @@ const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehe
           {towns[city].map((t) => <li class="rounded-full border border-navy/30 bg-mist px-4 py-2 text-[16px] text-navy">{t}</li>)}
         </ul>
       </div>
+    </div>
+  </section>
+  <section class="bg-white pb-[clamp(48px,7vw,110px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">Our doctors</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Doctors available <i class="block">in {city}</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">Our eye doctors see patients at the {city} office. Call {loc.phone} to book with the doctor you prefer.</p>
+      </div>
+      <ul class="mt-12 grid gap-8 md:grid-cols-3">
+        {doctors.map((d) => (
+          <li>
+            <a href={`/provider/${d.slug}`} class="hover-card group block overflow-hidden rounded-[16px] border border-transparent bg-card">
+              <div class="relative aspect-[4/5] overflow-hidden bg-mist">
+                <img src={d.image} alt={d.name} loading="lazy" class={`absolute inset-0 h-full w-full object-cover ${d.position} transition duration-500 group-hover:scale-[1.03]`} />
+              </div>
+              <div class="p-7">
+                <h3 class="serif text-[26px] leading-tight text-navy">{d.name}</h3>
+                <p class="mt-2 text-[13px] font-semibold uppercase tracking-[0.12em] text-steel">{d.role}</p>
+                <span class="mt-5 inline-block text-[15px] font-semibold text-steel">View Profile →</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-10 text-center"><a href={loc.phoneHref} class="btn">Call {loc.phone}</a></p>
     </div>
   </section>
   <section class="bg-mist py-[clamp(48px,7vw,110px)]">
