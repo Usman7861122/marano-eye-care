@@ -138,15 +138,16 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Self test -->
-  <section id="self-test" class="bg-white py-[clamp(56px,8vw,120px)]">
-    <div class="row-wrap max-w-[860px]">
-      <div class="text-center">
+  <!-- Self test: text left, list right -->
+  <section id="self-test" class="bg-white py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-[clamp(32px,6vw,96px)]">
+      <div class="md:sticky md:top-[140px]">
         <span class="eyebrow">Is it for me?</span>
-        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">A quick self-check</h2>
-        <p class="mx-auto mt-5 max-w-[640px] text-[18px] leading-[1.7]">If you say yes to any of these, it may be time to talk with us.</p>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">A quick <i class="block">self-check</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">If you say yes to any of these, it may be time to talk with us.</p>
+        <p class="mt-8"><a href={site.bookingUrl} class="btn">Book a Visit</a></p>
       </div>
-      <ul class="mt-10 grid gap-4">
+      <ul class="grid gap-4">
         {questions.map((q) => (
           <li class="flex items-start gap-4 rounded-[12px] bg-card p-5 text-[17px] leading-[1.6]">
             <svg width="22" height="22" viewBox="0 0 24 24" class="mt-[2px] shrink-0 text-steel" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
@@ -157,11 +158,15 @@ const faqs = [
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="bg-card py-[clamp(48px,7vw,100px)]">
-    <div class="row-wrap max-w-[860px]">
-      <h2 class="serif text-center text-[length:var(--fs-h2b)] leading-[1.15] text-navy">Common questions</h2>
-      <div class="mt-10 grid gap-3">
+  <!-- FAQ: text left, questions right -->
+  <section class="bg-card py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-[clamp(32px,6vw,96px)]">
+      <div class="md:sticky md:top-[140px]">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Common <i class="block">questions</i></h2>
+        <p class="mt-5 text-[17px] leading-[1.7]">Your surgeons: <a class="underline" href="/provider/matthew-j-marano-jr-md">Dr. Marano</a>, <a class="underline" href="/provider/sherief-raouf-md">Dr. Raouf</a> and <a class="underline" href="/provider/edward-b-decker-md">Dr. Decker</a>.</p>
+      </div>
+      <div class="grid gap-3">
         {faqs.map((f) => (
           <details class="group rounded-[12px] bg-white p-5">
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-[18px] font-semibold text-navy">
@@ -172,7 +177,6 @@ const faqs = [
           </details>
         ))}
       </div>
-      <p class="mt-8 text-center text-[16px]">Your surgeons: <a class="underline" href="/provider/matthew-j-marano-jr-md">Dr. Marano</a>, <a class="underline" href="/provider/sherief-raouf-md">Dr. Raouf</a> and <a class="underline" href="/provider/edward-b-decker-md">Dr. Decker</a>.</p>
     </div>
   </section>
 
