@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/page/PageHero.astro';
+import CtaSub from '../../components/home/CtaSub.astro';
+import { doctors } from '../../data/doctors';
+---
+<BaseLayout title="Our Doctors | Marano Eye Care in Denville, Livingston & Newark, NJ" description="Meet the eye doctors of Marano Eye Care: Dr. Matthew Marano, Dr. Edward Decker and Dr. Sherief Raouf.">
+  <PageHero title="Meet Our Doctors" lede="Experienced eye surgeons who treat you like family." image="/images/stock/shutterstock_591166769.jpg" imageAlt="An eye doctor checks a patient's eyes at a slit lamp" crumbs={[{ label: 'About Us', href: '/about' }, { label: 'Our Doctors' }]} />
+
+  <section class="bg-white py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap">
+      <h2 class="serif mx-auto max-w-[760px] text-center text-[length:var(--fs-h2)] leading-[1.15] text-navy">Choose your <i>doctor</i></h2>
+      <ul class="mt-12 grid gap-8 md:grid-cols-3">
+        {doctors.map((d) => (
+          <li>
+            <a href={`/provider/${d.slug}`} class="group block overflow-hidden rounded-[16px] bg-card transition hover:-translate-y-1 hover:shadow-[0_24px_40px_-24px_rgba(26,39,72,.5)]">
+              <div class="relative aspect-[4/5] overflow-hidden bg-mist">
+                <img src={d.image} alt={d.name} loading="lazy" class={`absolute inset-0 h-full w-full object-cover ${d.position} transition duration-500 group-hover:scale-[1.03]`} />
+              </div>
+              <div class="p-7">
+                <h3 class="serif text-[28px] leading-tight text-navy">{d.name}</h3>
+                <p class="mt-2 text-[13px] font-semibold uppercase tracking-[0.12em] text-steel">{d.role}</p>
+                <p class="mt-4 leading-[1.6]">{d.intro}</p>
+                <span class="btn mt-6">View Profile</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <CtaSub />
+</BaseLayout>
