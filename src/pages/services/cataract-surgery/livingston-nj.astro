@@ -190,21 +190,21 @@ const faqs = [
       <div class="mx-auto max-w-[760px] text-center">
         <span class="eyebrow">Livingston office</span>
         <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Visit us <i class="block">in Livingston, NJ</i></h2>
-        <p class="mt-5 text-[18px] leading-[1.7]">Call to book your cataract check-up. We also offer cataract surgery at our other offices.</p>
+        <p class="mt-5 text-[18px] leading-[1.7]">Call to book your cataract check-up. Cataract surgery is offered at all three offices.</p>
       </div>
       <div class="mt-12 grid gap-6 md:grid-cols-3">
-        {[...site.locations].sort((x, y) => (y.city === 'Livingston' ? 1 : 0) - (x.city === 'Livingston' ? 1 : 0)).map((l) => (
+        {site.locations.map((l) => (
           <div class={`hover-card flex flex-col rounded-[16px] border bg-card p-7 ${l.city === 'Livingston' ? 'border-steel/50' : 'border-transparent'}`}>
             <div class="flex items-center justify-between">
               <svg width="30" height="30" viewBox="0 0 24 24" class="text-steel" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0114 0C19 14.9 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-              {l.city === 'Livingston' && <span class="rounded-full bg-navy px-3 py-1 text-[13px] text-white">This office</span>}
+              {l.city === 'Livingston' && <span class="rounded-full bg-navy px-3 py-1 text-[13px] text-white">This Page</span>}
             </div>
             <h3 class="serif mt-4 text-[26px] leading-tight text-navy">{l.city}, NJ</h3>
             <address class="mt-3 text-[17px] not-italic leading-[1.65]">{l.address.map((a) => <span class="block">{a}</span>)}</address>
             <p class="mt-3 text-[17px]"><a href={l.phoneHref} class="font-semibold text-navy hover:underline">{l.phone}</a></p>
-            <p class="mt-6 flex flex-wrap gap-x-5 gap-y-2 pt-1 text-[16px]">
-              <a class="underline text-navy" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.address.join(' '))}`} target="_blank" rel="noopener noreferrer">Get directions</a>
-              <a class="underline text-navy" href={l.phoneHref}>Call now</a>
+            <p class="relative z-10 mt-auto flex flex-wrap gap-2 pt-6 text-[14px] tracking-normal">
+              <a class="rounded-full border border-navy bg-navy px-4 py-2.5 text-white transition hover:bg-transparent hover:text-navy" href={`/services/cataract-surgery/${l.city.toLowerCase()}-nj`}>Cataract Surgery in {l.city}</a>
+              <a class="rounded-full border border-navy px-4 py-2.5 text-navy transition hover:bg-navy hover:text-white" href={l.phoneHref}>Call Now</a>
             </p>
           </div>
         ))}
