@@ -1,21 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { site } from '../../data/site';
 import { img } from '../../data/assets';
-import { menu, type Card, type MenuItem } from '../../data/menu';
+import { menu, type MenuNode as Node } from '../../data/menu';
 
-type Node = { label: string; href: string; external?: boolean; children?: Node[] };
-
-// Turn the menu data into a simple tree: top level -> links, with one nested level where needed.
-function childrenOf(item: MenuItem): Node[] {
-  const groups = item.groups ?? [];
-  if (!groups.length) return [];
-  const toNode = (c: Card): Node => ({ label: c.label, href: c.href, external: c.external });
-  if (groups.length === 1) return [{ label: 'Overview', href: item.href }, ...groups[0].cards.map(toNode)];
-  return [
-    { label: 'Overview', href: item.href },
-    ...groups.map((g) => ({ label: g.title, href: g.href ?? item.href, children: g.cards.map(toNode) })),
-  ];
-}
+const childrenOf = (n: Node): Node[] => n.children ?? [];
 
 const linkCls =
   'block px-[18px] py-3 text-[14.93px] leading-[14.93px] tracking-[0.5px] text-navy transition-colors hover:bg-[#efefef] focus-visible:bg-[#efefef] focus-visible:outline-none';
@@ -45,7 +33,7 @@ function DropItem({ n }: { n: Node }) {
         {n.label}
         <Chevron className="-rotate-90" />
       </a>
-      <ul className="invisible absolute left-full top-[-10px] z-10 w-[320px] bg-white p-[10px] opacity-0 shadow-[0_9px_12px_0_rgba(20,20,20,0.15)] transition group-focus-within/sub:visible group-focus-within/sub:opacity-100 group-hover/sub:visible group-hover/sub:opacity-100">
+      <ul className="invisible absolute left-full top-[-10px] z-10 w-max min-w-[300px] max-w-[400px] bg-white p-[10px] opacity-0 shadow-[0_9px_12px_0_rgba(20,20,20,0.15)] transition group-focus-within/sub:visible group-focus-within/sub:opacity-100 group-hover/sub:visible group-hover/sub:opacity-100">
         {n.children.map((c) => (
           <DropItem key={c.href} n={c} />
         ))}
@@ -77,16 +65,16 @@ export default function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="mx-0 bg-white px-5 py-[10px] shadow-[0_0_15px_-4px_rgba(20,20,20,0.14)] xl:mx-3 xl:mt-6 xl:rounded-[10px]">
-        <div className="mx-auto flex max-w-[1346px] items-center justify-between xl:grid xl:grid-cols-[200px_1fr_auto]">
+      <div className="mx-0 bg-white px-5 py-[10px] shadow-[0_0_15px_-4px_rgba(20,20,20,0.14)] min-[1360px]:mx-3 min-[1360px]:mt-6 min-[1360px]:rounded-[10px]">
+        <div className="mx-auto flex max-w-[1346px] items-center justify-between min-[1360px]:grid min-[1360px]:grid-cols-[184px_1fr_auto]">
           {/* Logo */}
           <a href="/" className="block shrink-0">
             <img src={img.logoNav} alt="Marano Eye Care" width={184} height={46} className="h-[46px] w-auto object-contain" />
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden px-4 xl:block" aria-label="Main">
-            <ul className="flex items-center justify-center gap-1" onMouseLeave={hideSoon}>
+          <nav className="hidden px-1 min-[1360px]:block" aria-label="Main">
+            <ul className="flex items-center justify-center gap-0" onMouseLeave={hideSoon}>
               {menu.map((n) => {
                 const kids = childrenOf(n);
                 const isOpen = active === n.label && kids.length > 0;
@@ -96,14 +84,14 @@ export default function Header() {
                       href={n.href}
                       aria-haspopup={kids.length ? 'true' : undefined}
                       aria-expanded={kids.length ? isOpen : undefined}
-                      className={`flex items-center gap-1 rounded-[6px] p-[6.63px] text-[14.93px] leading-[14.93px] tracking-[0.5px] text-navy transition-colors hover:bg-mist ${isOpen ? 'bg-mist' : ''}`}
+                      className={`flex items-center gap-1 rounded-[6px] px-[4px] py-[6.63px] text-[14px] leading-[14.93px] tracking-[0.5px] text-navy transition-colors hover:bg-mist ${isOpen ? 'bg-mist' : ''}`}
                     >
                       {n.label}
                       {kids.length > 0 && <Chevron className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />}
                     </a>
                     {isOpen && (
                       <div className="absolute left-0 top-full z-20 pt-[18px]">
-                        <ul className="w-[270px] bg-white p-[10px] shadow-[0_9px_12px_0_rgba(20,20,20,0.15)]" aria-label={`${n.label} submenu`}>
+                        <ul className="min-w-[270px] w-max max-w-[360px] bg-white p-[10px] shadow-[0_9px_12px_0_rgba(20,20,20,0.15)]" aria-label={`${n.label} submenu`}>
                           {kids.map((c) => (
                             <DropItem key={c.href + c.label} n={c} />
                           ))}
@@ -117,8 +105,8 @@ export default function Header() {
           </nav>
 
           {/* Phone + Book Now */}
-          <div className="hidden items-center justify-end gap-4 xl:flex">
-            <a href={site.phoneHref} className="text-[15px] text-navy">
+          <div className="hidden items-center justify-end gap-4 min-[1360px]:flex">
+            <a href={site.phoneHref} className="hidden text-[15px] text-navy 2xl:block">
               {site.phone}
             </a>
             <a href={site.bookingUrl} className="btn" style={{ paddingInline: 'clamp(14px, calc(-23.69px + 2.6923vw), 28px)' }}>
@@ -127,7 +115,7 @@ export default function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex items-center gap-4 xl:hidden">
+          <div className="flex items-center gap-4 min-[1360px]:hidden">
             <button
               type="button"
               className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-wide text-navy"
@@ -145,7 +133,7 @@ export default function Header() {
 
         {/* Mobile menu */}
         {open && (
-          <nav id="mobile-menu" className="max-h-[80svh] overflow-y-auto border-t border-mist pb-4 pt-3 xl:hidden" aria-label="Mobile">
+          <nav id="mobile-menu" className="max-h-[80svh] overflow-y-auto border-t border-mist pb-4 pt-3 min-[1360px]:hidden" aria-label="Mobile">
             <ul className="flex flex-col">
               {menu.map((n) => {
                 const kids = childrenOf(n);
