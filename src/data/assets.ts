@@ -60,7 +60,7 @@ export const img = {
     D('1744223356-4procedures.jpg', 1100),
     D('1744223356-5procedures.jpg', 1100),
   ],
-  quoteBg: D('1745611962-17-quote-background.jpg', 2200),
+  quoteBg: '/images/quote-bg.jpg',
   foundation: D('1744224390-the-chu-foundation.jpg', 1100),
   financing: D('1744224404-financing.jpg', 1100),
   newPatients: D('1744224414-new-patients.jpg', 1100),
