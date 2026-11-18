@@ -1,6 +1,46 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/page/PageHero.astro';
+import CtaSub from '../../components/home/CtaSub.astro';
+import { site } from '../../data/site';
+import { services } from '../../data/svc';
+
+const all = [
+  { slug: 'cataract-surgery', title: 'Cataract Surgery', short: 'Laser-assisted surgery for clear, bright sight.', img: '/images/stock/shutterstock_2767408177.jpg' },
+  ...services.map((s) => ({ slug: s.slug, title: s.title, short: s.short, img: s.photos[0] })),
+];
 ---
-<PageLayout title="Services">
-  <section class="py-20"><div class="mx-auto max-w-6xl px-4"><!-- TODO --></div></section>
-</PageLayout>
+<BaseLayout title="Eye Care Services | Marano Eye Care" description="Explore all eye care services at Marano Eye Care in Denville, Livingston and Newark, NJ: cataract surgery, LASIK, glaucoma, dry eyes and more.">
+  <PageHero
+    title="Our Eye Care Services"
+    lede="From yearly eye exams to advanced surgery, our doctors care for every part of your vision in Denville, Livingston and Newark."
+    image={services[8].photos[0]}
+    imageAlt="An eye doctor performs a comprehensive eye exam"
+    crumbs={[{ label: 'Services' }]}
+  />
+  <section class="bg-white py-[clamp(48px,7vw,110px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">All services</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Care for <i class="block">every eye need</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">Choose a service to learn how it works, what to expect and where to get care near you.</p>
+      </div>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {all.map((s) => (
+          <a href={`/services/${s.slug}`} class="hover-card group relative flex flex-col overflow-hidden rounded-[16px] border border-transparent bg-card">
+            <div class="relative aspect-[16/10] overflow-hidden">
+              <img src={s.img} alt={`${s.title} at Marano Eye Care`} loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            </div>
+            <div class="flex flex-1 flex-col p-7">
+              <h3 class="serif text-[26px] leading-tight text-navy">{s.title}</h3>
+              <p class="mt-3 text-[17px] leading-[1.6]">{s.short}</p>
+              <span class="mt-auto pt-5 text-[15px] font-semibold text-steel">Learn more →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="mt-12 text-center"><a href={site.bookingUrl} class="btn">Book a Visit</a></p>
+    </div>
+  </section>
+  <CtaSub />
+</BaseLayout>

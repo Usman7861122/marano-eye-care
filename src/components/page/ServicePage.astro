@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from './PageHero.astro';
+import SubNav from './SubNav.astro';
+import CtaSub from '../home/CtaSub.astro';
+import { site } from '../../data/site';
+import type { Service } from '../../data/svc';
+
+interface Props { svc: Service; city?: string }
+const { svc, city } = Astro.props;
+
+const areasByCity: Record<string, string> = {
+  Denville: 'Denville, Rockaway, Boonton, Mountain Lakes, Parsippany, Dover, Randolph, Morristown and the wider Morris County area',
+  Livingston: 'Livingston, West Orange, Millburn, Short Hills, Roseland, Florham Park, Verona, Caldwell, Montclair and the wider Essex County area',
+  Newark: 'Newark, Belleville, Bloomfield, East Orange, Irvington, Harrison, Kearny, Elizabeth, Jersey City and the wider Essex and Union County area',
+};
+
+const loc = city ? site.locations.find((l) => l.city === city)! : undefined;
+const body = loc ? svc.b : svc.a;
+const fill = (s: string) => s.replaceAll('{cityPhrase}', loc ? `in ${loc.city}, NJ` : '').replaceAll('{city}', loc ? loc.city : '').trim();
+
+// photos: main uses order 0,1,2 ; city pages rotate the order and crop
+const order = loc ? { Denville: [1, 2, 0], Livingston: [2, 0, 1], Newark: [1, 0, 2] }[loc.city as 'Denville'] ?? [1, 2, 0] : [0, 1, 2];
+const [heroImg, lifeImg, optImg] = order.map((i) => svc.photos[i]);
+const heroPos = loc ? 'center 30%' : 'center';
+
+const mainHref = `/services/${svc.slug}`;
+const links = [
+  { label: 'What it is', href: '#what' },
+  { label: 'How it works', href: '#how' },
+  { label: 'Benefits', href: '#benefits' },
+  { label: body.optT.join(' ').replace('{city}', ''), href: '#options' },
+  { label: 'Is it for me?', href: '#self-test' },
+  { label: loc ? `${loc.city} office` : 'Locations', href: '#locations' },
+];
+const introT2 = fill(body.introT[1]);
+const cityLine = loc
+  ? ` Our ${loc.city} office is easy to reach, and we welcome patients from the whole area.`
+  : '';
+const title = loc ? `${svc.title} in ${loc.city}, NJ | Marano Eye Care` : `${svc.title} | Marano Eye Care`;
+const description = loc
+  ? `${svc.title} in ${loc.city}, NJ at Marano Eye Care, ${loc.address[0]}. ${body.lede.replace('{city}', loc.city)}`
+  : `${svc.title} at Marano Eye Care in New Jersey. ${body.lede}`;
+---
+<BaseLayout title={title} description={description}>
+  <PageHero
+    title={loc ? `${svc.title} in` : svc.title}
+    accent={loc ? `${loc.city}, NJ` : undefined}
+    lede={fill(body.lede)}
+    image={heroImg}
+    imageAlt={`${svc.title} care at Marano Eye Care${loc ? ` in ${loc.city}` : ''}`}
+    position={heroPos}
+    areas={loc ? `Our ${loc.city} office welcomes patients from ${areasByCity[loc.city]}.` : undefined}
+    crumbs={loc
+      ? [{ label: 'Services', href: '/services' }, { label: svc.title, href: mainHref }, { label: `${loc.city}, NJ` }]
+      : [{ label: 'Services', href: '/services' }, { label: svc.title }]}
+  />
+  <SubNav links={links} />
+
+  <section id="what" class="bg-white pb-[clamp(56px,8vw,120px)] pt-[clamp(24px,4vw,56px)]">
+    <div class="row-wrap grid items-center gap-10 md:grid-cols-2 md:gap-[clamp(32px,6vw,96px)]">
+      <div>
+        <span class="eyebrow">What it is</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">{body.introT[0]} <i class="block">{introT2}</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">{body.intro[0]}</p>
+        <p class="mt-5 text-[18px] leading-[1.7]">{body.intro[1]}{cityLine}</p>
+        <p class="mt-8 flex flex-wrap gap-3">
+          <a href={site.bookingUrl} class="btn">Book a Visit</a>
+          <a href={loc ? loc.phoneHref : site.phoneHref} class="btn white !text-navy !border-navy">{loc ? loc.phone : site.phone}</a>
+        </p>
+      </div>
+      <div class="relative aspect-[4/3] overflow-hidden rounded-[16px]">
+        <img src={lifeImg} alt={`${svc.title} patient care`} loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="bg-navy py-[clamp(56px,8vw,120px)] text-white">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">How it works</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15]">{body.stepsT}</h2>
+      </div>
+      <ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {body.steps.map((s, i) => (
+          <li class="hover-card on-dark rounded-[16px] border border-transparent bg-white/10 p-7">
+            <span class="serif text-[40px] leading-none text-sky">{i + 1}</span>
+            <h3 class="serif mt-4 text-[22px] leading-tight">{s.t}</h3>
+            <p class="mt-3 text-[16px] leading-[1.65] text-white/85">{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="benefits" class="bg-white py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">Benefits</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Why choose {svc.title}</h2>
+      </div>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {body.benefits.map((b) => (
+          <div class="hover-card rounded-[16px] border border-transparent bg-card p-7">
+            <h3 class="serif text-[22px] leading-tight text-navy">{b.t}</h3>
+            <p class="mt-3 text-[16px] leading-[1.65]">{b.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="options" class="bg-mist py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap grid items-center gap-10 md:grid-cols-2 md:gap-[clamp(32px,6vw,96px)]">
+      <div class="relative aspect-[4/3] overflow-hidden rounded-[16px] md:order-first">
+        <img src={optImg} alt={`${svc.title} exam and treatment`} loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+      <div>
+        <span class="eyebrow">{body.optT.join(' ')}</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">{body.optT[0]} <i class="block">{body.optT[1]}</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">{body.optP}</p>
+        <ul class="mt-6 grid gap-2 text-[17px]">
+          {body.opts.map((o) => <li class="flex items-center gap-3"><span class="h-2 w-2 shrink-0 rounded-full bg-steel"></span>{o}</li>)}
+        </ul>
+        <p class="mt-8"><a href={site.bookingUrl} class="btn">Book a Visit</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="self-test" class="bg-white py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-[clamp(32px,6vw,96px)]">
+      <div class="md:sticky md:top-[140px]">
+        <span class="eyebrow">Is it for me?</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">A quick <i class="block">self-check</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">If you say yes to any of these, it may be time to talk with us.</p>
+        <p class="mt-8"><a href={site.bookingUrl} class="btn">Book a Visit</a></p>
+      </div>
+      <ul class="grid gap-4">
+        {body.qs.map((q) => (
+          <li class="hover-card flex items-start gap-4 rounded-[12px] border border-transparent bg-card p-5 text-[17px] leading-[1.6]">
+            <svg width="22" height="22" viewBox="0 0 24 24" class="mt-[2px] shrink-0 text-steel" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            {q}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-card py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-[clamp(32px,6vw,96px)]">
+      <div class="md:sticky md:top-[140px]">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Common <i class="block">questions</i></h2>
+        <p class="mt-5 text-[17px] leading-[1.7]">Your doctors: <a class="underline" href="/provider/matthew-j-marano-jr-md">Dr. Marano</a>, <a class="underline" href="/provider/sherief-raouf-md">Dr. Raouf</a> and <a class="underline" href="/provider/edward-b-decker-md">Dr. Decker</a>.</p>
+      </div>
+      <div class="grid gap-3">
+        {body.faqs.map((f) => (
+          <details class="group hover-card on-white rounded-[12px] border border-transparent bg-white p-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-[18px] font-semibold text-navy">
+              {f.q}
+              <span class="text-[22px] transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-[17px] leading-[1.7]">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="locations" class="bg-white py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">{loc ? `${loc.city} office` : 'Locations'}</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">{loc ? 'Visit us' : 'Where it is'} <i class="block">{loc ? `in ${loc.city}, NJ` : 'offered'}</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">Call to book your visit. {svc.title} is offered at all three offices.</p>
+      </div>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {site.locations.map((l) => (
+          <div class={`hover-card relative flex flex-col rounded-[16px] border bg-card p-7 ${loc && l.city === loc.city ? 'border-steel/50' : 'border-transparent'}`}>
+            <div class="flex items-center justify-between">
+              <svg width="30" height="30" viewBox="0 0 24 24" class="text-steel" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0114 0C19 14.9 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              {loc && l.city === loc.city && <span class="rounded-full bg-navy px-3 py-1 text-[13px] text-white">This Page</span>}
+            </div>
+            <h3 class="serif mt-4 text-[26px] leading-tight text-navy">{l.city}, NJ</h3>
+            <address class="mt-3 text-[17px] not-italic leading-[1.65]">{l.address.map((a) => <span class="block">{a}</span>)}</address>
+            <p class="mt-3 text-[17px]"><a href={l.phoneHref} class="font-semibold text-navy hover:underline">{l.phone}</a></p>
+            <p class="relative z-10 mt-auto flex flex-wrap gap-2 pt-6 text-[14px] tracking-normal">
+              <a class="rounded-full border border-navy bg-navy px-4 py-2.5 text-white transition hover:bg-transparent hover:text-navy" href={`/services/${svc.slug}/${l.city.toLowerCase()}-nj`}>{svc.title} in {l.city}</a>
+              <a class="rounded-full border border-navy px-4 py-2.5 text-navy transition hover:bg-navy hover:text-white" href={l.phoneHref}>Call Now</a>
+            </p>
+          </div>
+        ))}
+      </div>
+      {loc && <p class="mt-8 text-center text-[16px]"><a class="underline text-navy" href={mainHref}>Back to the main {svc.title} page</a></p>}
+    </div>
+  </section>
+
+  <CtaSub />
+</BaseLayout>

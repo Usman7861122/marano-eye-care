@@ -1,11 +1,9 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
-import { services } from "../../data/services.ts";
+import ServicePage from '../../components/page/ServicePage.astro';
+import { services } from '../../data/svc';
 export function getStaticPaths() {
-  return services.map((item: any) => ({ params: { slug: item.slug }, props: { item } }));
+  return services.map((svc) => ({ params: { slug: svc.slug }, props: { svc } }));
 }
-const { item } = Astro.props;
+const { svc } = Astro.props;
 ---
-<PageLayout title={item.title}>
-  <!-- TODO: sections -->
-</PageLayout>
+<ServicePage svc={svc} />
