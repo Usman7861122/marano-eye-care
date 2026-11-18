@@ -55,7 +55,16 @@ const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehe
         </div>
         <div class="rounded-[16px] border border-transparent bg-mist p-8 md:p-10" id="hours" data-hours={JSON.stringify(hoursBy[city])}>
           <span class="eyebrow">Office hours</span>
-          <p id="open-now" class="serif mt-1 min-h-[1.4em] text-[22px] text-navy" aria-live="polite">&nbsp;</p>
+          <div class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2" aria-live="polite">
+            <span id="status-pill" class="hidden items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-[14px] font-semibold text-navy shadow-sm">
+              <span class="relative flex h-2.5 w-2.5">
+                <span id="status-ping" class="breathe absolute inline-flex h-full w-full rounded-full bg-emerald-500"></span>
+                <span id="status-dot" class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+              </span>
+              <span id="status-label">Open Now</span>
+            </span>
+            <p id="open-now" class="serif min-h-[1.4em] text-[20px] text-navy">&nbsp;</p>
+          </div>
           <table class="mt-4 w-full text-[17px]">
             <tbody>
               {rows.map((r) => (
@@ -124,6 +133,11 @@ const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehe
   </section>
   <CtaSub />
 </BaseLayout>
+<style is:global>
+  .breathe { animation: breathe 2s ease-in-out infinite; }
+  @keyframes breathe { 0% { transform: scale(1); opacity: .6; } 70%, 100% { transform: scale(2.6); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .breathe { animation: none; opacity: 0; } }
+</style>
 <script>
   const box = document.getElementById('hours');
   if (box) {
@@ -138,7 +152,7 @@ const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehe
     const out = document.getElementById('open-now');
     const today = hours[day];
     let msg = '';
-    if (today && mins >= today[0] * 60 && mins < today[1] * 60) msg = `Open now, until ${fmt(today[1])}`;
+    if (today && mins >= today[0] * 60 && mins < today[1] * 60) msg = `Open until ${fmt(today[1])}`;
     else if (today && mins < today[0] * 60) msg = `Closed now, opens today at ${fmt(today[0])}`;
     else {
       for (let i = 1; i <= 7; i++) {
@@ -147,5 +161,13 @@ const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehe
       }
     }
     if (out) out.textContent = msg;
+    const isOpen = !!today && mins >= today[0] * 60 && mins < today[1] * 60;
+    const pill = document.getElementById('status-pill');
+    pill?.classList.remove('hidden'); pill?.classList.add('inline-flex');
+    const dot = document.getElementById('status-dot');
+    const ping = document.getElementById('status-ping');
+    const label = document.getElementById('status-label');
+    if (label) label.textContent = isOpen ? 'Open Now' : 'Closed';
+    if (!isOpen) { dot?.classList.replace('bg-emerald-500', 'bg-slate'); ping?.classList.add('hidden'); }
   }
 </script>
