@@ -129,13 +129,13 @@ export default function Header() {
 
           {/* Phone + Book Now */}
           <div className="hidden items-center justify-end gap-4 min-[1360px]:flex">
-            <OpenNow />
-            <a href={site.phoneHref} className="hidden text-[15px] text-navy 2xl:block">
+            <a href={site.phoneHref} className="hidden text-[15px] text-navy">
               {site.phone}
             </a>
             <a href={site.bookingUrl} className="btn" style={{ paddingInline: 'clamp(14px, calc(-23.69px + 2.6923vw), 28px)' }}>
               Book Now
             </a>
+            <OpenNow />
           </div>
 
           {/* Mobile menu button */}
