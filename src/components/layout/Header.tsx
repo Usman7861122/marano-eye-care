@@ -20,8 +20,8 @@ function OpenNow() {
         {st.isOpen && <span className="breathe absolute inline-flex h-full w-full rounded-full bg-emerald-500" />}
         <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${st.isOpen ? 'bg-emerald-500' : 'bg-slate'}`} />
       </span>
-      <span className="max-[420px]:hidden">{st.label}</span>
-      <span className="sr-only min-[421px]:hidden">{st.label}</span>
+      <span className="max-[480px]:hidden">{st.label}</span>
+      <span className="sr-only min-[481px]:hidden">{st.label}</span>
     </span>
   );
 }
@@ -89,14 +89,11 @@ export default function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-0 bg-white px-5 py-[10px] shadow-[0_0_15px_-4px_rgba(20,20,20,0.14)] min-[1360px]:mx-3 min-[1360px]:mt-6 min-[1360px]:rounded-[10px]">
-        <div className="mx-auto flex max-w-[1346px] items-center justify-between min-[1360px]:grid min-[1360px]:grid-cols-[auto_1fr_auto]">
-          {/* Open status + Logo */}
-          <div className="flex items-center gap-3 min-[1360px]:gap-4">
-            <OpenNow />
-            <a href="/" className="block shrink-0">
-              <img src={img.logoNav} alt="Marano Eye Care" width={184} height={46} className="h-[46px] w-auto object-contain" />
-            </a>
-          </div>
+        <div className="mx-auto flex max-w-[1346px] items-center justify-between min-[1360px]:grid min-[1360px]:grid-cols-[184px_1fr_auto]">
+          {/* Logo */}
+          <a href="/" className="block shrink-0">
+            <img src={img.logoNav} alt="Marano Eye Care" width={184} height={46} className="h-[46px] w-auto object-contain" />
+          </a>
 
           {/* Desktop nav */}
           <nav className="hidden px-3 min-[1360px]:block" aria-label="Main">
@@ -132,6 +129,7 @@ export default function Header() {
 
           {/* Phone + Book Now */}
           <div className="hidden items-center justify-end gap-4 min-[1360px]:flex">
+            <OpenNow />
             <a href={site.phoneHref} className="hidden text-[15px] text-navy 2xl:block">
               {site.phone}
             </a>
@@ -142,6 +140,7 @@ export default function Header() {
 
           {/* Mobile menu button */}
           <div className="flex items-center gap-4 min-[1360px]:hidden">
+            <OpenNow />
             <button
               type="button"
               className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-wide text-navy"
