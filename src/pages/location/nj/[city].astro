@@ -17,6 +17,15 @@ const towns: Record<string, string[]> = {
   Newark: ['Newark', 'Belleville', 'Bloomfield', 'East Orange', 'Irvington', 'Harrison', 'Kearny', 'Elizabeth', 'Jersey City'],
 };
 const county: Record<string, string> = { Denville: 'Morris County', Livingston: 'Essex County', Newark: 'Essex and Union County' };
+// [open, close] in 24h, null = closed. Index 0 = Sunday.
+const hoursBy: Record<string, ([number, number] | null)[]> = {
+  Denville: [null, [9, 17], [9, 17], [9, 17], [9, 17], [8, 16], null],
+  Livingston: [null, [9, 17], [8, 17], [12, 20], [9, 17], [8, 16], null],
+  Newark: [null, [9, 17], [9, 17], [9, 17], [9, 17], [9, 17], null],
+};
+const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const t12 = (h: number) => `${((h + 11) % 12) + 1}:00 ${h >= 12 ? 'pm' : 'am'}`;
+const rows = [1, 2, 3, 4, 5, 6, 0].map((d) => ({ d, name: dayNames[d], h: hoursBy[city][d], text: hoursBy[city][d] ? `${t12(hoursBy[city][d]![0])} - ${t12(hoursBy[city][d]![1])}` : 'Closed' }));
 const maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.address.join(' '))}`;
 const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehensive-eye-exam', 'macular-degeneration']
   .map((slug) => (slug === 'cataract-surgery' ? { slug, title: 'Cataract Surgery', short: 'Laser-assisted surgery for clear, bright sight.', img: '/images/stock/shutterstock_2767408177.jpg' } : (() => { const s = services.find((x) => x.slug === slug)!; return { slug, title: s.title, short: s.short, img: s.photos[0] }; })()));
@@ -33,6 +42,7 @@ const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehe
   />
   <section class="bg-white py-[clamp(48px,7vw,110px)]">
     <div class="row-wrap grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-[clamp(32px,6vw,96px)]">
+      <div>
       <div class="hover-card rounded-[16px] border border-transparent bg-card p-8">
         <span class="eyebrow">Our {city} office</span>
         <address class="serif mt-3 text-[26px] not-italic leading-tight text-navy">{loc.address.map((a) => <span class="block">{a}</span>)}</address>
@@ -41,6 +51,22 @@ const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehe
           <a href={loc.phoneHref} class="btn">Call Now</a>
           <a href={maps} target="_blank" rel="noopener noreferrer" class="btn white !text-navy !border-navy">Get Directions</a>
         </p>
+        </div>
+        <div class="mt-6 rounded-[16px] border border-transparent bg-mist p-8" id="hours" data-hours={JSON.stringify(hoursBy[city])}>
+          <span class="eyebrow">Office hours</span>
+          <p id="open-now" class="serif mt-1 text-[22px] text-navy" aria-live="polite">&nbsp;</p>
+          <table class="mt-4 w-full text-[17px]">
+            <tbody>
+              {rows.map((r) => (
+                <tr data-day={r.d} class="border-b border-navy/10 last:border-0">
+                  <th scope="row" class="py-2.5 pr-4 text-left font-medium text-navy">{r.name}<span class="today-tag ml-2 hidden rounded-full bg-navy px-2 py-0.5 text-[12px] font-normal text-white">Today</span></th>
+                  <td class="py-2.5 text-right">{r.text}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="mt-4 text-[15px]">Medical emergency? Call <a class="font-semibold text-navy underline" href="tel:+19733220100">973-322-0100</a>. Times are Eastern Time.</p>
+        </div>
       </div>
       <div>
         <span class="eyebrow">Nearby areas</span>
@@ -97,3 +123,28 @@ const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehe
   </section>
   <CtaSub />
 </BaseLayout>
+<script>
+  const box = document.getElementById('hours');
+  if (box) {
+    const hours = JSON.parse(box.dataset.hours || '[]') as ([number, number] | null)[];
+    const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    const day = now.getDay();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    const fmt = (h: number) => `${((h + 11) % 12) + 1}:00 ${h >= 12 ? 'pm' : 'am'}`;
+    const row = box.querySelector(`tr[data-day="${day}"]`);
+    row?.classList.add('bg-white', 'font-semibold');
+    row?.querySelector('.today-tag')?.classList.remove('hidden');
+    const out = document.getElementById('open-now');
+    const today = hours[day];
+    let msg = '';
+    if (today && mins >= today[0] * 60 && mins < today[1] * 60) msg = `Open now, until ${fmt(today[1])}`;
+    else if (today && mins < today[0] * 60) msg = `Closed now, opens today at ${fmt(today[0])}`;
+    else {
+      for (let i = 1; i <= 7; i++) {
+        const h = hours[(day + i) % 7];
+        if (h) { msg = `Closed now, opens ${i === 1 ? 'tomorrow' : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][(day + i) % 7]} at ${fmt(h[0])}`; break; }
+      }
+    }
+    if (out) out.textContent = msg;
+  }
+</script>
