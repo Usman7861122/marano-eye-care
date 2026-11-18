@@ -73,7 +73,7 @@ function Panel({ item }: { item: MenuItem }) {
                 </a>
               )}
             </div>
-            <div className={`grid gap-2.5 ${multi ? 'grid-cols-1' : item.cols === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
+            <div className={`grid gap-2.5 ${multi ? 'grid-cols-1 sm:grid-cols-2' : item.cols === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
               {g.cards.map((c) => (
                 <CardLink key={c.href} c={c} compact={multi} />
               ))}
