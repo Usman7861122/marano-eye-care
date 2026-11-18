@@ -1,6 +1,49 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/page/PageHero.astro';
+import CtaSub from '../../components/home/CtaSub.astro';
+import { posts, fmtDate } from '../../data/blog';
+const PER = 12;
 ---
-<PageLayout title="Blog">
-  <section class="py-20"><div class="mx-auto max-w-6xl px-4"><!-- TODO --></div></section>
-</PageLayout>
+<BaseLayout title="Eye Care Blog | Marano Eye Care" description="Eye health tips and news from Marano Eye Care: LASIK, cataracts, dry eye, glaucoma, macular degeneration and more.">
+  <PageHero
+    title="Our Eye Care Blog"
+    lede="Simple answers and helpful tips from our eye doctors in Denville, Livingston and Newark."
+    image={posts[0].thumb}
+    imageAlt="An eye doctor with a patient"
+    crumbs={[{ label: 'Blog' }]}
+  />
+  <section class="bg-white py-[clamp(48px,7vw,110px)]">
+    <div class="row-wrap">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" id="posts">
+        {posts.map((p, i) => (
+          <a href={`/blog/${p.slug}`} data-post class:list={['hover-card group relative flex flex-col overflow-hidden rounded-[16px] border border-transparent bg-card', i >= PER && 'hidden']}>
+            <div class="relative aspect-[16/10] overflow-hidden">
+              <img src={p.thumb} alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+              <span class="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[13px] text-navy">{p.topic}</span>
+            </div>
+            <div class="flex flex-1 flex-col p-7">
+              <p class="text-[14px] text-steel">{fmtDate(p.date)}</p>
+              <h2 class="serif mt-2 text-[22px] leading-snug text-navy">{p.title}</h2>
+              <p class="mt-3 line-clamp-3 text-[16px] leading-[1.6]">{p.desc}</p>
+              <span class="mt-auto pt-5 text-[15px] font-semibold text-steel">Read more →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="mt-12 text-center"><button id="more" type="button" class="btn">Load More</button></p>
+      <noscript><style>[data-post]{display:flex!important}#more{display:none}</style></noscript>
+    </div>
+  </section>
+  <CtaSub />
+</BaseLayout>
+<script define:vars={{ PER }}>
+  const btn = document.getElementById('more');
+  const items = [...document.querySelectorAll('[data-post]')];
+  let shown = PER;
+  const sync = () => { if (shown >= items.length) btn.style.display = 'none'; };
+  btn?.addEventListener('click', () => {
+    items.slice(shown, shown + PER).forEach((e) => e.classList.remove('hidden'));
+    shown += PER; sync();
+  });
+</script>

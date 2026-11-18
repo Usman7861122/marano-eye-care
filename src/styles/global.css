@@ -314,3 +314,15 @@ html { interpolate-size: allow-keywords; }
 /* Italic accent words in headings use their own color */
 h1 i, h2 i, h3 i { color: #4f6fb5; }
 :is(.bg-navy, .text-white, .on-dark) :is(h1, h2, h3) i { color: #a9bff0; }
+
+/* Blog post body */
+.post-body { font-size: 18px; line-height: 1.75; }
+.post-body p { margin-top: 1.1em; }
+.post-body h2, .post-body h3 { font-family: var(--font-serif, Georgia, serif); color: var(--color-navy); line-height: 1.2; margin-top: 1.8em; }
+.post-body h2 { font-size: clamp(26px, 3vw, 34px); }
+.post-body h3 { font-size: 24px; }
+.post-body ul, .post-body ol { margin: 1em 0 0 1.4em; }
+.post-body ul { list-style: disc; } .post-body ol { list-style: decimal; }
+.post-body li { margin-top: .4em; }
+.post-body a { color: var(--color-steel); text-decoration: underline; }
+.post-body strong { color: var(--color-navy); }

@@ -1,11 +1,46 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/page/PageHero.astro';
+import CtaSub from '../../components/home/CtaSub.astro';
+import { site } from '../../data/site';
+import { posts, fmtDate } from '../../data/blog';
 export function getStaticPaths() {
-  const posts: { slug: string; title: string }[] = []; // TODO: blog posts
-  return posts.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+  return posts.map((post, i) => ({ params: { slug: post.slug }, props: { post, i } }));
 }
-const { item } = Astro.props;
+const { post, i } = Astro.props;
+const more = [1, 2, 3].map((n) => posts[(i + n) % posts.length]);
 ---
-<PageLayout title={item.title}>
-  <!-- TODO: ArticleBody -->
-</PageLayout>
+<BaseLayout title={`${post.title} | Marano Eye Care`} description={post.desc}>
+  <PageHero
+    title={post.title}
+    lede={`${fmtDate(post.date)} · ${post.topic}`}
+    image={post.thumb}
+    imageAlt={post.title}
+    crumbs={[{ label: 'Blog', href: '/blog' }, { label: post.topic }]}
+  />
+  <article class="bg-white py-[clamp(40px,6vw,90px)]">
+    <div class="mx-auto w-[min(100%-32px,760px)]">
+      <div class="post-body" set:html={post.html} />
+      <div class="mt-12 rounded-[16px] bg-mist p-8">
+        <h2 class="serif text-[26px] text-navy">Have questions about your eyes?</h2>
+        <p class="mt-2 text-[17px]">Call us or book a visit. Our doctors are happy to help.</p>
+        <p class="mt-5 flex flex-wrap gap-3"><a href={site.bookingUrl} class="btn">Book a Visit</a><a href={site.phoneHref} class="btn white !text-navy !border-navy">{site.phone}</a></p>
+      </div>
+    </div>
+  </article>
+  <section class="bg-card py-[clamp(48px,7vw,90px)]">
+    <div class="row-wrap">
+      <h2 class="serif text-center text-[length:var(--fs-h2b)] leading-[1.15] text-navy">You might also <i>enjoy</i></h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {more.map((p) => (
+          <a href={`/blog/${p.slug}`} class="hover-card on-white group flex flex-col overflow-hidden rounded-[16px] border border-transparent bg-white">
+            <div class="relative aspect-[16/10] overflow-hidden"><img src={p.thumb} alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover" /></div>
+            <div class="p-6"><p class="text-[14px] text-steel">{fmtDate(p.date)}</p><h3 class="serif mt-1 text-[20px] leading-snug text-navy">{p.title}</h3></div>
+          </a>
+        ))}
+      </div>
+      <p class="mt-10 text-center"><a href="/blog" class="btn">All posts</a></p>
+    </div>
+  </section>
+  <CtaSub />
+</BaseLayout>
