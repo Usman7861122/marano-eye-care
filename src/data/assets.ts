@@ -30,7 +30,7 @@ export const img = {
     D('1744240677-video-4.jpg', 600),
     D('1746457580-kristenvideo.jpg', 600),
   ],
-  videoCards: [D('1744219186-9-video-card-1.jpg', 1200), D('1744219499-9-video-card-2.jpg', 1200)],
+  videoCards: ['/images/stock/shutterstock_1909314343.jpg', D('1744219499-9-video-card-2.jpg', 1200)],
   credentials: [
     D('1744219769-1.png', 250),
     D('1744219770-2.png', 250),
@@ -39,11 +39,11 @@ export const img = {
     D('1744219771-5.png', 250),
   ],
   doctorTabs: [
-    D('1744217574-1-doctor-tabs.jpg', 900),
-    D('1744217574-2-doctor-tabs.jpg', 900),
-    D('1744217575-3-doctor-tabs.jpg', 900),
-    D('1744217575-4-doctor-tabs.jpg', 900),
-    D('1744217574-5-doctor-tabs.jpg', 900),
+    '/images/stock/shutterstock_1909314343.jpg',
+    '/images/stock/shutterstock_591166769.jpg',
+    '/images/stock/shutterstock_2645711759.jpg',
+    '/images/stock/shutterstock_533672689.jpg',
+    '/images/stock/shutterstock_591166769.jpg',
   ],
   lasik: D('1744221933-lasik.jpg', 2200),
   smile: D('1744221933-smile.jpg', 2200),
@@ -54,17 +54,17 @@ export const img = {
     D('1744222938-4-open.jpg', 1428),
   ],
   procedures: [
-    D('1744223356-1procedures.jpg', 1100),
+    '/images/stock/shutterstock_591166769.jpg',
     D('1744223356-2procedures.jpg', 1100),
     D('1744223356-3procedures.jpg', 1100),
     D('1744223356-4procedures.jpg', 1100),
     D('1744223356-5procedures.jpg', 1100),
   ],
   quoteBg: '/images/quote-bg.jpg',
-  foundation: D('1744224390-the-chu-foundation.jpg', 1100),
+  foundation: '/images/stock/shutterstock_2645711759.jpg',
   financing: D('1744224404-financing.jpg', 1100),
   newPatients: D('1744224414-new-patients.jpg', 1100),
-  team: D('1744224559-19-meet-our-team.jpg', 1440),
+  team: '/images/stock/shutterstock_533672689.jpg',
 };
 
 export const vid = {
