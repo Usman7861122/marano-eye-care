@@ -41,26 +41,27 @@ const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehe
     crumbs={[{ label: 'Locations' }, { label: `${city}, NJ` }]}
   />
   <section class="bg-white py-[clamp(48px,7vw,110px)]">
-    <div class="row-wrap grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-[clamp(32px,6vw,96px)]">
-      <div>
-      <div class="hover-card rounded-[16px] border border-transparent bg-card p-8">
-        <span class="eyebrow">Our {city} office</span>
-        <address class="serif mt-3 text-[26px] not-italic leading-tight text-navy">{loc.address.map((a) => <span class="block">{a}</span>)}</address>
-        <p class="mt-4 text-[20px]"><a href={loc.phoneHref} class="font-semibold text-navy hover:underline">{loc.phone}</a></p>
-        <p class="mt-8 flex flex-wrap gap-3">
-          <a href={loc.phoneHref} class="btn">Call Now</a>
-          <a href={maps} target="_blank" rel="noopener noreferrer" class="btn white !text-navy !border-navy">Get Directions</a>
-        </p>
+    <div class="row-wrap">
+      <div class="grid items-stretch gap-6 md:grid-cols-2">
+        <div class="hover-card flex flex-col rounded-[16px] border border-transparent bg-card p-8 md:p-10">
+          <span class="eyebrow">Our {city} office</span>
+          <address class="serif mt-3 text-[clamp(24px,2.4vw,30px)] not-italic leading-tight text-navy">{loc.address.map((a) => <span class="block">{a}</span>)}</address>
+          <p class="mt-5 text-[22px]"><a href={loc.phoneHref} class="font-semibold text-navy hover:underline">{loc.phone}</a></p>
+          <p class="mt-4 text-[17px] leading-[1.65]">Call us to book a visit, ask a question or get directions. Our team is happy to help.</p>
+          <p class="mt-auto flex flex-wrap gap-3 pt-8">
+            <a href={loc.phoneHref} class="btn">Call Now</a>
+            <a href={maps} target="_blank" rel="noopener noreferrer" class="btn white !text-navy !border-navy">Get Directions</a>
+          </p>
         </div>
-        <div class="mt-6 rounded-[16px] border border-transparent bg-mist p-8" id="hours" data-hours={JSON.stringify(hoursBy[city])}>
+        <div class="rounded-[16px] border border-transparent bg-mist p-8 md:p-10" id="hours" data-hours={JSON.stringify(hoursBy[city])}>
           <span class="eyebrow">Office hours</span>
-          <p id="open-now" class="serif mt-1 text-[22px] text-navy" aria-live="polite">&nbsp;</p>
+          <p id="open-now" class="serif mt-1 min-h-[1.4em] text-[22px] text-navy" aria-live="polite">&nbsp;</p>
           <table class="mt-4 w-full text-[17px]">
             <tbody>
               {rows.map((r) => (
                 <tr data-day={r.d} class="border-b border-navy/10 last:border-0">
-                  <th scope="row" class="py-2.5 pr-4 text-left font-medium text-navy">{r.name}<span class="today-tag ml-2 hidden rounded-full bg-navy px-2 py-0.5 text-[12px] font-normal text-white">Today</span></th>
-                  <td class="py-2.5 text-right">{r.text}</td>
+                  <th scope="row" class="px-2 py-2.5 text-left font-medium text-navy">{r.name}<span class="today-tag ml-2 hidden rounded-full bg-navy px-2 py-0.5 text-[12px] font-normal text-white">Today</span></th>
+                  <td class="px-2 py-2.5 text-right">{r.text}</td>
                 </tr>
               ))}
             </tbody>
@@ -68,11 +69,11 @@ const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehe
           <p class="mt-4 text-[15px]">Medical emergency? Call <a class="font-semibold text-navy underline" href="tel:+19733220100">973-322-0100</a>. Times are Eastern Time.</p>
         </div>
       </div>
-      <div>
+      <div class="mx-auto mt-[clamp(48px,6vw,90px)] max-w-[860px] text-center">
         <span class="eyebrow">Nearby areas</span>
         <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Who we serve <i class="block">near {city}</i></h2>
         <p class="mt-5 text-[18px] leading-[1.7]">Patients visit our {city} office from all over {county[city]}. If you live in one of these towns, we are a short drive away.</p>
-        <ul class="mt-6 flex flex-wrap gap-3">
+        <ul class="mt-6 flex flex-wrap justify-center gap-3">
           {towns[city].map((t) => <li class="rounded-full border border-navy/30 bg-mist px-4 py-2 text-[16px] text-navy">{t}</li>)}
         </ul>
       </div>
