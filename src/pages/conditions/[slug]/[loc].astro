@@ -1,0 +1,10 @@
+---
+import ConditionPage from '../../../components/page/ConditionPage.astro';
+import { conditions } from '../../../data/cond';
+export function getStaticPaths() {
+  const cities = ['Denville', 'Livingston', 'Newark'];
+  return conditions.flatMap((c) => cities.map((city) => ({ params: { slug: c.slug, loc: `${city.toLowerCase()}-nj` }, props: { c, city } })));
+}
+const { c, city } = Astro.props;
+---
+<ConditionPage c={c} city={city} />

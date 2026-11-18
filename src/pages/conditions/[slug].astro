@@ -1,11 +1,9 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
-import { conditions } from "../../data/conditions.ts";
+import ConditionPage from '../../components/page/ConditionPage.astro';
+import { conditions } from '../../data/cond';
 export function getStaticPaths() {
-  return conditions.map((item: any) => ({ params: { slug: item.slug }, props: { item } }));
+  return conditions.map((c) => ({ params: { slug: c.slug }, props: { c } }));
 }
-const { item } = Astro.props;
+const { c } = Astro.props;
 ---
-<PageLayout title={item.title}>
-  <!-- TODO: sections -->
-</PageLayout>
+<ConditionPage c={c} />

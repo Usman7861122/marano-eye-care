@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from './PageHero.astro';
+import SubNav from './SubNav.astro';
+import CtaSub from '../home/CtaSub.astro';
+import { site } from '../../data/site';
+import { services } from '../../data/svc';
+import type { Condition } from '../../data/cond';
+
+interface Props { c: Condition; city?: string }
+const { c, city } = Astro.props;
+
+const areasByCity: Record<string, string> = {
+  Denville: 'Denville, Rockaway, Boonton, Mountain Lakes, Parsippany, Dover, Randolph, Morristown and the wider Morris County area',
+  Livingston: 'Livingston, West Orange, Millburn, Short Hills, Roseland, Florham Park, Verona, Caldwell, Montclair and the wider Essex County area',
+  Newark: 'Newark, Belleville, Bloomfield, East Orange, Irvington, Harrison, Kearny, Elizabeth, Jersey City and the wider Essex and Union County area',
+};
+const loc = city ? site.locations.find((l) => l.city === city)! : undefined;
+const body = loc ? c.b : c.a;
+const fill = (s: string) => s.replaceAll('{cityPhrase}', loc ? `in ${loc.city}, NJ` : '').replaceAll('{city}', loc ? loc.city : '').trim();
+const order = loc ? ({ Denville: [1, 2, 0], Livingston: [2, 0, 1], Newark: [1, 0, 2] } as Record<string, number[]>)[loc.city] : [0, 1, 2];
+const [heroImg, lifeImg, treatImg] = order.map((i) => c.photos[i]);
+const mainHref = `/conditions/${c.slug}`;
+const related = c.related.map((s) => services.find((x) => x.slug === s)).filter(Boolean) as typeof services;
+const cityLine = loc ? ` Our ${loc.city} office is ready to help you, and we welcome patients from the whole area.` : '';
+const h1 = loc ? `${c.title} Treatment in` : c.title;
+const links = [
+  { label: 'Overview', href: '#overview' },
+  { label: 'Causes', href: '#causes' },
+  { label: 'Symptoms', href: '#symptoms' },
+  { label: 'Diagnosis', href: '#diagnosis' },
+  { label: 'Treatment', href: '#treatment' },
+  { label: 'Living well', href: '#living' },
+  { label: 'Our offices', href: '#locations' },
+];
+const title = loc ? `${c.title} Treatment in ${loc.city}, NJ | Marano Eye Care` : `${c.title} | Marano Eye Care`;
+const description = loc
+  ? `${c.title} treatment in ${loc.city}, NJ at Marano Eye Care, ${loc.address[0]}. ${fill(body.lede)}`
+  : `${c.title}: causes, symptoms and treatment at Marano Eye Care in New Jersey. ${body.lede}`;
+const check = '<path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />';
+---
+<BaseLayout title={title} description={description}>
+  <PageHero
+    title={h1}
+    accent={loc ? `${loc.city}, NJ` : undefined}
+    lede={fill(body.lede)}
+    image={heroImg}
+    imageAlt={`${c.title} care at Marano Eye Care${loc ? ` in ${loc.city}` : ''}`}
+    areas={loc ? `Our ${loc.city} office welcomes patients from ${areasByCity[loc.city]}.` : undefined}
+    crumbs={loc
+      ? [{ label: 'Eye Conditions', href: '/conditions' }, { label: c.title, href: mainHref }, { label: `${loc.city}, NJ` }]
+      : [{ label: 'Eye Conditions', href: '/conditions' }, { label: c.title }]}
+  />
+  <SubNav links={links} />
+
+  <section id="overview" class="bg-white pb-[clamp(56px,8vw,120px)] pt-[clamp(24px,4vw,56px)]">
+    <div class="row-wrap grid items-center gap-10 md:grid-cols-2 md:gap-[clamp(32px,6vw,96px)]">
+      <div>
+        <span class="eyebrow">Overview</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">{body.introT[0]} <i class="block">{fill(body.introT[1])}</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">{body.intro[0]}</p>
+        <p class="mt-5 text-[18px] leading-[1.7]">{body.intro[1]}{cityLine}</p>
+        <p class="mt-8 flex flex-wrap gap-3">
+          <a href={site.bookingUrl} class="btn">Book a Visit</a>
+          <a href={loc ? loc.phoneHref : site.phoneHref} class="btn white !text-navy !border-navy">{loc ? loc.phone : site.phone}</a>
+        </p>
+      </div>
+      <div class="relative aspect-[4/3] overflow-hidden rounded-[16px]">
+        <img src={lifeImg} alt={`${c.title} patient exam`} loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section id="causes" class="bg-navy py-[clamp(56px,8vw,120px)] text-white">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">Causes</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15]">What causes {c.title.toLowerCase()}?</h2>
+      </div>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {c.causes.map((x) => (
+          <div class="hover-card on-dark rounded-[16px] border border-transparent bg-white/10 p-7">
+            <h3 class="serif text-[22px] leading-tight">{x.t}</h3>
+            <p class="mt-3 text-[16px] leading-[1.65] text-white/85">{x.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="symptoms" class="bg-white py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-[clamp(32px,6vw,96px)]">
+      <div class="md:sticky md:top-[140px]">
+        <span class="eyebrow">Symptoms</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Signs to <i class="block">watch for</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">If you notice any of these, please book an exam.</p>
+      </div>
+      <div>
+        <ul class="grid gap-4">
+          {c.symptoms.map((q) => (
+            <li class="hover-card flex items-start gap-4 rounded-[12px] border border-transparent bg-card p-5 text-[17px] leading-[1.6]">
+              <svg width="22" height="22" viewBox="0 0 24 24" class="mt-[2px] shrink-0 text-steel" aria-hidden="true" set:html={check}></svg>
+              {q}
+            </li>
+          ))}
+        </ul>
+        <div class="mt-6 rounded-[16px] border border-navy/30 bg-mist p-7">
+          <h3 class="serif text-[22px] text-navy">Call us right away if you have:</h3>
+          <ul class="mt-3 grid gap-2 text-[17px]">
+            {c.redFlags.map((r) => <li class="flex items-center gap-3"><span class="h-2 w-2 shrink-0 rounded-full bg-navy"></span>{r}</li>)}
+          </ul>
+          <p class="mt-4 text-[17px]">Emergency line: <a class="font-semibold text-navy underline" href="tel:+19733220100">973-322-0100</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="diagnosis" class="bg-mist py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">Diagnosis</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">How we find <i class="block">the answer</i></h2>
+      </div>
+      <ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {c.diagnosis.map((s, i) => (
+          <li class="hover-card on-white rounded-[16px] border border-transparent bg-white p-7">
+            <span class="serif text-[40px] leading-none text-steel">{i + 1}</span>
+            <h3 class="serif mt-4 text-[22px] leading-tight text-navy">{s.t}</h3>
+            <p class="mt-3 text-[16px] leading-[1.65]">{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="treatment" class="bg-white py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap grid items-center gap-10 md:grid-cols-2 md:gap-[clamp(32px,6vw,96px)]">
+      <div class="relative aspect-[4/3] overflow-hidden rounded-[16px]">
+        <img src={treatImg} alt={`${c.title} treatment`} loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+      <div>
+        <span class="eyebrow">Treatment</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">{loc ? `${c.title} treatment` : 'How it is'} <i class="block">{loc ? `in ${loc.city}, NJ` : 'treated'}</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">Your doctor will choose the right care for your eyes. Options include:</p>
+        <ul class="mt-6 grid gap-2 text-[17px]">
+          {c.treatment.map((o) => <li class="flex items-center gap-3"><span class="h-2 w-2 shrink-0 rounded-full bg-steel"></span>{o}</li>)}
+        </ul>
+        <p class="mt-8 flex flex-wrap gap-3">
+          <a href={site.bookingUrl} class="btn">Book a Visit</a>
+          {related[0] && <a href={`/services/${related[0].slug}`} class="btn white !text-navy !border-navy">{related[0].title}</a>}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="living" class="bg-card py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">Living well</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Simple habits <i class="block">that help</i></h2>
+      </div>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {body.tips.map((t, i) => (
+          <div class="hover-card on-white rounded-[16px] border border-transparent bg-white p-7">
+            <span class="serif text-[34px] leading-none text-steel">{i + 1}</span>
+            <p class="mt-3 text-[18px] leading-[1.5] text-navy">{t}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-[clamp(32px,6vw,96px)]">
+      <div class="md:sticky md:top-[140px]">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Common <i class="block">questions</i></h2>
+        <p class="mt-5 text-[17px] leading-[1.7]">Your doctors: <a class="underline" href="/provider/matthew-j-marano-jr-md">Dr. Marano</a>, <a class="underline" href="/provider/sherief-raouf-md">Dr. Raouf</a> and <a class="underline" href="/provider/edward-b-decker-md">Dr. Decker</a>.</p>
+      </div>
+      <div class="grid gap-3">
+        {body.faqs.map((f) => (
+          <details class="group hover-card rounded-[12px] border border-transparent bg-card p-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-[18px] font-semibold text-navy">
+              {f.q}
+              <span class="text-[22px] transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-[17px] leading-[1.7]">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="bg-mist py-[clamp(48px,7vw,90px)]">
+      <div class="row-wrap">
+        <h2 class="serif text-center text-[length:var(--fs-h2b)] leading-[1.15] text-navy">Related services</h2>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {related.map((s) => (
+            <a href={`/services/${s.slug}`} class="hover-card on-white group flex flex-col overflow-hidden rounded-[16px] border border-transparent bg-white">
+              <div class="relative aspect-[16/9] overflow-hidden"><img src={s.photos[0]} alt={s.title} loading="lazy" class="absolute inset-0 h-full w-full object-cover" /></div>
+              <div class="p-6"><h3 class="serif text-[22px] text-navy">{s.title}</h3><p class="mt-2 text-[16px]">{s.short}</p></div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section id="locations" class="bg-white py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">Our offices</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">{loc ? 'Visit us' : 'Where we'} <i class="block">{loc ? `in ${loc.city}, NJ` : 'treat it'}</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">Call to book your visit. {c.title} care is offered at all three offices.</p>
+      </div>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {site.locations.map((l) => (
+          <div class={`hover-card relative flex flex-col rounded-[16px] border bg-card p-7 ${loc && l.city === loc.city ? 'border-steel/50' : 'border-transparent'}`}>
+            <div class="flex items-center justify-between">
+              <svg width="30" height="30" viewBox="0 0 24 24" class="text-steel" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0114 0C19 14.9 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              {loc && l.city === loc.city && <span class="rounded-full bg-navy px-3 py-1 text-[13px] text-white">This Page</span>}
+            </div>
+            <h3 class="serif mt-4 text-[26px] leading-tight text-navy">{l.city}, NJ</h3>
+            <address class="mt-3 text-[17px] not-italic leading-[1.65]">{l.address.map((a) => <span class="block">{a}</span>)}</address>
+            <p class="mt-3 text-[17px]"><a href={l.phoneHref} class="font-semibold text-navy hover:underline">{l.phone}</a></p>
+            <p class="relative z-10 mt-auto flex flex-wrap gap-2 pt-6 text-[14px] tracking-normal">
+              <a class="rounded-full border border-navy bg-navy px-4 py-2.5 text-white transition hover:bg-transparent hover:text-navy" href={`/conditions/${c.slug}/${l.city.toLowerCase()}-nj`}>{c.title} Treatment in {l.city}</a>
+              <a class="rounded-full border border-navy px-4 py-2.5 text-navy transition hover:bg-navy hover:text-white" href={l.phoneHref}>Call Now</a>
+            </p>
+          </div>
+        ))}
+      </div>
+      {loc && <p class="mt-8 text-center text-[16px]"><a class="underline text-navy" href={mainHref}>Back to the main {c.title} page</a></p>}
+    </div>
+  </section>
+
+  <CtaSub />
+</BaseLayout>

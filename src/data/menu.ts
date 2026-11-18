@@ -1,7 +1,6 @@
 // Main menu: same structure and labels as maranoeyecare.com
 export type MenuNode = { label: string; href: string; external?: boolean; children?: MenuNode[] };
 
-const C = '/contents/eye-conditions/';
 const L = '/location/nj/';
 
 export const menu: MenuNode[] = [
@@ -66,16 +65,16 @@ export const menu: MenuNode[] = [
   },
   {
     label: 'Eye Conditions',
-    href: '/contents/eye-conditions',
+    href: '/conditions',
     children: [
-      { label: 'Allergies', href: C + 'eye-allergies' },
-      { label: 'What Are Cataracts?', href: C + 'cataracts' },
-      { label: 'Diabetic Retinopathy', href: C + 'diabetic-retinopathy' },
-      { label: 'What is Dry Eye Disease?', href: C + 'dry-eye' },
-      { label: 'Glaucoma', href: C + 'glaucoma-1' },
-      { label: 'Hypertensive Retinopathy', href: C + 'hypertensive-retinopathy' },
-      { label: 'Macular Degeneration', href: C + 'macular-degeneration' },
-      { label: 'Pterygium', href: C + 'pterygium' },
+      { label: 'Allergies', href: '/conditions/eye-allergies' },
+      { label: 'What Are Cataracts?', href: '/conditions/cataracts' },
+      { label: 'Diabetic Retinopathy', href: '/conditions/diabetic-retinopathy' },
+      { label: 'What is Dry Eye Disease?', href: '/conditions/dry-eye-disease' },
+      { label: 'Glaucoma', href: '/conditions/glaucoma' },
+      { label: 'Hypertensive Retinopathy', href: '/conditions/hypertensive-retinopathy' },
+      { label: 'Macular Degeneration', href: '/conditions/macular-degeneration' },
+      { label: 'Pterygium', href: '/conditions/pterygium' },
     ],
   },
   { label: 'Blog', href: '/blog' },
