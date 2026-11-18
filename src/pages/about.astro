@@ -84,7 +84,7 @@ const icons: Record<string, string> = {
       <div>
         <ul class="grid gap-4 sm:grid-cols-2">
           {a.advanced.items.map((i) => (
-            <li class="rounded-[16px] border border-navy/10 bg-white p-6">
+            <li class="hover-card on-white rounded-[16px] border border-navy/10 bg-white p-6">
               <h3 class="serif text-[24px] leading-tight text-navy">{i.t}</h3>
               <p class="mt-2 leading-[1.6]">{i.p}</p>
             </li>
@@ -102,7 +102,7 @@ const icons: Record<string, string> = {
       <h2 class="serif mx-auto max-w-[760px] text-center text-[length:var(--fs-h2)] leading-[1.15] text-navy">{a.trust.title[0]} <i class="block">{a.trust.title[1]}</i></h2>
       <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {a.trust.cards.map((c) => (
-          <li class="rounded-[16px] bg-card p-7">
+          <li class="hover-card rounded-[16px] border border-transparent bg-card p-7">
             <span class="grid h-12 w-12 place-items-center rounded-full bg-white text-steel">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={icons[c.icon]} /></svg>
             </span>
@@ -120,7 +120,7 @@ const icons: Record<string, string> = {
       <h2 class="serif text-center text-[length:var(--fs-h2)] leading-[1.15]">What our <i>patients say</i></h2>
       <ul class="mt-12 grid gap-5 md:grid-cols-3">
         {a.reviews.map((r) => (
-          <li class="flex flex-col rounded-[16px] border border-white/20 bg-white/5 p-7">
+          <li class="hover-card on-dark flex flex-col rounded-[16px] border border-white/20 bg-white/5 p-7">
             <p class="text-[18px] leading-[1.6]">“{r.q}”</p>
             <p class="mt-auto pt-6 text-[14px] font-semibold uppercase tracking-[0.12em] text-sky">{r.n}</p>
           </li>

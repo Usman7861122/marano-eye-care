@@ -92,7 +92,7 @@ const faqs = [
       </div>
       <ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
-          <li class="rounded-[16px] bg-white/10 p-7">
+          <li class="hover-card on-dark rounded-[16px] border border-transparent bg-white/10 p-7">
             <span class="serif text-[40px] leading-none text-sky">{i + 1}</span>
             <h3 class="serif mt-4 text-[22px] leading-tight">{s.t}</h3>
             <p class="mt-3 text-[16px] leading-[1.65] text-white/85">{s.d}</p>
@@ -111,7 +111,7 @@ const faqs = [
       </div>
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {benefits.map((b) => (
-          <div class="rounded-[16px] bg-card p-7">
+          <div class="hover-card rounded-[16px] border border-transparent bg-card p-7">
             <h3 class="serif text-[22px] leading-tight text-navy">{b.t}</h3>
             <p class="mt-3 text-[16px] leading-[1.65]">{b.d}</p>
           </div>
@@ -149,7 +149,7 @@ const faqs = [
       </div>
       <ul class="grid gap-4">
         {questions.map((q) => (
-          <li class="flex items-start gap-4 rounded-[12px] bg-card p-5 text-[17px] leading-[1.6]">
+          <li class="hover-card flex items-start gap-4 rounded-[12px] border border-transparent bg-card p-5 text-[17px] leading-[1.6]">
             <svg width="22" height="22" viewBox="0 0 24 24" class="mt-[2px] shrink-0 text-steel" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
             {q}
           </li>
@@ -168,7 +168,7 @@ const faqs = [
       </div>
       <div class="grid gap-3">
         {faqs.map((f) => (
-          <details class="group rounded-[12px] bg-white p-5">
+          <details class="group hover-card on-white rounded-[12px] border border-transparent bg-white p-5">
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-[18px] font-semibold text-navy">
               {f.q}
               <span class="text-[22px] transition group-open:rotate-45" aria-hidden="true">+</span>
