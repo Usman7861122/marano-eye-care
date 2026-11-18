@@ -191,14 +191,17 @@ const faqs = [
       </div>
       <div class="mt-12 grid gap-6 md:grid-cols-3">
         {site.locations.map((l) => (
-          <div class="hover-card flex flex-col rounded-[16px] border border-transparent bg-card p-7">
+          <div class="hover-card relative flex flex-col rounded-[16px] border border-transparent bg-card p-7">
             <svg width="30" height="30" viewBox="0 0 24 24" class="text-steel" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0114 0C19 14.9 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-            <h3 class="serif mt-4 text-[26px] leading-tight text-navy">{l.city}, NJ</h3>
+            <h3 class="serif mt-4 text-[26px] leading-tight text-navy">
+              {l.city === 'Denville' ? <a href="/services/cataract-surgery/denville-nj" class="after:absolute after:inset-0 after:content-['']">{l.city}, NJ</a> : <>{l.city}, NJ</>}
+            </h3>
             <address class="mt-3 text-[17px] not-italic leading-[1.65]">{l.address.map((a) => <span class="block">{a}</span>)}</address>
-            <p class="mt-3 text-[17px]"><a href={l.phoneHref} class="font-semibold text-navy hover:underline">{l.phone}</a></p>
-            <p class="mt-6 flex flex-wrap gap-x-5 gap-y-2 pt-1 text-[16px]">
+            <p class="relative z-10 mt-3 text-[17px]"><a href={l.phoneHref} class="font-semibold text-navy hover:underline">{l.phone}</a></p>
+            <p class="relative z-10 mt-6 flex flex-wrap gap-x-5 gap-y-2 pt-1 text-[16px]">
               <a class="underline text-navy" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.address.join(' '))}`} target="_blank" rel="noopener noreferrer">Get directions</a>
               <a class="underline text-navy" href={l.phoneHref}>Call now</a>
+              {l.city === 'Denville' && <a class="underline text-navy" href="/services/cataract-surgery/denville-nj">Denville page</a>}
             </p>
           </div>
         ))}

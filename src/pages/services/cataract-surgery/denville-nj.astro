@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/page/PageHero.astro';
+import SubNav from '../../../components/page/SubNav.astro';
+import CtaSub from '../../../components/home/CtaSub.astro';
+import { site } from '../../../data/site';
+
+const photo = {
+  hero: '/images/stock/shutterstock_2696400913.jpg',
+  iol: '/images/stock/shutterstock_2715113517.jpg',
+  life: '/images/stock/shutterstock_2670489327.jpg',
+};
+
+const links = [
+  { label: 'What it is', href: '#what' },
+  { label: 'How it works', href: '#how' },
+  { label: 'Benefits', href: '#benefits' },
+  { label: 'Lens options', href: '#lenses' },
+  { label: 'Is it for me?', href: '#self-test' },
+  { label: 'Denville office', href: '#locations' },
+];
+
+const steps = [
+  { t: 'Stay comfortable', d: 'Simple numbing drops keep your eye calm and pain-free while you relax.' },
+  { t: 'Scan your eye in 3D', d: 'A detailed scan maps the size and shape of your eye, so your plan fits only you.' },
+  { t: 'Laser takes the lead', d: 'The laser makes the tiny cuts and softens the cloudy lens with more care than a hand-held blade.' },
+  { t: 'Place a clear lens', d: 'Your surgeon takes out the cloudy lens and puts a new lens (IOL) in its place.' },
+];
+
+const benefits = [
+  { t: 'Very exact', d: 'The laser follows your personal eye map, so every cut is accurate.' },
+  { t: 'Soft on your eye', d: 'The lens is softened first, so less energy is needed to take it out.' },
+  { t: 'Helps astigmatism', d: 'Tiny laser cuts can lower astigmatism of up to 1 diopter in the same visit.' },
+  { t: 'Fast healing', d: 'Most people feel better quickly, and many see 20/20 or even better.' },
+];
+
+const lenses = ['Symfony®', 'PanOptix®', 'Vivity™', 'Synergy™', 'Toric (for astigmatism)'];
+
+const questions = [
+  'Do lights look too bright or have rings around them at night?',
+  'Do you wish to see well and stay independent?',
+  'Is reading, TV or screen time getting hard?',
+  'Do your eyes make driving or work more difficult?',
+];
+
+const faqs = [
+  { q: 'What is cataract surgery?', a: 'A cataract is a cloudy lens in your eye. In surgery we remove it and place a clear lens, so your sight becomes sharp and bright again.' },
+  { q: 'How long does it take?', a: 'The laser and lens steps take only 15 to 20 minutes. Please plan a little extra time at our Denville office for check-in and rest.' },
+  { q: 'Do I need someone to drive me?', a: 'Yes. Your vision may be blurry for a short time after surgery, so please bring a driver.' },
+  { q: 'Does it hurt?', a: 'No. Numbing drops keep you comfortable, and most people feel only light pressure.' },
+];
+---
+<BaseLayout
+  title="Cataract Surgery in Denville, NJ | Marano Eye Care"
+  description="Laser-assisted cataract surgery in Denville, NJ at Marano Eye Care, 16 Pocono Road. Clear vision, quick recovery and lens options made for you."
+>
+  <PageHero
+    title="Cataract Surgery in Denville, NJ"
+    lede="Bright, clear sight is closer than you think. Our Denville surgeons use gentle, laser-assisted cataract surgery."
+    image={photo.hero}
+    imageAlt="An eye doctor examines a senior patient at a slit lamp in a Denville eye clinic"
+    areas="Our Denville office welcomes patients from Denville, Rockaway, Boonton, Mountain Lakes, Parsippany, Dover, Randolph, Morristown and the wider Morris County area."
+    crumbs={[{ label: 'Services', href: '#' }, { label: 'Cataract Surgery', href: '/services/cataract-surgery' }, { label: 'Denville, NJ' }]}
+  />
+  <SubNav links={links} />
+
+  <!-- What it is -->
+  <section id="what" class="bg-white pb-[clamp(56px,8vw,120px)] pt-[clamp(24px,4vw,56px)]">
+    <div class="row-wrap grid items-center gap-10 md:grid-cols-2 md:gap-[clamp(32px,6vw,96px)]">
+      <div>
+        <span class="eyebrow">What it is</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Clearer sight <i class="block">right here in Denville</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">If colors look faded and reading feels harder each year, a cataract may be the cause. It clouds the natural lens in your eye, and it is very common. About 3 million Americans have cataract surgery every year, and many of your neighbors are among them.</p>
+        <p class="mt-5 text-[18px] leading-[1.7]">At our Denville, NJ office we offer femtosecond laser-assisted cataract surgery with the Alcon LenSx® laser. It helps your surgeon plan and do every step with great care, close to home.</p>
+        <p class="mt-8 flex flex-wrap gap-3">
+          <a href={site.bookingUrl} class="btn">Book a Visit</a>
+          <a href={site.phoneHref} class="btn white !text-navy !border-navy">{site.phone}</a>
+        </p>
+      </div>
+      <div class="relative aspect-[4/3] overflow-hidden rounded-[16px]">
+        <img src={photo.life} alt="A smiling senior woman during an eye check with her eye doctor" loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="bg-navy py-[clamp(56px,8vw,120px)] text-white">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">How it works</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15]">Four simple steps</h2>
+        <p class="mt-5 text-[18px] leading-[1.7] text-white/90">The whole procedure takes about 15 to 20 minutes.</p>
+      </div>
+      <ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {steps.map((s, i) => (
+          <li class="hover-card on-dark rounded-[16px] border border-transparent bg-white/10 p-7">
+            <span class="serif text-[40px] leading-none text-sky">{i + 1}</span>
+            <h3 class="serif mt-4 text-[22px] leading-tight">{s.t}</h3>
+            <p class="mt-3 text-[16px] leading-[1.65] text-white/85">{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits" class="bg-white py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">Benefits</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Why choose laser cataract surgery</h2>
+      </div>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {benefits.map((b) => (
+          <div class="hover-card rounded-[16px] border border-transparent bg-card p-7">
+            <h3 class="serif text-[22px] leading-tight text-navy">{b.t}</h3>
+            <p class="mt-3 text-[16px] leading-[1.65]">{b.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Lens choices -->
+  <section id="lenses" class="bg-mist py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap grid items-center gap-10 md:grid-cols-2 md:gap-[clamp(32px,6vw,96px)]">
+      <div class="relative aspect-[4/3] overflow-hidden rounded-[16px] md:order-first">
+        <img src={photo.iol} alt="An eye doctor performs a detailed eye exam on a senior patient with modern equipment" loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+      <div>
+        <span class="eyebrow">Lens choices</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">A lens chosen for your life</h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">Once the cloudy lens is out, a new lens called an IOL goes in. Premium lenses can help you see far, near and in between, so you may need glasses less often.</p>
+        <ul class="mt-6 grid gap-2 text-[17px]">
+          {lenses.map((l) => <li class="flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-steel"></span>{l}</li>)}
+        </ul>
+        <p class="mt-8"><a href="https://premium-iol.maranoeyecare.com" target="_blank" rel="noopener noreferrer" class="btn">Explore Premium Lenses</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Self test: text left, list right -->
+  <section id="self-test" class="bg-white py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-[clamp(32px,6vw,96px)]">
+      <div class="md:sticky md:top-[140px]">
+        <span class="eyebrow">Is it for me?</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">A quick <i class="block">self-check</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">If you say yes to any of these, it may be time to talk with us.</p>
+        <p class="mt-8"><a href={site.bookingUrl} class="btn">Book a Visit</a></p>
+      </div>
+      <ul class="grid gap-4">
+        {questions.map((q) => (
+          <li class="hover-card flex items-start gap-4 rounded-[12px] border border-transparent bg-card p-5 text-[17px] leading-[1.6]">
+            <svg width="22" height="22" viewBox="0 0 24 24" class="mt-[2px] shrink-0 text-steel" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            {q}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ: text left, questions right -->
+  <section class="bg-card py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-[clamp(32px,6vw,96px)]">
+      <div class="md:sticky md:top-[140px]">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Common <i class="block">questions</i></h2>
+        <p class="mt-5 text-[17px] leading-[1.7]">Your surgeons: <a class="underline" href="/provider/matthew-j-marano-jr-md">Dr. Marano</a>, <a class="underline" href="/provider/sherief-raouf-md">Dr. Raouf</a> and <a class="underline" href="/provider/edward-b-decker-md">Dr. Decker</a>.</p>
+      </div>
+      <div class="grid gap-3">
+        {faqs.map((f) => (
+          <details class="group hover-card on-white rounded-[12px] border border-transparent bg-white p-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-[18px] font-semibold text-navy">
+              {f.q}
+              <span class="text-[22px] transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-[17px] leading-[1.7]">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations -->
+  <section id="locations" class="bg-white py-[clamp(56px,8vw,110px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">Denville office</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Visit us <i class="block">in Denville, NJ</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">Call to book your cataract check-up. We also offer cataract surgery at our other offices.</p>
+      </div>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {[...site.locations].sort((x, y) => (y.city === 'Denville' ? 1 : 0) - (x.city === 'Denville' ? 1 : 0)).map((l) => (
+          <div class={`hover-card flex flex-col rounded-[16px] border bg-card p-7 ${l.city === 'Denville' ? 'border-steel/50' : 'border-transparent'}`}>
+            <div class="flex items-center justify-between">
+              <svg width="30" height="30" viewBox="0 0 24 24" class="text-steel" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0114 0C19 14.9 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              {l.city === 'Denville' && <span class="rounded-full bg-navy px-3 py-1 text-[13px] text-white">This office</span>}
+            </div>
+            <h3 class="serif mt-4 text-[26px] leading-tight text-navy">{l.city}, NJ</h3>
+            <address class="mt-3 text-[17px] not-italic leading-[1.65]">{l.address.map((a) => <span class="block">{a}</span>)}</address>
+            <p class="mt-3 text-[17px]"><a href={l.phoneHref} class="font-semibold text-navy hover:underline">{l.phone}</a></p>
+            <p class="mt-6 flex flex-wrap gap-x-5 gap-y-2 pt-1 text-[16px]">
+              <a class="underline text-navy" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.address.join(' '))}`} target="_blank" rel="noopener noreferrer">Get directions</a>
+              <a class="underline text-navy" href={l.phoneHref}>Call now</a>
+            </p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-[16px]"><a class="underline text-navy" href="/services/cataract-surgery">Back to the main Cataract Surgery page</a></p>
+    </div>
+  </section>
+
+  <CtaSub />
+</BaseLayout>
