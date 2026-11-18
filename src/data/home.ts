@@ -10,7 +10,7 @@ export const home = {
     procedures: ['LASIK', 'Cataract Surgery', 'LENSAR ALLY®', 'Premium Lenses', 'Dry Eye Care', 'Corneal Surgery'],
   },
   tiles: [
-    { a: 'Top Doctor honors,', b: 'year after year.', p: 'Dr. Marano has been named a “Top Doctor” by New Jersey Monthly Magazine for 15 consecutive years.' },
+    { a: 'Top Doctor honors,', b: 'year after year.', p: 'Named a “Top Doctor” by New Jersey Monthly for 15 years in a row.' },
     { a: 'Care close', b: 'to home.', p: 'Visit us in Denville, Livingston, or Newark, New Jersey.' },
     { a: 'LASIK know-how', b: 'built over 30 years.', p: 'Dr. Marano was one of the first LASIK surgeons in New Jersey.' },
     { a: 'Many choices,', b: 'one right fit.', p: 'From laser cataract surgery and premium lenses to dry eye care and corneal transplants, we have a solution for you.' },
