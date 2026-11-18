@@ -13,7 +13,7 @@ export const img = {
   favicon: '/images/favicon.png',
   og: '/images/logo.png',
   bentoBg: D('1744133994-3-bento-background-no-doctor.jpg', 1400),
-  bentoDoctor: D('1744133407-3-bento-1.png', 1219),
+  bentoDoctor: '/images/dr-marano.webp',
   logos: [
     D('1744137214-mask-group.png', 140),
     D('1744137240-mask-group.png', 258),
