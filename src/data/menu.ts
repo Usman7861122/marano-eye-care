@@ -1,7 +1,7 @@
 // Main menu, taken from maranoeyecare.com. Cards are rendered by components/layout/Header.tsx
 export type Card = { label: string; href: string; text?: string; icon?: Icon; external?: boolean };
 export type Group = { title: string; href?: string; cards: Card[] };
-export type Feature = { title: string; text: string; image: string; cta: string; href: string };
+export type Feature = { title: string; text: string; cta: string; href: string };
 export type Icon = 'eye' | 'spark' | 'scan' | 'drop' | 'pin' | 'user' | 'doc' | 'shield';
 export type MenuItem = { label: string; href: string; groups?: Group[]; feature?: Feature; cols?: number };
 
@@ -15,7 +15,7 @@ export const menu: MenuItem[] = [
     label: 'About',
     href: '/about',
     cols: 2,
-    feature: { title: 'Meet our doctors', text: 'Caring eye surgeons who have served New Jersey families for decades.', image: '/images/stock/shutterstock_1909314343.jpg', cta: 'See our doctors', href: '/provider' },
+    feature: { title: 'Meet our doctors', text: 'Caring eye surgeons who have served New Jersey families for decades.', cta: 'See our doctors', href: '/provider' },
     groups: [
       {
         title: 'About the practice',
@@ -30,7 +30,7 @@ export const menu: MenuItem[] = [
     label: 'Services',
     href: '/services',
     cols: 2,
-    feature: { title: 'Eye surgery and care', text: 'From cataracts to LASIK, find the treatment that fits you.', image: '/images/stock/shutterstock_2645711759.jpg', cta: 'View all services', href: '/services' },
+    feature: { title: 'Eye surgery and care', text: 'From cataracts to LASIK, find the treatment that fits you.', cta: 'View all services', href: '/services' },
     groups: [
       {
         title: 'Popular services',
@@ -52,6 +52,7 @@ export const menu: MenuItem[] = [
     label: 'Eye Care Services',
     href: '/contents/eye-care-services',
     cols: 2,
+    feature: { title: 'Tests and treatments, explained', text: 'See how we check your eyes and the procedures we offer.', cta: 'All eye care services', href: '/contents/eye-care-services' },
     groups: [
       {
         title: 'Eye procedures',
@@ -88,7 +89,7 @@ export const menu: MenuItem[] = [
     label: 'Eye Conditions',
     href: '/contents/eye-conditions',
     cols: 2,
-    feature: { title: 'Know your eyes', text: 'Plain answers about common eye conditions and when to get help.', image: '/images/stock/shutterstock_780951967.jpg', cta: 'All eye conditions', href: '/contents/eye-conditions' },
+    feature: { title: 'Know your eyes', text: 'Plain answers about common eye conditions and when to get help.', cta: 'All eye conditions', href: '/contents/eye-conditions' },
     groups: [
       {
         title: 'Common conditions',
@@ -112,6 +113,7 @@ export const menu: MenuItem[] = [
     label: 'Contact',
     href: '/contactus',
     cols: 3,
+    feature: { title: 'Visit us in New Jersey', text: 'Three offices to serve you. Call or book a visit today.', cta: 'Contact us', href: '/contactus' },
     groups: [
       {
         title: 'Our locations',
