@@ -1,6 +1,147 @@
 ---
-import PageLayout from "../layouts/PageLayout.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/page/PageHero.astro';
+import SubNav from '../components/page/SubNav.astro';
+import CtaSub from '../components/home/CtaSub.astro';
+import { about as a } from '../data/about';
+const photo = {
+  hero: '/images/stock/shutterstock_591166769.jpg',
+  welcome: '/images/stock/shutterstock_780951967.jpg',
+  surgery: '/images/stock/shutterstock_2645711759.jpg',
+};
+const icons: Record<string, string> = {
+  award: 'M12 15a6 6 0 100-12 6 6 0 000 12zm-3.5 0L7 21l5-2.5L17 21l-1.5-6',
+  eye: 'M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12zm10 3a3 3 0 100-6 3 3 0 000 6z',
+  spark: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z',
+  user: 'M12 12a4 4 0 100-8 4 4 0 000 8zm-8 8c0-3.6 3.6-6 8-6s8 2.4 8 6',
+};
 ---
-<PageLayout title="About">
-  <section class="py-20"><div class="mx-auto max-w-6xl px-4"><!-- TODO --></div></section>
-</PageLayout>
+<BaseLayout title={a.title} description={a.description}>
+  <PageHero title="About Us" lede={a.lede} image={photo.hero} imageAlt="An eye doctor checks a patient's eyes at a slit lamp" crumbs={[{ label: 'About Us' }]} />
+  <SubNav links={a.links} />
+
+  <!-- Intro -->
+  <section class="bg-white pb-[clamp(48px,7vw,100px)] pt-[clamp(24px,4vw,56px)] text-center">
+    <div class="row-wrap max-w-[860px]">
+      <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">{a.intro.title[0]} <i class="block">{a.intro.title[1]}</i></h2>
+      <p class="mx-auto mt-6 max-w-[700px] text-[18px] leading-[1.7]">{a.intro.text}</p>
+    </div>
+  </section>
+
+  <!-- Welcome: text + photo -->
+  <section class="bg-white pb-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap grid items-center gap-10 md:grid-cols-2 md:gap-[clamp(32px,6vw,96px)]">
+      <div>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">{a.welcome.title}</h2>
+        {a.welcome.paras.map((p) => <p class="mt-5 text-[18px] leading-[1.7]">{p}</p>)}
+        <p class="mt-8"><a href={a.welcome.cta.href} class="btn">{a.welcome.cta.label}</a></p>
+      </div>
+      <div class="relative aspect-[4/3] overflow-hidden rounded-[16px]">
+        <img src={photo.welcome} alt="Two eye care professionals working together in a bright clinic" loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Lead surgeon -->
+  <section class="bg-navy py-[clamp(56px,8vw,120px)] text-white">
+    <div class="row-wrap grid items-center gap-10 md:grid-cols-[5fr_6fr] md:gap-[clamp(32px,6vw,96px)]">
+      <div class="relative mx-auto aspect-[4/5] w-full max-w-[520px] overflow-hidden rounded-[16px] bg-mist">
+        <img src="/images/dr-marano.webp" alt="Dr. Matthew Marano, Jr." loading="lazy" class="absolute inset-0 h-full w-full object-cover object-top" />
+      </div>
+      <div>
+        <span class="eyebrow">{a.lead.eyebrow}</span>
+        <h2 class="serif text-[length:var(--fs-h1)] leading-[1.15]">{a.lead.title[0]} <i class="block">{a.lead.title[1]}</i></h2>
+        {a.lead.paras.map((p) => <p class="mt-5 text-[18px] leading-[1.7] text-white/90">{p}</p>)}
+        <p class="mt-8"><a href={a.lead.cta.href} class="btn white">{a.lead.cta.label}</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Care for adults and teens -->
+  <section class="bg-white py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">{a.care.eyebrow}</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">{a.care.title[0]} <i>{a.care.title[1]}</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">{a.care.text}</p>
+      </div>
+      <ul class="mx-auto mt-10 flex max-w-[980px] flex-wrap justify-center gap-3">
+        {a.care.conditions.map((c) => <li class="rounded-full border border-navy/20 bg-card px-5 py-2.5 text-[16px] text-navy">{c}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Advanced treatments -->
+  <section class="bg-card py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap grid items-start gap-10 lg:grid-cols-[4fr_7fr] lg:gap-[clamp(32px,5vw,80px)]">
+      <div class="lg:sticky lg:top-32">
+        <span class="eyebrow">{a.advanced.eyebrow}</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">{a.advanced.title[0]} <i class="block">{a.advanced.title[1]}</i></h2>
+        <div class="relative mt-8 hidden aspect-[3/2] overflow-hidden rounded-[16px] lg:block">
+          <img src={photo.surgery} alt="A surgeon works at an operating microscope" loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+        </div>
+      </div>
+      <div>
+        <ul class="grid gap-4 sm:grid-cols-2">
+          {a.advanced.items.map((i) => (
+            <li class="rounded-[16px] border border-navy/10 bg-white p-6">
+              <h3 class="serif text-[24px] leading-tight text-navy">{i.t}</h3>
+              <p class="mt-2 leading-[1.6]">{i.p}</p>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-6 text-[17px] leading-[1.7]">{a.advanced.note}</p>
+        <p class="mt-6"><a href="/services" class="btn">View All Services</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why patients trust us -->
+  <section class="bg-white py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap">
+      <h2 class="serif mx-auto max-w-[760px] text-center text-[length:var(--fs-h2)] leading-[1.15] text-navy">{a.trust.title[0]} <i class="block">{a.trust.title[1]}</i></h2>
+      <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {a.trust.cards.map((c) => (
+          <li class="rounded-[16px] bg-card p-7">
+            <span class="grid h-12 w-12 place-items-center rounded-full bg-white text-steel">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={icons[c.icon]} /></svg>
+            </span>
+            <h3 class="serif mt-5 text-[24px] leading-tight text-navy">{c.t}</h3>
+            <p class="mt-3 leading-[1.6]">{c.p}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Patient reviews -->
+  <section class="bg-navy py-[clamp(56px,8vw,120px)] text-white">
+    <div class="row-wrap">
+      <h2 class="serif text-center text-[length:var(--fs-h2)] leading-[1.15]">What our <i>patients say</i></h2>
+      <ul class="mt-12 grid gap-5 md:grid-cols-3">
+        {a.reviews.map((r) => (
+          <li class="flex flex-col rounded-[16px] border border-white/20 bg-white/5 p-7">
+            <p class="text-[18px] leading-[1.6]">“{r.q}”</p>
+            <p class="mt-auto pt-6 text-[14px] font-semibold uppercase tracking-[0.12em] text-sky">{r.n}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-10 text-center"><a href="/testimonials" class="btn white">Read More Reviews</a></p>
+    </div>
+  </section>
+
+  <!-- Locations -->
+  <section class="bg-white py-[clamp(56px,8vw,110px)] text-center">
+    <div class="row-wrap">
+      <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Visit us <i>near you</i></h2>
+      <ul class="mx-auto mt-10 grid max-w-[900px] gap-4 sm:grid-cols-3">
+        {a.locations.map((l) => (
+          <li><a href={l.href} class="block rounded-[16px] border border-navy/15 bg-card px-6 py-7 text-[20px] text-navy transition hover:bg-navy hover:text-white">{l.city}</a></li>
+        ))}
+      </ul>
+      <p class="mt-8 text-[15px] text-slate">{a.affiliation}</p>
+    </div>
+  </section>
+
+  <CtaSub />
+</BaseLayout>

@@ -1,0 +1,13 @@
+---
+interface Props { links: { label: string; href: string }[]; current?: string }
+const { links, current } = Astro.props;
+---
+<nav aria-label="In this section" class="bg-white py-[clamp(20px,3vw,36px)]">
+  <ul class="row-wrap flex flex-wrap items-center justify-center gap-x-0 gap-y-2 text-[15px]">
+    {links.map((l, i) => (
+      <li class={`px-5 ${i ? 'border-l border-navy/25' : ''}`}>
+        <a href={l.href} class={`tracking-[0.3px] text-navy hover:underline ${current === l.label ? 'font-semibold underline' : ''}`}>{l.label}</a>
+      </li>
+    ))}
+  </ul>
+</nav>
