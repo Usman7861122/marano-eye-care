@@ -51,7 +51,7 @@ const description = loc
     image={heroImg}
     imageAlt={`${svc.title} care at Marano Eye Care${loc ? ` in ${loc.city}` : ''}`}
     position={heroPos}
-    areas={loc ? `Our ${loc.city} office welcomes patients from ${areasByCity[loc.city]}.` : undefined}
+    areas={loc ? `Our ${loc.city} office welcomes patients from ${areasByCity[loc.city]}.` : site.areasAll}
     crumbs={loc
       ? [{ label: 'Services', href: '/services' }, { label: svc.title, href: mainHref }, { label: `${loc.city}, NJ` }]
       : [{ label: svc.section === 'tests' ? 'Eye Tests' : 'Services', href: base }, { label: svc.title }]}

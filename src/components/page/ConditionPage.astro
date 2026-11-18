@@ -46,7 +46,7 @@ const check = '<path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor
     lede={fill(body.lede)}
     image={heroImg}
     imageAlt={`${c.title} care at Marano Eye Care${loc ? ` in ${loc.city}` : ''}`}
-    areas={loc ? `Our ${loc.city} office welcomes patients from ${areasByCity[loc.city]}.` : undefined}
+    areas={loc ? `Our ${loc.city} office welcomes patients from ${areasByCity[loc.city]}.` : site.areasAll}
     crumbs={loc
       ? [{ label: 'Eye Conditions', href: '/conditions' }, { label: c.title, href: mainHref }, { label: `${loc.city}, NJ` }]
       : [{ label: 'Eye Conditions', href: '/conditions' }, { label: c.title }]}

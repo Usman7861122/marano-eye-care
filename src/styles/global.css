@@ -310,3 +310,7 @@ html { interpolate-size: allow-keywords; }
 .hover-card.on-white:hover { background-color: var(--color-card); }
 .hover-card.on-dark:hover { background-color: rgba(255,255,255,.18); box-shadow: 0 18px 36px -16px rgba(0,0,0,.6); border-color: rgba(255,255,255,.45); }
 @media (prefers-reduced-motion: reduce) { .hover-card, .hover-card:hover { transition: none; transform: none; } }
+
+/* Italic accent words in headings use their own color */
+h1 i, h2 i, h3 i { color: #4f6fb5; }
+:is(.bg-navy, .text-white, .on-dark) :is(h1, h2, h3) i { color: #a9bff0; }

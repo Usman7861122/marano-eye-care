@@ -9,6 +9,7 @@ export const site = {
     { city: 'Livingston', address: ['200 South Orange Avenue Suite 209', 'Livingston, NJ 07039'], phone: '973-791-6777', phoneHref: 'tel:+19737916777' },
     { city: 'Newark', address: ['306 Martin Luther King Blvd.', 'Newark, NJ 07102'], phone: '973-315-6439', phoneHref: 'tel:+19733156439' },
   ],
+  areasAll: 'Patients are welcome from across Denville, Livingston, Newark, Morristown, Parsippany, West Orange and the greater Morris, Essex and Union County area.',
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=16+Pocono+Road+Suite+301+Denville+NJ+07834',
   bookingUrl: '/contactus',
   reviewsLabel: 'Loved by our patients',

@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/page/PageHero.astro';
+import CtaSub from '../../../components/home/CtaSub.astro';
+import { site } from '../../../data/site';
+import { services } from '../../../data/svc';
+
+export function getStaticPaths() {
+  return ['Denville', 'Livingston', 'Newark'].map((city) => ({ params: { city: city.toLowerCase() }, props: { city } }));
+}
+const { city } = Astro.props;
+const loc = site.locations.find((l) => l.city === city)!;
+const towns: Record<string, string[]> = {
+  Denville: ['Denville', 'Rockaway', 'Boonton', 'Mountain Lakes', 'Parsippany', 'Dover', 'Randolph', 'Morristown'],
+  Livingston: ['Livingston', 'West Orange', 'Millburn', 'Short Hills', 'Roseland', 'Florham Park', 'Verona', 'Caldwell', 'Montclair'],
+  Newark: ['Newark', 'Belleville', 'Bloomfield', 'East Orange', 'Irvington', 'Harrison', 'Kearny', 'Elizabeth', 'Jersey City'],
+};
+const county: Record<string, string> = { Denville: 'Morris County', Livingston: 'Essex County', Newark: 'Essex and Union County' };
+const maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.address.join(' '))}`;
+const featured = ['cataract-surgery', 'lasik', 'glaucoma', 'dry-eyes', 'comprehensive-eye-exam', 'macular-degeneration']
+  .map((slug) => (slug === 'cataract-surgery' ? { slug, title: 'Cataract Surgery', short: 'Laser-assisted surgery for clear, bright sight.', img: '/images/stock/shutterstock_2767408177.jpg' } : (() => { const s = services.find((x) => x.slug === slug)!; return { slug, title: s.title, short: s.short, img: s.photos[0] }; })()));
+---
+<BaseLayout title={`Eye Doctor in ${city}, NJ | Marano Eye Care`} description={`Marano Eye Care in ${city}, NJ, ${loc.address[0]}. Eye exams, cataract surgery, LASIK, glaucoma and more. Call ${loc.phone}.`}>
+  <PageHero
+    title="Eye Care in"
+    accent={`${city}, NJ`}
+    lede={`Our ${city} office offers complete eye exams and advanced eye surgery, close to home.`}
+    image={featured[4].img}
+    imageAlt={`An eye doctor examines a patient at our ${city} office`}
+    areas={`Our ${city} office welcomes patients from ${towns[city].join(', ')} and the wider ${county[city]} area.`}
+    crumbs={[{ label: 'Locations' }, { label: `${city}, NJ` }]}
+  />
+  <section class="bg-white py-[clamp(48px,7vw,110px)]">
+    <div class="row-wrap grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-[clamp(32px,6vw,96px)]">
+      <div class="hover-card rounded-[16px] border border-transparent bg-card p-8">
+        <span class="eyebrow">Our {city} office</span>
+        <address class="serif mt-3 text-[26px] not-italic leading-tight text-navy">{loc.address.map((a) => <span class="block">{a}</span>)}</address>
+        <p class="mt-4 text-[20px]"><a href={loc.phoneHref} class="font-semibold text-navy hover:underline">{loc.phone}</a></p>
+        <p class="mt-8 flex flex-wrap gap-3">
+          <a href={loc.phoneHref} class="btn">Call Now</a>
+          <a href={maps} target="_blank" rel="noopener noreferrer" class="btn white !text-navy !border-navy">Get Directions</a>
+        </p>
+      </div>
+      <div>
+        <span class="eyebrow">Nearby areas</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Who we serve <i class="block">near {city}</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">Patients visit our {city} office from all over {county[city]}. If you live in one of these towns, we are a short drive away.</p>
+        <ul class="mt-6 flex flex-wrap gap-3">
+          {towns[city].map((t) => <li class="rounded-full border border-navy/30 bg-mist px-4 py-2 text-[16px] text-navy">{t}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="bg-mist py-[clamp(48px,7vw,110px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">Services</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Care you can get <i class="block">in {city}</i></h2>
+      </div>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {featured.map((s) => (
+          <a href={s.slug === 'cataract-surgery' || s.slug === 'comprehensive-eye-exam' ? `/services/${s.slug}/${city.toLowerCase()}-nj` : `/services/${s.slug}/${city.toLowerCase()}-nj`} class="hover-card on-white group flex flex-col overflow-hidden rounded-[16px] border border-transparent bg-white">
+            <div class="relative aspect-[16/10] overflow-hidden"><img src={s.img} alt={s.title} loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" /></div>
+            <div class="p-6"><h3 class="serif text-[24px] text-navy">{s.title} in {city}</h3><p class="mt-2 text-[16px]">{s.short}</p></div>
+          </a>
+        ))}
+      </div>
+      <p class="mt-10 text-center"><a href="/services" class="btn">All services</a></p>
+    </div>
+  </section>
+  <CtaSub />
+</BaseLayout>
