@@ -42,7 +42,7 @@ export const img = {
     '/images/stock/shutterstock_1909314343.jpg',
     '/images/stock/shutterstock_591166769.jpg',
     '/images/stock/shutterstock_2645711759.jpg',
-    '/images/stock/shutterstock_533672689.jpg',
+    '/images/stock/shutterstock_780951967.jpg',
     '/images/stock/shutterstock_591166769.jpg',
   ],
   lasik: D('1744221933-lasik.jpg', 2200),
@@ -64,7 +64,7 @@ export const img = {
   foundation: '/images/stock/shutterstock_2645711759.jpg',
   financing: D('1744224404-financing.jpg', 1100),
   newPatients: D('1744224414-new-patients.jpg', 1100),
-  team: '/images/stock/shutterstock_533672689.jpg',
+  team: '/images/stock/shutterstock_780951967.jpg',
 };
 
 export const vid = {
