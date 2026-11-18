@@ -73,7 +73,7 @@ export default function Header() {
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden px-1 min-[1360px]:block" aria-label="Main">
+          <nav className="hidden px-3 min-[1360px]:block" aria-label="Main">
             <ul className="flex items-center justify-center gap-0" onMouseLeave={hideSoon}>
               {menu.map((n) => {
                 const kids = childrenOf(n);
@@ -84,7 +84,7 @@ export default function Header() {
                       href={n.href}
                       aria-haspopup={kids.length ? 'true' : undefined}
                       aria-expanded={kids.length ? isOpen : undefined}
-                      className={`flex items-center gap-1 rounded-[6px] px-[4px] py-[6.63px] text-[14px] leading-[14.93px] tracking-[0.5px] text-navy transition-colors hover:bg-mist ${isOpen ? 'bg-mist' : ''}`}
+                      className={`flex items-center gap-1 rounded-[6px] px-[8px] py-[6.63px] text-[14.5px] leading-[14.93px] tracking-[0.5px] text-navy transition-colors hover:bg-mist ${isOpen ? 'bg-mist' : ''}`}
                     >
                       {n.label}
                       {kids.length > 0 && <Chevron className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />}

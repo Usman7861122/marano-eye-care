@@ -91,5 +91,4 @@ export const menu: MenuNode[] = [
     ],
   },
   { label: 'Testimonials', href: '/testimonials' },
-  { label: 'Call Us', href: '/contactus' },
 ];
