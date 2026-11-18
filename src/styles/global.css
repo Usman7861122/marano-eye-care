@@ -326,3 +326,8 @@ h1 i, h2 i, h3 i { color: #4f6fb5; }
 .post-body li { margin-top: .4em; }
 .post-body a { color: var(--color-steel); text-decoration: underline; }
 .post-body strong { color: var(--color-navy); }
+
+/* Breathing status dot */
+.breathe { animation: breathe 2s ease-in-out infinite; }
+@keyframes breathe { 0% { transform: scale(1); opacity: .6; } 70%, 100% { transform: scale(2.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .breathe { animation: none; opacity: 0; } }

@@ -52,8 +52,9 @@ import { img } from '../../data/assets';
   <div class="bg-mist">
     <div class="mx-auto grid max-w-[var(--row)] items-center gap-4 px-5 py-[46px] text-[12px] leading-[19.2px] tracking-[1px] text-[#222] md:grid-cols-3">
       <p>© Marano Eye Care. <span class="block-phone">All Rights Reserved.</span></p>
-      <p class="md:text-center">
-        {site.legal.map((l, i) => (<a href={l.href} class:list={[i > 0 && 'ml-[5px]']}>{l.label}</a>))}
+      <p class="flex flex-wrap gap-x-3 gap-y-1 md:justify-center md:text-center">
+        {site.legal.map((l) => (<a href={l.href} class="hover:underline">{l.label}</a>))}
+        <button type="button" data-cookie-settings class="tracking-[1px] hover:underline">Cookie Settings</button>
       </p>
       <a href="https://onjeyecare.com" target="_blank" rel="noopener" class="md:text-right">
         Proudly affiliated with Ophthalmology NJ

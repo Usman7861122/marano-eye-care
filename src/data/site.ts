@@ -11,7 +11,9 @@ export const site = {
   ],
   areasAll: 'Patients are welcome from across Denville, Livingston, Newark, Morristown, Parsippany, West Orange and the greater Morris, Essex and Union County area.',
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=16+Pocono+Road+Suite+301+Denville+NJ+07834',
-  bookingUrl: '/contactus',
+  bookingUrl: '/appointment',
+  // TODO: paste your form service URL here (Formspree, Web3Forms, a Vercel function...). Empty = form shows a call-us message.
+  formEndpoint: '',
   reviewsLabel: 'Loved by our patients',
   reviewsUrl: '#testimonials',
   social: {
@@ -30,6 +32,10 @@ export const site = {
   legal: [
     { label: 'Terms & Conditions', href: '/our-terms' },
     { label: 'Privacy Policy', href: '/your-privacy' },
+    { label: 'Notice of Privacy Practices', href: '/notice-of-privacy-practices' },
+    { label: 'Cookie Policy', href: '/cookie-policy' },
     { label: 'Accessibility', href: '/accessibility-statement' },
+    { label: 'Medical Disclaimer', href: '/medical-disclaimer' },
+    { label: 'Nondiscrimination', href: '/nondiscrimination-notice' },
   ],
 };

@@ -1,0 +1,79 @@
+---
+// Minimal, customizable cookie banner. Choices are saved in localStorage ("marano-consent").
+// Other scripts can read window.maranoConsent and listen for the "consentchange" event.
+---
+<div id="cc" role="dialog" aria-live="polite" aria-label="Cookie preferences" hidden
+  class="fixed inset-x-4 bottom-4 z-[60] mx-auto max-w-[520px] rounded-[16px] border border-navy/10 bg-white p-5 text-[15px] leading-[1.55] text-navy shadow-[0_20px_50px_-20px_rgba(26,39,72,.45)] max-sm:bottom-[84px]">
+  <div id="cc-main">
+    <p><strong class="font-semibold">We use cookies.</strong> Some are needed for the site to work. Others help us understand how it is used. You choose. <a href="/cookie-policy" class="underline">Learn more</a></p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <button type="button" id="cc-accept" class="rounded-full border border-navy bg-navy px-4 py-2 text-[14px] text-white transition hover:bg-transparent hover:text-navy">Accept all</button>
+      <button type="button" id="cc-reject" class="rounded-full border border-navy px-4 py-2 text-[14px] transition hover:bg-navy hover:text-white">Reject non-essential</button>
+      <button type="button" id="cc-custom" class="px-3 py-2 text-[14px] underline">Customize</button>
+    </div>
+  </div>
+  <form id="cc-panel" hidden>
+    <p class="font-semibold">Cookie settings</p>
+    <ul class="mt-3 grid gap-3">
+      <li class="flex items-start justify-between gap-4">
+        <div><p class="font-medium">Necessary</p><p class="text-[13px] opacity-80">Keep the site secure and remember your choices. Always on.</p></div>
+        <input type="checkbox" checked disabled class="cc-switch" aria-label="Necessary cookies, always on" />
+      </li>
+      <li class="flex items-start justify-between gap-4">
+        <div><p class="font-medium">Analytics</p><p class="text-[13px] opacity-80">Help us see which pages are useful, with no names attached.</p></div>
+        <input type="checkbox" id="cc-analytics" class="cc-switch" aria-label="Analytics cookies" />
+      </li>
+      <li class="flex items-start justify-between gap-4">
+        <div><p class="font-medium">Media and marketing</p><p class="text-[13px] opacity-80">Allow embedded videos and ad measurement from other services.</p></div>
+        <input type="checkbox" id="cc-marketing" class="cc-switch" aria-label="Media and marketing cookies" />
+      </li>
+    </ul>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <button type="submit" class="rounded-full border border-navy bg-navy px-4 py-2 text-[14px] text-white transition hover:bg-transparent hover:text-navy">Save choices</button>
+      <button type="button" id="cc-back" class="px-3 py-2 text-[14px] underline">Back</button>
+    </div>
+  </form>
+</div>
+
+<style is:global>
+  .cc-switch { appearance: none; flex: none; width: 42px; height: 24px; border-radius: 999px; background: #c5cde0; position: relative; cursor: pointer; transition: background .2s; margin-top: 2px; }
+  .cc-switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .2s; }
+  .cc-switch:checked { background: var(--color-steel); }
+  .cc-switch:checked::after { transform: translateX(18px); }
+  .cc-switch:disabled { opacity: .6; cursor: not-allowed; }
+  .cc-switch:focus-visible { outline: 2px solid var(--color-sky); outline-offset: 2px; }
+  #cc:not([hidden]) { animation: cc-in .35s ease both; }
+  @keyframes cc-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { #cc:not([hidden]) { animation: none; } }
+</style>
+
+<script>
+  const KEY = 'marano-consent';
+  type Consent = { v: 1; analytics: boolean; marketing: boolean; ts: number };
+  const read = (): Consent | null => { try { const r = localStorage.getItem(KEY); return r ? JSON.parse(r) : null; } catch { return null; } };
+  const save = (c: Consent) => { try { localStorage.setItem(KEY, JSON.stringify(c)); } catch {} };
+  const $ = (id: string) => document.getElementById(id) as HTMLElement;
+  const box = $('cc'), main = $('cc-main'), panel = $('cc-panel') as HTMLFormElement;
+  const an = $('cc-analytics') as HTMLInputElement, mk = $('cc-marketing') as HTMLInputElement;
+  const w = window as any;
+  const apply = (c: Consent | null) => {
+    w.maranoConsent = c ? { necessary: true, analytics: c.analytics, marketing: c.marketing } : { necessary: true, analytics: false, marketing: false };
+    document.dispatchEvent(new CustomEvent('consentchange', { detail: w.maranoConsent }));
+  };
+  const show = (custom = false) => {
+    const c = read(); an.checked = !!c?.analytics; mk.checked = !!c?.marketing;
+    box.hidden = false; main.hidden = custom; panel.hidden = !custom;
+    (custom ? an : $('cc-accept')).focus({ preventScroll: true });
+  };
+  const choose = (analytics: boolean, marketing: boolean) => { const c = { v: 1 as const, analytics, marketing, ts: Date.now() }; save(c); apply(c); box.hidden = true; };
+  $('cc-accept').addEventListener('click', () => choose(true, true));
+  $('cc-reject').addEventListener('click', () => choose(false, false));
+  $('cc-custom').addEventListener('click', () => show(true));
+  $('cc-back').addEventListener('click', () => show(false));
+  panel.addEventListener('submit', (e) => { e.preventDefault(); choose(an.checked, mk.checked); });
+  box.addEventListener('keydown', (e) => { if ((e as KeyboardEvent).key === 'Escape' && read()) box.hidden = true; });
+  document.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('[data-cookie-settings]')) show(true); });
+  const existing = read();
+  apply(existing);
+  if (!existing) show(false);
+</script>

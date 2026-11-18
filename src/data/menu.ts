@@ -10,7 +10,7 @@ export const menu: MenuNode[] = [
     href: '/about',
     children: [
       { label: 'Doctors', href: '/provider' },
-      { label: 'Notice Of Privacy', href: 'https://sa1s3optim.patientpop.com/assets/docs/425417.pdf', external: true },
+      { label: 'Notice Of Privacy', href: '/notice-of-privacy-practices' },
     ],
   },
   {
