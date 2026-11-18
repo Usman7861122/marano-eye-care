@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/page/PageHero.astro';
+import SubNav from '../../components/page/SubNav.astro';
+import CtaSub from '../../components/home/CtaSub.astro';
+import { site } from '../../data/site';
+
+const photo = {
+  hero: '/images/stock/shutterstock_2767408177.jpg',
+  iol: '/images/stock/shutterstock_2810960925.jpg',
+  life: '/images/stock/shutterstock_1138084499.jpg',
+};
+
+const links = [
+  { label: 'What it is', href: '#what' },
+  { label: 'How it works', href: '#how' },
+  { label: 'Benefits', href: '#benefits' },
+  { label: 'Lens choices', href: '#lenses' },
+  { label: 'Is it for me?', href: '#self-test' },
+];
+
+const steps = [
+  { t: 'Comfort first', d: 'We numb your eye with simple drops. You stay relaxed and comfortable.' },
+  { t: '3D map of your eye', d: 'A scan shows the exact shape and size of your eye, so each step is planned just for you.' },
+  { t: 'Laser does the delicate work', d: 'The laser makes the small cuts and gently softens the cloudy lens. This is more precise than a hand-held blade.' },
+  { t: 'New clear lens', d: 'Your surgeon removes the cloudy lens and places a new lens (IOL) in your eye.' },
+];
+
+const benefits = [
+  { t: 'High precision', d: 'The laser follows your eye map. Cuts are exact every time.' },
+  { t: 'Gentler on your eye', d: 'The laser softens the lens first, so less energy is needed to remove it.' },
+  { t: 'Fix astigmatism', d: 'Small laser cuts can reduce astigmatism of up to 1 diopter during the same visit.' },
+  { t: 'Quicker recovery', d: 'Most people feel better fast, and many reach 20/20 vision or better.' },
+];
+
+const lenses = ['Symfony®', 'PanOptix®', 'Vivity™', 'Synergy™', 'Toric (for astigmatism)'];
+
+const questions = [
+  'Do glare or halos around lights bother you at night?',
+  'Do you want to see well without depending on others?',
+  'Is it hard to read, watch TV, or use screens?',
+  'Do your eyes make driving or your job harder?',
+];
+
+const faqs = [
+  { q: 'What is cataract surgery?', a: 'A cataract is a cloudy lens inside the eye. Surgery takes out the cloudy lens and puts in a clear, artificial lens so you can see sharp and bright again.' },
+  { q: 'How long does it take?', a: 'The laser steps and lens placement take about 15 to 20 minutes. Plan to spend a little longer at our office for check-in and rest.' },
+  { q: 'Do I need someone to drive me?', a: 'Yes. Please bring a driver, because your vision will be blurry for a short time after surgery.' },
+  { q: 'Does it hurt?', a: 'No. We use numbing drops, and most people say they feel only light pressure.' },
+];
+---
+<BaseLayout
+  title="Cataract Surgery | Marano Eye Care"
+  description="Laser-assisted cataract surgery at Marano Eye Care in New Jersey. Clear vision, fast recovery, and lens choices made for you."
+>
+  <PageHero
+    title="Cataract Surgery"
+    lede="See clearly again with gentle, laser-assisted cataract surgery from our experienced eye surgeons."
+    image={photo.hero}
+    imageAlt="A surgeon performs laser cataract surgery in an operating room"
+    crumbs={[{ label: 'Services', href: '#' }, { label: 'Cataract Surgery' }]}
+  />
+  <SubNav links={links} />
+
+  <!-- What it is -->
+  <section id="what" class="bg-white pb-[clamp(56px,8vw,120px)] pt-[clamp(24px,4vw,56px)]">
+    <div class="row-wrap grid items-center gap-10 md:grid-cols-2 md:gap-[clamp(32px,6vw,96px)]">
+      <div>
+        <span class="eyebrow">What it is</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">A clear lens <i class="block">for a clear view</i></h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">About 3 million Americans have cataract surgery every year. A cataract makes the lens in your eye cloudy. Colors look dull, lights glow, and reading gets hard.</p>
+        <p class="mt-5 text-[18px] leading-[1.7]">At Marano Eye Care we offer femtosecond laser-assisted cataract surgery with the Alcon LenSx® laser. It helps your surgeon plan and do each step with great care.</p>
+        <p class="mt-8 flex flex-wrap gap-3">
+          <a href={site.bookingUrl} class="btn">Book a Visit</a>
+          <a href={site.phoneHref} class="btn white !text-navy !border-navy">{site.phone}</a>
+        </p>
+      </div>
+      <div class="relative aspect-[4/3] overflow-hidden rounded-[16px]">
+        <img src={photo.life} alt="A happy senior woman reading a book on her sofa" loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="bg-navy py-[clamp(56px,8vw,120px)] text-white">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">How it works</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15]">Four simple steps</h2>
+        <p class="mt-5 text-[18px] leading-[1.7] text-white/90">The whole procedure takes about 15 to 20 minutes.</p>
+      </div>
+      <ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {steps.map((s, i) => (
+          <li class="rounded-[16px] bg-white/10 p-7">
+            <span class="serif text-[40px] leading-none text-sky">{i + 1}</span>
+            <h3 class="serif mt-4 text-[22px] leading-tight">{s.t}</h3>
+            <p class="mt-3 text-[16px] leading-[1.65] text-white/85">{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits" class="bg-white py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">Benefits</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Why choose laser cataract surgery</h2>
+      </div>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {benefits.map((b) => (
+          <div class="rounded-[16px] bg-card p-7">
+            <h3 class="serif text-[22px] leading-tight text-navy">{b.t}</h3>
+            <p class="mt-3 text-[16px] leading-[1.65]">{b.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Lens choices -->
+  <section id="lenses" class="bg-mist py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap grid items-center gap-10 md:grid-cols-2 md:gap-[clamp(32px,6vw,96px)]">
+      <div class="relative aspect-[4/3] overflow-hidden rounded-[16px] md:order-first">
+        <img src={photo.iol} alt="Close-up of an eye with an intraocular lens held by surgical tweezers" loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+      <div>
+        <span class="eyebrow">Lens choices</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">A lens made for your life</h2>
+        <p class="mt-5 text-[18px] leading-[1.7]">After the cloudy lens is removed, a new lens called an IOL takes its place. Premium lenses can help you see far, near, and in between, with less need for glasses.</p>
+        <ul class="mt-6 grid gap-2 text-[17px]">
+          {lenses.map((l) => <li class="flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-steel"></span>{l}</li>)}
+        </ul>
+        <p class="mt-8"><a href="https://premium-iol.maranoeyecare.com" target="_blank" rel="noopener noreferrer" class="btn">Explore Premium Lenses</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Self test -->
+  <section id="self-test" class="bg-white py-[clamp(56px,8vw,120px)]">
+    <div class="row-wrap max-w-[860px]">
+      <div class="text-center">
+        <span class="eyebrow">Is it for me?</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">A quick self-check</h2>
+        <p class="mx-auto mt-5 max-w-[640px] text-[18px] leading-[1.7]">If you say yes to any of these, it may be time to talk with us.</p>
+      </div>
+      <ul class="mt-10 grid gap-4">
+        {questions.map((q) => (
+          <li class="flex items-start gap-4 rounded-[12px] bg-card p-5 text-[17px] leading-[1.6]">
+            <svg width="22" height="22" viewBox="0 0 24 24" class="mt-[2px] shrink-0 text-steel" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            {q}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-card py-[clamp(48px,7vw,100px)]">
+    <div class="row-wrap max-w-[860px]">
+      <h2 class="serif text-center text-[length:var(--fs-h2b)] leading-[1.15] text-navy">Common questions</h2>
+      <div class="mt-10 grid gap-3">
+        {faqs.map((f) => (
+          <details class="group rounded-[12px] bg-white p-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-[18px] font-semibold text-navy">
+              {f.q}
+              <span class="text-[22px] transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-[17px] leading-[1.7]">{f.a}</p>
+          </details>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-[16px]">Your surgeons: <a class="underline" href="/provider/matthew-j-marano-jr-md">Dr. Marano</a>, <a class="underline" href="/provider/sherief-raouf-md">Dr. Raouf</a> and <a class="underline" href="/provider/edward-b-decker-md">Dr. Decker</a>.</p>
+    </div>
+  </section>
+
+  <CtaSub />
+</BaseLayout>
