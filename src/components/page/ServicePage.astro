@@ -24,7 +24,8 @@ const order = loc ? { Denville: [1, 2, 0], Livingston: [2, 0, 1], Newark: [1, 0,
 const [heroImg, lifeImg, optImg] = order.map((i) => svc.photos[i]);
 const heroPos = loc ? 'center 30%' : 'center';
 
-const mainHref = `/services/${svc.slug}`;
+const base = svc.section === 'tests' ? '/eye-tests' : '/services';
+const mainHref = `${base}/${svc.slug}`;
 const links = [
   { label: 'What it is', href: '#what' },
   { label: 'How it works', href: '#how' },
@@ -53,7 +54,7 @@ const description = loc
     areas={loc ? `Our ${loc.city} office welcomes patients from ${areasByCity[loc.city]}.` : undefined}
     crumbs={loc
       ? [{ label: 'Services', href: '/services' }, { label: svc.title, href: mainHref }, { label: `${loc.city}, NJ` }]
-      : [{ label: 'Services', href: '/services' }, { label: svc.title }]}
+      : [{ label: svc.section === 'tests' ? 'Eye Tests' : 'Services', href: base }, { label: svc.title }]}
   />
   <SubNav links={links} />
 
@@ -185,7 +186,7 @@ const description = loc
             <address class="mt-3 text-[17px] not-italic leading-[1.65]">{l.address.map((a) => <span class="block">{a}</span>)}</address>
             <p class="mt-3 text-[17px]"><a href={l.phoneHref} class="font-semibold text-navy hover:underline">{l.phone}</a></p>
             <p class="relative z-10 mt-auto flex flex-wrap gap-2 pt-6 text-[14px] tracking-normal">
-              <a class="rounded-full border border-navy bg-navy px-4 py-2.5 text-white transition hover:bg-transparent hover:text-navy" href={`/services/${svc.slug}/${l.city.toLowerCase()}-nj`}>{svc.title} in {l.city}</a>
+              <a class="rounded-full border border-navy bg-navy px-4 py-2.5 text-white transition hover:bg-transparent hover:text-navy" href={svc.noCity ? site.bookingUrl : `/services/${svc.slug}/${l.city.toLowerCase()}-nj`}>{svc.noCity ? `Book at ${l.city}` : `${svc.title} in ${l.city}`}</a>
               <a class="rounded-full border border-navy px-4 py-2.5 text-navy transition hover:bg-navy hover:text-white" href={l.phoneHref}>Call Now</a>
             </p>
           </div>

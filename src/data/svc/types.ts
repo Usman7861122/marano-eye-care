@@ -16,6 +16,8 @@ export type Service = {
   title: string;
   short: string;
   photos: [string, string, string];
+  noCity?: boolean;
+  section?: 'tests';
   a: Body;
   b: Body;
 };

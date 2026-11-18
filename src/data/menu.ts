@@ -1,8 +1,6 @@
 // Main menu: same structure and labels as maranoeyecare.com
 export type MenuNode = { label: string; href: string; external?: boolean; children?: MenuNode[] };
 
-const P = '/contents/eye-care-services/eye-procedures/';
-const T = '/contents/eye-care-services/eye-tests/';
 const C = '/contents/eye-conditions/';
 const L = '/location/nj/';
 
@@ -37,31 +35,31 @@ export const menu: MenuNode[] = [
     children: [
       {
         label: 'Eye Procedures',
-        href: '/contents/eye-care-services/eye-procedures',
+        href: '/services',
         children: [
-          { label: 'New Jersey Cataract Surgery', href: P + 'cataract-surgery-1' },
-          { label: 'Botox and Juvederm Treatments in New Jersey', href: P + 'botox-and-juvederm' },
-          { label: 'Durysta', href: P + 'durysta' },
-          { label: 'Glaucoma', href: P + 'glaucoma' },
-          { label: 'New Jersey LASIK Eye Surgery', href: P + 'lasik-eye-surgery' },
-          { label: 'New Jersey Eye Floaters Laser Treatment', href: P + 'laser-floaters-treatment' },
-          { label: 'New Jersey LipiFlow Treatment', href: P + 'lipiflow-thermal-pulsation' },
-          { label: 'Selective Laser Trabeculoplasty For Glaucoma', href: P + 'selective-laser-trabeculoplasty' },
-          { label: 'NJ Treatments For Dry Eye Syndrome', href: P + 'true-tear' },
-          { label: 'YAG Laser Capsulotomy in New Jersey', href: P + 'yag-capsulotomy' },
+          { label: 'New Jersey Cataract Surgery', href: '/services/cataract-surgery' },
+          { label: 'Botox and Juvederm Treatments in New Jersey', href: '/services/botox' },
+          { label: 'Durysta', href: '/services/durysta' },
+          { label: 'Glaucoma', href: '/services/glaucoma' },
+          { label: 'New Jersey LASIK Eye Surgery', href: '/services/lasik' },
+          { label: 'New Jersey Eye Floaters Laser Treatment', href: '/services/floaters' },
+          { label: 'New Jersey LipiFlow Treatment', href: '/services/lipiflow' },
+          { label: 'Selective Laser Trabeculoplasty For Glaucoma', href: '/services/selective-laser-trabeculoplasty' },
+          { label: 'NJ Treatments For Dry Eye Syndrome', href: '/services/dry-eyes' },
+          { label: 'YAG Laser Capsulotomy in New Jersey', href: '/services/yag-laser-capsulotomy' },
         ],
       },
       {
         label: 'Eye Tests',
-        href: '/contents/eye-care-services/eye-tests',
+        href: '/eye-tests',
         children: [
-          { label: 'New Jersey A-Scans & B-Scans', href: T + 'a-scans-b-scans' },
-          { label: 'What is Electroretinography (ERG)?', href: T + 'electroretinography' },
-          { label: 'New Jersey Fundus Photography Eye Test', href: T + 'fundus-photography' },
-          { label: 'Nerve Fiber Analysis Test', href: T + 'nerve-fiber-analysis' },
-          { label: 'Optical Coherence Tomography', href: T + 'optical-coherence-tomography' },
-          { label: 'Visual Evoked Potential', href: T + 'visual-evoked-potential' },
-          { label: 'Visual Field Test', href: T + 'visual-field-test' },
+          { label: 'New Jersey A-Scans & B-Scans', href: '/eye-tests/a-scans-b-scans' },
+          { label: 'What is Electroretinography (ERG)?', href: '/eye-tests/electroretinography' },
+          { label: 'New Jersey Fundus Photography Eye Test', href: '/eye-tests/fundus-photography' },
+          { label: 'Nerve Fiber Analysis Test', href: '/eye-tests/nerve-fiber-analysis' },
+          { label: 'Optical Coherence Tomography', href: '/eye-tests/optical-coherence-tomography' },
+          { label: 'Visual Evoked Potential', href: '/eye-tests/visual-evoked-potential' },
+          { label: 'Visual Field Test', href: '/eye-tests/visual-field-test' },
         ],
       },
     ],

@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/page/PageHero.astro';
+import CtaSub from '../../components/home/CtaSub.astro';
+import { site } from '../../data/site';
+import { eyeTests } from '../../data/svc';
+---
+<BaseLayout title="Eye Tests | Marano Eye Care" description="Advanced eye tests at Marano Eye Care in New Jersey: OCT, fundus photography, visual field, nerve fiber analysis, ERG, VEP and A/B-scans.">
+  <PageHero
+    title="Eye Tests"
+    lede="Modern, painless tests help us find eye disease early and track your health over time."
+    image={eyeTests[4].photos[0]}
+    imageAlt="Retina scan image from an eye test"
+    crumbs={[{ label: 'Eye Tests' }]}
+  />
+  <section class="bg-white py-[clamp(48px,7vw,110px)]">
+    <div class="row-wrap">
+      <div class="mx-auto max-w-[760px] text-center">
+        <span class="eyebrow">All eye tests</span>
+        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Clear answers <i class="block">about your eyes</i></h2>
+      </div>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {eyeTests.map((s) => (
+          <a href={`/eye-tests/${s.slug}`} class="hover-card group relative flex flex-col overflow-hidden rounded-[16px] border border-transparent bg-card">
+            <div class="relative aspect-[16/10] overflow-hidden">
+              <img src={s.photos[0]} alt={s.title} loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            </div>
+            <div class="flex flex-1 flex-col p-7">
+              <h3 class="serif text-[26px] leading-tight text-navy">{s.title}</h3>
+              <p class="mt-3 text-[17px] leading-[1.6]">{s.short}</p>
+              <span class="mt-auto pt-5 text-[15px] font-semibold text-steel">Learn more →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="mt-12 text-center"><a href={site.bookingUrl} class="btn">Book a Visit</a></p>
+    </div>
+  </section>
+  <CtaSub />
+</BaseLayout>
