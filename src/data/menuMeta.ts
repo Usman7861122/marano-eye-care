@@ -39,7 +39,16 @@ export const menuMeta: Record<string, { icon: string; desc: string }> = {
   '/conditions/macular-degeneration': { icon: 'Aperture', desc: 'Blurry central vision' },
   '/conditions/pterygium': { icon: 'Sun', desc: 'Growth on the eye surface' },
 
-  '/location/nj/denville': { icon: 'MapPin', desc: 'Our Denville office' },
-  '/location/nj/livingston': { icon: 'MapPin', desc: 'Our Livingston office' },
-  '/location/nj/newark': { icon: 'MapPin', desc: 'Our Newark office' },
+  '/location/nj/denville': { icon: 'MapPin', desc: 'Hours and directions' },
+  '/location/nj/livingston': { icon: 'MapPin', desc: 'Hours and directions' },
+  '/location/nj/newark': { icon: 'MapPin', desc: 'Hours and directions' },
+};
+
+// Left feature card of each mega menu panel.
+export const menuPanels: Record<string, { title: string; text: string; cta?: { label: string; href: string } }> = {
+  'About Practice': { title: 'Care you can trust', text: 'Meet our surgeons and learn how we look after you.', cta: { label: 'About us', href: '/about' } },
+  Services: { title: 'Clear sight, made simple', text: 'Gentle, modern care for every stage of life.', cta: { label: 'View all', href: '/services' } },
+  'Eye Care Services': { title: 'Tests and treatments', text: 'Modern tools to find problems early and treat them well.', cta: { label: 'View all', href: '/services' } },
+  'Eye Conditions': { title: 'Know your eyes', text: 'Plain-English guides to common eye conditions.', cta: { label: 'View all', href: '/conditions' } },
+  Contact: { title: 'Visit us in New Jersey', text: 'Three offices: Denville, Livingston and Newark.', cta: { label: 'Book a visit', href: '/appointment' } },
 };

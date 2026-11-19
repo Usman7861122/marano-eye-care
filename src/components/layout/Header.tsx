@@ -3,7 +3,8 @@ import { site } from '../../data/site';
 import { img } from '../../data/assets';
 import { menu, type MenuNode as Node } from '../../data/menu';
 import { practiceStatus } from '../../data/hours';
-import { menuMeta } from '../../data/menuMeta';
+import { menuMeta, menuPanels } from '../../data/menuMeta';
+import { menuThumbs } from '../../data/menuThumbs';
 import { Stethoscope, ShieldCheck, ScanEye, Zap, Gauge, Droplets, Focus, Layers, Activity, Aperture, Eye, Syringe, Pill, Sparkles, Flame, Crosshair, Radio, ClipboardList, Waves, Camera, ScanLine, Microscope, Radar, View, Wind, HeartPulse, Sun, MapPin } from 'lucide-react';
 
 const ICONS: Record<string, React.ElementType> = { Stethoscope, ShieldCheck, ScanEye, Zap, Gauge, Droplets, Focus, Layers, Activity, Aperture, Eye, Syringe, Pill, Sparkles, Flame, Crosshair, Radio, ClipboardList, Waves, Camera, ScanLine, Microscope, Radar, View, Wind, HeartPulse, Sun, MapPin };
@@ -35,7 +36,7 @@ const childrenOf = (n: Node): Node[] => n.children ?? [];
 
 const toSub = (n: Node): NavSubItem => {
   const m = menuMeta[n.href];
-  return { label: n.label, href: n.href, description: m?.desc, icon: (m && ICONS[m.icon]) || Eye };
+  return { label: n.label, href: n.href, description: m?.desc, thumb: menuThumbs[n.href], icon: (m && ICONS[m.icon]) || Eye };
 };
 
 const navItems: NavItem[] = menu.map((n, i) => {
@@ -46,6 +47,7 @@ const navItems: NavItem[] = menu.map((n, i) => {
     id: i + 1,
     label: n.label,
     href: n.href,
+    panel: menuPanels[n.label] ? { eyebrow: n.label === 'Contact' ? 'Our offices' : n.label, ...menuPanels[n.label] } : undefined,
     subMenus: grouped
       ? kids.map((k) => ({ title: k.label, items: (k.children ?? []).map(toSub) }))
       : [{ title: n.label === 'Contact' ? 'Our offices' : n.label, items: kids.map(toSub) }],
@@ -65,7 +67,7 @@ export default function Header() {
   const [mobileSub, setMobileSub] = useState<string | null>(null);
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="mx-0 bg-white px-5 py-[10px] shadow-[0_0_15px_-4px_rgba(20,20,20,0.14)] min-[1360px]:mx-3 min-[1360px]:mt-6 min-[1360px]:rounded-[10px]">
+      <div className="relative mx-0 bg-white px-5 py-[10px] shadow-[0_0_15px_-4px_rgba(20,20,20,0.14)] min-[1360px]:mx-3 min-[1360px]:mt-6 min-[1360px]:rounded-[10px]">
         <div className="mx-auto flex max-w-[1346px] items-center justify-between min-[1360px]:grid min-[1360px]:grid-cols-[184px_1fr_auto]">
           {/* Logo */}
           <a href="/" className="block shrink-0">
