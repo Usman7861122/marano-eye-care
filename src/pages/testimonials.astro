@@ -4,7 +4,6 @@ import PageHero from '../components/page/PageHero.astro';
 import CtaSub from '../components/home/CtaSub.astro';
 import { site } from '../data/site';
 import { home } from '../data/home';
-import { img } from '../data/assets';
 import { reviews, rating } from '../data/reviews';
 import { services } from '../data/svc';
 
@@ -14,7 +13,7 @@ const star = '<path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-
 const feature = reviews[0];
 const rest = reviews.slice(1);
 ---
-<BaseLayout title="Patient Testimonials | Marano Eye Care" description="Read what patients say about Marano Eye Care in Denville, Livingston and Newark, NJ. Real reviews and patient video stories.">
+<BaseLayout title="Patient Testimonials | Marano Eye Care" description="Read what patients say about Marano Eye Care in Denville, Livingston and Newark, NJ. Real patient reviews.">
   <PageHero
     title="Patient Testimonials"
     lede="Real words from the people we care for. Thank you for trusting us with your eyes."
@@ -95,24 +94,6 @@ const rest = reviews.slice(1);
   </section>
 
   <!-- Video stories -->
-  <section class="bg-white py-[clamp(48px,7vw,110px)]">
-    <div class="row-wrap">
-      <div class="mx-auto max-w-[760px] text-center">
-        <span class="eyebrow">Patient stories</span>
-        <h2 class="serif text-[length:var(--fs-h2)] leading-[1.15] text-navy">Watch their <i class="block">own words</i></h2>
-      </div>
-      <div class="mt-10 grid grid-cols-1 gap-3 min-[801px]:grid-cols-2 min-[1025px]:grid-cols-5">
-        {home.patients.map((p, i) => (
-          <div class="patient-tile">
-            <img src={img.patients[i]} alt={`${p.name}, patient video`} loading="lazy" />
-            <div class="content"><h3 class="serif">{p.name}</h3><p>{p.topic}</p></div>
-            <a href={p.url} class="popup-video" aria-label={`Watch ${p.name}'s story`}></a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <CtaSub />
 </BaseLayout>
 

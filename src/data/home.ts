@@ -25,16 +25,9 @@ export const home = {
     '“Dr. Marano is the best in his field.”',
     '“They made me feel at ease every step of the way.”',
   ],
-  patients: [
-    { name: 'Ann', topic: 'Cataract Surgery', url: 'https://www.youtube.com/watch?v=cZe0FLhWkrI' },
-    { name: 'Nicole', topic: 'Vision Correction (LASIK)', url: 'https://www.youtube.com/watch?v=Wdj1MHdg-Kg' },
-    { name: 'Kelly', topic: 'Cataract Surgery', url: 'https://www.youtube.com/watch?v=PHY7mWeNe9Q' },
-    { name: 'Azzure', topic: 'Vision Correction (LASIK)', url: 'https://www.youtube.com/watch?v=747jyY4l96U' },
-    { name: 'Kristen', topic: 'Vision Correction', url: 'https://www.youtube.com/watch?v=06t8o4992_0&t=2s' },
-  ],
   banners: [
-    { title: 'Meet Your Surgeon, Dr. Marano', text: 'His story, passion, and beliefs', url: 'https://www.youtube.com/watch?v=J9M5IJSA8RY' },
-    { title: 'What It’s Like To Be Our Patient', text: 'Heard. Informed. Confident. Clear-sighted.', url: 'https://www.youtube.com/watch?v=B0iQaGp94Lw' },
+    { label: 'Meet:', title: 'Your Surgeon, Dr. Marano', text: 'His story, passion, and beliefs', url: '/about', image: '/images/dr-marano.webp', alt: 'Dr. Marano' },
+    { label: 'Read:', title: 'What It’s Like To Be Our Patient', text: 'Heard. Informed. Confident. Clear-sighted.', url: '/testimonials', image: '/images/stock/shutterstock_2373161031.jpg', alt: 'A doctor talking with a smiling patient' },
   ],
   doctorSlides: [
     { icon: 'stethoscope', a: 'Surgeons your', b: 'neighbors trust.', p: 'Matthew Marano, Jr., MD, Edward Decker, MD, and Sherief Raouf, MD lead our team.' },
@@ -89,11 +82,9 @@ export const home = {
     { h: '60+', p: 'Cataracts and other age-related changes can blur your view. Modern surgery and premium lenses can bring back clear, bright vision so you can stay independent and active.', cta: 'Cataract Surgery', href: '/services/cataract-surgery' },
   ],
   ageVideo: {
-    watch: 'Watch: What You Should Know About Vision Correction',
-    p: 'Eyes change over the years. Watch how Marano Eye Care helps patients of every age protect and improve their sight.',
+    p: 'Eyes change over the years. Marano Eye Care helps patients of every age protect and improve their sight.',
     cta: 'Vision Correction',
     href: '/services/lasik',
-    url: 'https://www.youtube.com/watch?v=kdykWUetn8I',
   },
   services: [
     { title: 'LASIK & Refractive Surgery', p: 'Picture waking up able to see: no glasses, no contacts. At Marano Eye Care, Dr. Marano was one of the first LASIK surgeons in New Jersey, and our team brings more than three decades of experience to every procedure. Find out what LASIK could do for you.', links: [['LASIK', '/services/lasik']], cta: 'Learn More About LASIK', href: '/services/lasik' },

@@ -2,10 +2,6 @@
 // Run scripts/download-assets.sh on your own computer to save local copies into /public.
 const D = (file: string, w?: number) =>
   `https://www.datocms-assets.com/157807/${file}?auto=format,compress${w ? `&w=${w}` : ''}`;
-const V = (id: string) => ({
-  high: `https://videos.tresiocdn.com/${id}/high.mp4`,
-  medium: `https://videos.tresiocdn.com/${id}/medium.mp4`,
-});
 
 export const img = {
   logoNav: '/images/logo.png',
@@ -23,14 +19,6 @@ export const img = {
     D('1744137177-mask-group.png', 215),
     D('1744137192-mask-group-1.png', 97),
   ],
-  patients: [
-    D('1779291542-1-ann.jpg', 600),
-    D('1779291542-2-nicole.jpg', 600),
-    D('1744240661-video-3.jpg', 600),
-    D('1744240677-video-4.jpg', 600),
-    D('1746457580-kristenvideo.jpg', 600),
-  ],
-  videoCards: ['/images/stock/shutterstock_1909314343.jpg', D('1744219499-9-video-card-2.jpg', 1200)],
   credentials: [
     D('1744219769-1.png', 250),
     D('1744219770-2.png', 250),
@@ -74,9 +62,6 @@ export const img = {
 
 export const vid = {
   hero: { high: '/videos/hero.mp4', medium: '/videos/hero.mp4' },
-  power: V('1GDErUAjUhFjxMFeN9I02BguhONQE68DP'),
   findOut: { high: '/videos/findout.mp4', medium: '/videos/findout.mp4' },
-  cataracts: V('74GuSbBg56tn02yPClJrjIZH2MOi027bk9'),
-  ageVideo: V('S3009VLubi4JGhVfzb9oEgPWtnshPftb1'),
   heroPoster: '/videos/hero-poster.jpg',
 };

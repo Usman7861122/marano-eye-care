@@ -2,22 +2,28 @@
 // Full-width background video with a big headline. Used twice on the page.
 import PlayLink from '../ui/PlayLink.astro';
 interface Props {
-  src: { high: string; medium: string };
+  src?: { high: string; medium: string };
+  image?: string;
+  imageAlt?: string;
   variant: 'power' | 'findout';
 }
-const { src, variant } = Astro.props;
+const { src, image, imageAlt = '', variant } = Astro.props;
 ---
 <section
   class:list={['relative overflow-hidden bg-navy text-white', variant === 'power' ? 'round-top min-h-[560px]' : 'flex min-h-[100svh] items-center']}
 >
-  <video
-    class:list={['absolute inset-0 h-full w-full object-cover', variant === 'power' ? 'round-top min-h-[560px]' : '']}
-    autoplay muted loop playsinline preload="metadata" aria-hidden="true"
-  >
-    <source src={src.medium} type="video/mp4" media="(max-width: 1023px)" />
-    <source src={src.high} type="video/mp4" />
-  </video>
-  <div class="absolute inset-0 bg-navy/25"></div>
+  {image ? (
+    <img src={image} alt={imageAlt} loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+  ) : (
+    <video
+      class:list={['absolute inset-0 h-full w-full object-cover', variant === 'power' ? 'round-top min-h-[560px]' : '']}
+      autoplay muted loop playsinline preload="metadata" aria-hidden="true"
+    >
+      <source src={src!.medium} type="video/mp4" media="(max-width: 1023px)" />
+      <source src={src!.high} type="video/mp4" />
+    </video>
+  )}
+  <div class="absolute inset-0 bg-navy/45"></div>
   <div class:list={['row-wrap relative w-full text-center', variant === 'power' ? '!py-[clamp(120px,calc(126px+11.667vw),350px)]' : 'py-[120px]']}>
     <slot />
   </div>

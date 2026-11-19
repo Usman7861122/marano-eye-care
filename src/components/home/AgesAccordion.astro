@@ -1,7 +1,7 @@
 ---
 import HoverAccordion from './HoverAccordion.tsx';
 import { home } from '../../data/home';
-import { img, vid } from '../../data/assets';
+import { img } from '../../data/assets';
 
 const slides = [
   ...home.ages.map((a, i) => ({
@@ -11,10 +11,8 @@ const slides = [
     cta: { label: a.cta, href: a.href },
   })),
   {
-    video: vid.ageVideo,
-    titleA: '',
-    watchUrl: home.ageVideo.url,
-    watchLabel: home.ageVideo.watch,
+    image: '/images/stock/shutterstock_1138084499.jpg',
+    titleA: '80+',
     text: home.ageVideo.p,
     cta: { label: home.ageVideo.cta, href: home.ageVideo.href },
   },
