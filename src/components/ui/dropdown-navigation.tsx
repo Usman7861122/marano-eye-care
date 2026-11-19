@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
@@ -19,6 +19,15 @@ export type NavItem = {
 export function DropdownNavigation({ navItems }: { navItems: NavItem[] }) {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [isHover, setIsHover] = useState<number | null>(null);
+  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const show = (label: string | null) => {
+    clearTimeout(timer.current);
+    setOpenMenu(label);
+  };
+  const hideSoon = () => {
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => setOpenMenu(null), 220);
+  };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpenMenu(null);
@@ -27,8 +36,8 @@ export function DropdownNavigation({ navItems }: { navItems: NavItem[] }) {
   }, []);
 
   return (
-    <nav aria-label="Main" className="hidden px-3 min-[1360px]:block">
-      <ul className="flex items-center justify-center">
+    <nav aria-label="Main" className="hidden self-stretch px-3 min-[1360px]:block -my-[10px]">
+      <ul className="flex h-full items-stretch justify-center">
         {navItems.map((item, idx) => {
           const hasSub = !!item.subMenus;
           const isOpen = openMenu === item.label;
@@ -40,10 +49,10 @@ export function DropdownNavigation({ navItems }: { navItems: NavItem[] }) {
           return (
             <li
               key={item.label}
-              className={small ? 'relative' : undefined}
-              onMouseEnter={() => setOpenMenu(hasSub ? item.label : null)}
-              onMouseLeave={() => setOpenMenu(null)}
-              onFocus={() => setOpenMenu(hasSub ? item.label : null)}
+              className={`flex items-center ${small ? 'relative' : ''}`}
+              onMouseEnter={() => show(hasSub ? item.label : null)}
+              onMouseLeave={hideSoon}
+              onFocus={() => show(hasSub ? item.label : null)}
             >
               <a
                 href={item.href}
