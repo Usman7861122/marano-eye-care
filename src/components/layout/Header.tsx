@@ -1,8 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { site } from '../../data/site';
 import { img } from '../../data/assets';
 import { menu, type MenuNode as Node } from '../../data/menu';
 import { practiceStatus } from '../../data/hours';
+import { menuMeta } from '../../data/menuMeta';
+import { Stethoscope, ShieldCheck, ScanEye, Zap, Gauge, Droplets, Focus, Layers, Activity, Aperture, Eye, Syringe, Pill, Sparkles, Flame, Crosshair, Radio, ClipboardList, Waves, Camera, ScanLine, Microscope, Radar, View, Wind, HeartPulse, Sun, MapPin } from 'lucide-react';
+
+const ICONS: Record<string, React.ElementType> = { Stethoscope, ShieldCheck, ScanEye, Zap, Gauge, Droplets, Focus, Layers, Activity, Aperture, Eye, Syringe, Pill, Sparkles, Flame, Crosshair, Radio, ClipboardList, Waves, Camera, ScanLine, Microscope, Radar, View, Wind, HeartPulse, Sun, MapPin };
+import { DropdownNavigation, type NavItem, type NavSubItem } from '../ui/dropdown-navigation';
 
 function OpenNow() {
   const [st, setSt] = useState<ReturnType<typeof practiceStatus> | null>(null);
@@ -28,8 +33,24 @@ function OpenNow() {
 
 const childrenOf = (n: Node): Node[] => n.children ?? [];
 
-const linkCls =
-  'block px-[18px] py-3 text-[14.93px] leading-[14.93px] tracking-[0.5px] text-navy transition-colors hover:bg-[#efefef] focus-visible:bg-[#efefef] focus-visible:outline-none';
+const toSub = (n: Node): NavSubItem => {
+  const m = menuMeta[n.href];
+  return { label: n.label, href: n.href, description: m?.desc, icon: (m && ICONS[m.icon]) || Eye };
+};
+
+const navItems: NavItem[] = menu.map((n, i) => {
+  const kids = childrenOf(n);
+  if (!kids.length) return { id: i + 1, label: n.label, href: n.href };
+  const grouped = kids.some((k) => k.children);
+  return {
+    id: i + 1,
+    label: n.label,
+    href: n.href,
+    subMenus: grouped
+      ? kids.map((k) => ({ title: k.label, items: (k.children ?? []).map(toSub) }))
+      : [{ title: n.label === 'Contact' ? 'Our offices' : n.label, items: kids.map(toSub) }],
+  };
+});
 
 function Chevron({ className = '' }: { className?: string }) {
   return (
@@ -39,53 +60,9 @@ function Chevron({ className = '' }: { className?: string }) {
   );
 }
 
-function DropItem({ n }: { n: Node }) {
-  const ext = n.external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
-  if (!n.children) {
-    return (
-      <li>
-        <a href={n.href} className={linkCls} {...ext}>
-          {n.label}
-        </a>
-      </li>
-    );
-  }
-  return (
-    <li className="group/sub relative">
-      <a href={n.href} className={`${linkCls} flex items-center justify-between gap-3`} aria-haspopup="true">
-        {n.label}
-        <Chevron className="-rotate-90" />
-      </a>
-      <ul className="invisible absolute left-full top-[-10px] z-10 w-max min-w-[300px] max-w-[400px] bg-white p-[10px] opacity-0 shadow-[0_9px_12px_0_rgba(20,20,20,0.15)] transition group-focus-within/sub:visible group-focus-within/sub:opacity-100 group-hover/sub:visible group-hover/sub:opacity-100">
-        {n.children.map((c) => (
-          <DropItem key={c.href} n={c} />
-        ))}
-      </ul>
-    </li>
-  );
-}
-
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string | null>(null);
   const [mobileSub, setMobileSub] = useState<string | null>(null);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
-
-  const show = (l: string | null) => {
-    clearTimeout(timer.current);
-    setActive(l);
-  };
-  const hideSoon = () => {
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => setActive(null), 140);
-  };
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setActive(null);
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, []);
-
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-0 bg-white px-5 py-[10px] shadow-[0_0_15px_-4px_rgba(20,20,20,0.14)] min-[1360px]:mx-3 min-[1360px]:mt-6 min-[1360px]:rounded-[10px]">
@@ -96,36 +73,7 @@ export default function Header() {
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden px-3 min-[1360px]:block" aria-label="Main">
-            <ul className="flex items-center justify-center gap-0" onMouseLeave={hideSoon}>
-              {menu.map((n) => {
-                const kids = childrenOf(n);
-                const isOpen = active === n.label && kids.length > 0;
-                return (
-                  <li key={n.label} className="relative" onMouseEnter={() => show(kids.length ? n.label : null)} onFocus={() => show(kids.length ? n.label : null)}>
-                    <a
-                      href={n.href}
-                      aria-haspopup={kids.length ? 'true' : undefined}
-                      aria-expanded={kids.length ? isOpen : undefined}
-                      className={`flex items-center gap-1 rounded-[6px] px-[8px] py-[6.63px] text-[14.5px] leading-[14.93px] tracking-[0.5px] text-navy transition-colors hover:bg-mist ${isOpen ? 'bg-mist' : ''}`}
-                    >
-                      {n.label}
-                      {kids.length > 0 && <Chevron className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />}
-                    </a>
-                    {isOpen && (
-                      <div className="absolute left-0 top-full z-20 pt-[18px]">
-                        <ul className="min-w-[270px] w-max max-w-[360px] bg-white p-[10px] shadow-[0_9px_12px_0_rgba(20,20,20,0.15)]" aria-label={`${n.label} submenu`}>
-                          {kids.map((c) => (
-                            <DropItem key={c.href + c.label} n={c} />
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+          <DropdownNavigation navItems={navItems} />
 
           {/* Phone + Book Now */}
           <div className="hidden items-center justify-end gap-4 min-[1360px]:flex">
