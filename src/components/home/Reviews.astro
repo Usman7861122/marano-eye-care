@@ -1,7 +1,9 @@
 ---
 import QuoteCarousel from './QuoteCarousel.tsx';
 import { home } from '../../data/home';
-import { img } from '../../data/assets';
+import { reviews, rating } from '../../data/reviews';
+const pick = ['Richard C.', 'Terry Z.', 'Susan C.', 'Rosemary L.', 'Evelyn S.', 'John W.'];
+const shown = pick.map((n) => reviews.find((r) => r.name === n)!);
 ---
 <section
   id="testimonials"
@@ -23,26 +25,40 @@ import { img } from '../../data/assets';
       <QuoteCarousel client:visible quotes={home.quotes} />
     </div>
 
-    <!-- Patient video tiles -->
+    <!-- Google reviews -->
     <div class="mx-auto w-screen max-w-[calc(60px+clamp(1200px,83.3333vw,1600px))] px-[30px] pb-[clamp(60px,calc(32.9px+7.4434vw),175px)]">
-      <div class="mb-[clamp(30px,calc(25.15px+1.2945vw),50px)]">
+      <div class="mb-[clamp(30px,calc(25.15px+1.2945vw),50px)] flex flex-wrap items-end justify-between gap-6">
         <h2 class="serif text-[length:var(--fs-h1)] leading-[1.2]">
-          <span class="eyebrow">Patient Stories</span>
+          <span class="eyebrow">Google Reviews</span>
           Words From <i>Our Patients</i>
         </h2>
+        <div class="flex items-center gap-4 rounded-[16px] bg-white/10 px-5 py-4" aria-label={`Rated ${rating.score} out of 5 from ${rating.count} reviews`}>
+          <span class="serif text-[44px] leading-none">{rating.score}</span>
+          <div>
+            <div class="text-[18px] leading-none tracking-[2px] text-[#f5b942]" aria-hidden="true">★★★★★</div>
+            <p class="mt-1 text-[14px] opacity-85">{rating.count} Google reviews</p>
+          </div>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 gap-3 min-[801px]:grid-cols-2 min-[1025px]:grid-cols-5">
-        {home.patients.map((p, i) => (
-          <div class="patient-tile">
-            <img src={img.patients[i]} alt={`${p.name}, patient video`} loading="lazy" />
-            <div class="content">
-              <h3 class="serif">{p.name}</h3>
-              <p>{p.topic}</p>
-            </div>
-            <a href={p.url} class="popup-video" aria-label={`Watch ${p.name}'s story`}></a>
-          </div>
+      <div class="grid grid-cols-1 gap-4 min-[801px]:grid-cols-2 min-[1025px]:grid-cols-3">
+        {shown.map((r) => (
+          <figure class="flex flex-col rounded-[16px] bg-white p-7 text-black">
+            <div class="text-[18px] leading-none tracking-[2px] text-[#f5b942]" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote class="mt-4 flex-1 text-[17px] leading-[1.6]">“{r.text}”</blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              <span class="grid h-10 w-10 place-items-center rounded-full bg-navy text-[15px] font-semibold text-white" aria-hidden="true">{r.name[0]}</span>
+              <span>
+                <span class="block font-semibold leading-tight">{r.name}</span>
+                <span class="block text-[14px] text-slate">{r.tag}</span>
+              </span>
+            </figcaption>
+          </figure>
         ))}
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="/testimonials" class="btn white">Read More Reviews</a>
       </div>
     </div>
   </div>
