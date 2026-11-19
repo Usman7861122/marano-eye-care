@@ -46,30 +46,30 @@ export const home = {
   findOut: ['if you’re a good candidate', 'what clear vision can look like', 'which option suits your life'],
   tabs: [
     {
-      key: 'smile', name: 'All-Laser LASIK', short: 'Gentle, Laser-Guided Care', cta: 'Learn More About LASIK', href: '/services/lasik',
+      key: 'laser', name: 'Laser Surgery', short: 'Precise, Gentle, Laser-Guided', cta: 'Learn More About Cataract Surgery', href: '/services/cataract-surgery',
       rows: [
-        ['Best for:', 'Adults with nearsightedness, farsightedness, or astigmatism'],
-        ['Recovery:', 'Quick, with most patients back to daily routines soon after'],
-        ['Procedure:', 'Both steps of the treatment are done with a laser'],
-        ['Ideal for:', 'Patients who want a precise, comfortable path to less dependence on glasses'],
-      ],
-    },
-    {
-      key: 'lasik', name: 'LASIK', short: 'Proven for Decades', cta: 'Learn More About LASIK', href: '/services/lasik',
-      rows: [
-        ['Best for:', 'Adults with nearsightedness, farsightedness, or astigmatism'],
-        ['Recovery:', 'Fast, with improved vision soon after treatment'],
-        ['Procedure:', 'Quick, comfortable, and completed in minutes'],
-        ['Ideal for:', 'Active lifestyles, minimal downtime, and proven long-term results'],
-      ],
-    },
-    {
-      key: 'prk', name: 'Cataract Surgery', short: 'Laser Accuracy, Premium Lenses', cta: 'Learn More About Cataract Surgery', href: '/services/cataract-surgery',
-      rows: [
-        ['Best for:', 'Adults whose vision is clouded by cataracts'],
+        ['Best for:', 'Adults whose vision is blurry, hazy, or dim because of cataracts'],
         ['Technology:', 'Femto laser-assisted surgery and LENSAR ALLY®'],
-        ['Lenses:', 'Premium lens options including Symfony®, PanOptix®, and Vivity™'],
-        ['Ideal for:', 'Patients who want sharper vision at more distances'],
+        ['Procedure:', 'Key steps are guided by a laser for extra precision'],
+        ['Ideal for:', 'Patients who want a careful, comfortable path to clear sight'],
+      ],
+    },
+    {
+      key: 'lens', name: 'Premium Lenses', short: 'Sharper Sight at More Distances', cta: 'Explore Lens Options', href: '/services/cataract-surgery',
+      rows: [
+        ['Lens options:', 'Symfony®, PanOptix®, and Vivity™'],
+        ['Best for:', 'Patients who want less need for readers and glasses'],
+        ['Your choice:', 'We help you pick the lens that fits your daily life'],
+        ['Ideal for:', 'Reading, driving, and everything in between'],
+      ],
+    },
+    {
+      key: 'time', name: 'Is It Time?', short: 'Signs of Cataracts', cta: 'Book a Cataract Evaluation', href: '/appointment?service=cataract-surgery',
+      rows: [
+        ['Common signs:', 'Cloudy or blurry vision, glare at night, and faded colors'],
+        ['First step:', 'A comprehensive eye exam to check your eyes'],
+        ['Good to know:', 'Cataracts are common with age and very treatable'],
+        ['Ideal for:', 'Anyone who feels their sight is slowly slipping'],
       ],
     },
   ],

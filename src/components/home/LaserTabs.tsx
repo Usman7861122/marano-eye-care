@@ -15,7 +15,7 @@ export default function LaserTabs({ tabs, images }: { tabs: Tab[]; images: Recor
   const t = tabs[active];
 
   return (
-    <section id="laser" className="round-top relative min-h-[929px] overflow-hidden bg-navy text-white">
+    <section id="cataract-surgery" className="round-top relative min-h-[929px] overflow-hidden bg-navy text-white">
       {/* Background photo */}
       <AnimatePresence>
         <motion.img
@@ -29,16 +29,16 @@ export default function LaserTabs({ tabs, images }: { tabs: Tab[]; images: Recor
           transition={{ duration: 1.2, ease: 'easeOut' }}
         />
       </AnimatePresence>
-      <div className="absolute inset-0 bg-gradient-to-r from-navy/60 via-navy/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/35 to-navy/10" />
 
       <div className="relative mx-auto flex min-h-[929px] max-w-[1440px] items-center px-[clamp(20px,4.6vw,66px)] py-[67px]">
        <div className="flex w-full flex-col justify-end gap-8 lg:flex-row lg:items-end lg:justify-between">
         {/* Left: heading, button, tab links */}
         <div className="w-full lg:max-w-[904px]">
           <h2 className="serif text-[length:var(--fs-tab)] leading-[0.9]">
-            <span className="eyebrow !mb-[35px] !leading-[0.9]">Many Choices, One Right Fit</span>
-            Advanced Laser
-            <span className="block">Vision Correction</span>
+            <span className="eyebrow !mb-[35px] !leading-[0.9]">Your Surgery, Your Choice of Lens</span>
+            Advanced Cataract
+            <span className="block">Surgery</span>
           </h2>
 
           <div className="mt-[30px]">

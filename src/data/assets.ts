@@ -48,6 +48,11 @@ export const img = {
   lasik: D('1744221933-lasik.jpg', 2200),
   smile: D('1744221933-smile.jpg', 2200),
   prk: D('1744221932-prk.jpg', 2200),
+  cataractTabs: {
+    laser: '/images/stock/shutterstock_2405825615.jpg',
+    lens: '/images/stock/shutterstock_2810960925.jpg',
+    time: '/images/stock/shutterstock_2670489327.jpg',
+  },
   ages: [
     D('1744222938-2-open.jpg', 1428),
     D('1744222938-3-open.jpg', 1428),
