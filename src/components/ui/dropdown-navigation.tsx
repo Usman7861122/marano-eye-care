@@ -29,15 +29,18 @@ export function DropdownNavigation({ navItems }: { navItems: NavItem[] }) {
   return (
     <nav aria-label="Main" className="hidden px-3 min-[1360px]:block">
       <ul className="flex items-center justify-center">
-        {navItems.map((item) => {
+        {navItems.map((item, idx) => {
           const hasSub = !!item.subMenus;
           const isOpen = openMenu === item.label;
           const total = item.subMenus?.reduce((n, s) => n + s.items.length, 0) ?? 0;
           const compact = total > 12;
+          const alignRight = idx >= navItems.length - 3;
+          const small = total <= 4; // few links: a narrow dropdown under the item, no dead space
           const cols = compact ? 'grid-cols-4' : 'grid-cols-3';
           return (
             <li
               key={item.label}
+              className={small ? 'relative' : undefined}
               onMouseEnter={() => setOpenMenu(hasSub ? item.label : null)}
               onMouseLeave={() => setOpenMenu(null)}
               onFocus={() => setOpenMenu(hasSub ? item.label : null)}
@@ -66,7 +69,7 @@ export function DropdownNavigation({ navItems }: { navItems: NavItem[] }) {
 
               <AnimatePresence>
                 {isOpen && item.subMenus && (
-                  <div className="absolute inset-x-0 top-full z-20 pt-3">
+                  <div className={`absolute top-full z-20 pt-3 ${small ? (alignRight ? "right-0 w-max" : "left-0 w-max") : "inset-x-0"}`}>
                     <motion.div
                       className="border border-navy/10 bg-[#f3f6fc] p-5 shadow-[0_24px_48px_-16px_rgba(20,30,60,0.3)]"
                       style={{ borderRadius: 14 }}
@@ -75,7 +78,7 @@ export function DropdownNavigation({ navItems }: { navItems: NavItem[] }) {
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.18 }}
                     >
-                      <div className={`mx-auto grid max-w-[1346px] grid-cols-[250px_1fr] gap-5 ${total <= 3 ? "items-start" : ""}`}>
+                      <div className={small ? "grid grid-cols-[230px_330px] gap-4" : "mx-auto grid max-w-[1346px] grid-cols-[250px_1fr] gap-5"}>
                         {item.panel && (
                           <div className="flex flex-col rounded-[12px] bg-gradient-to-br from-navy via-[#22335f] to-steel p-6 text-white">
                             <span className="text-[11.5px] font-semibold uppercase tracking-[2px] text-sky">{item.panel.eyebrow}</span>
@@ -91,17 +94,17 @@ export function DropdownNavigation({ navItems }: { navItems: NavItem[] }) {
                             )}
                           </div>
                         )}
-                        <div className="space-y-5">
+                        <div className={small ? "flex flex-col" : "space-y-5"}>
                           {item.subMenus.map((sub) => (
-                            <div key={sub.title}>
-                              {item.subMenus!.length > 1 && (
+                            <div key={sub.title} className={small ? "flex flex-1 flex-col" : undefined}>
+                              {item.subMenus!.length > 1 && !small && (
                                 <h3 className="mb-2.5 text-[12px] font-semibold uppercase tracking-[1.5px] text-slate">{sub.title}</h3>
                               )}
-                              <ul className={`grid gap-2.5 ${cols}`}>
+                              <ul className={small ? 'flex flex-1 flex-col gap-2.5' : `grid gap-2.5 ${cols}`}>
                                 {sub.items.map((s) => {
                                   const Icon = s.icon;
                                   return (
-                                    <li key={s.href + s.label}>
+                                    <li key={s.href + s.label} className={small ? 'flex-1' : undefined}>
                                       <a
                                         href={s.href}
                                         className="group flex h-full items-center gap-3 rounded-[10px] border border-navy/10 bg-white p-2.5 transition duration-200 hover:-translate-y-0.5 hover:border-navy/30 hover:shadow-[0_10px_20px_-12px_rgba(26,39,72,0.4)]"
